@@ -1,8 +1,8 @@
 package com.example.calculatersunotes.data.models
 
 class UrbanHouse(
-    override var bigGasBottlesInMonth: UInt,
-    override var smallGasBottlesInMonth: UInt,
+    override var bigGasBottlesInMonth: Double,
+    override var smallGasBottlesInMonth: Double,
     override var electricityBillMonthOne: Double,
     override var electricityBillMonthTwo: Double,
     override var electricityBillMonthThree: Double,
@@ -19,7 +19,7 @@ class UrbanHouse(
     var hasLaptop: Boolean,
     var hasFaxPhone: Boolean,
     var hasBankLoan: Boolean,
-    var haveAntenna: Boolean,
+    var haveAntenna: Boolean, override var roomsNumber: UInt,
 
-): House {
+    ): House {
 }
