@@ -1,0 +1,218 @@
+[
+  {
+    "viQuestion": "أسرة مكونة من فرد واحد، أومن زوجين بدون أطفال",
+    "ci": 0.130,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": " أسرة تقيم بفيال، شقة، دار تقليدية، دارقروية مشيدة باألحجاراليابسة، أوباألحجارالمغطاة بالطين",
+    "ci": 0.127,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "House",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "غرفة واحدة يتقاسمها شخصان على األكثر",
+    "ci": 0.129,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "House",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "غرفة واحدة يتقاسمها ثالثة (3)أشخاص على األكثر",
+    "ci": 0.108,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "يتوفررب الأسرة على مستوى تعليمي أساس ي",
+    "ci": 0.0569,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "رب الأسرة إطارعالي أويشغل منصب مسؤولية",
+    "ci": 0.154,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "رب الأسرة مسيرللمعدات أواآلالت الثابتة",
+    "ci": 0.196,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "رب الأسرة حرفي",
+    "ci": 0.125,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "رب الأسرة مستغل فالحي",
+    "ci": 0.0722,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "رب الأسرة مشغل",
+    "ci": 0.190,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "الأسرة تمتلك دراجة نارية",
+    "ci": 0.0635,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "يستفيد فرد واحد من الأسرة على األقل من نظام للتغطية الصحية غير نظام املساعدة الطبية (راميد)",
+    "ci": 0.193,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "تتوفرالأسرة على سكن ثانوي",
+    "ci": 0.334,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "تتوفرالأسرة على أراض غيرفالحية",
+    "ci": 0.233,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "تتوفرالأسرة على أرض مسقية أو تستغلها",
+    "ci": 0.126,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "عدد أفراد الأسرة",
+    "ci": -0.138,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "مربع عدد أفراد الأسرة",
+    "ci": 0.00469,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "عدد أفراد الأسرة الذين تتراوح أعمارهم ما بين 19 و29 سنة",
+    "ci": 0.0523,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "عدد أفراد الأسرة الذين تتراوح أعمارهم بين 30 و59 سنة",
+    "ci": 0.0337,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "عدد أفراد الأسرة الذين تبلغ أعمارهم 60 سنة فأكثر",
+    "ci": 0.0781,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "نسبة أفراد الأسرة الذين تبلغ أعمارهم 15 سنة فأكثروالذين يستطيعون القراءة والكتابة",
+    "ci": 0.128,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "نسبة أفراد الأسرة الذين تبلغ أعمارهم 15 سنة فأكثر الحاصلين على شهادة التعليم العالي",
+    "ci": 0.344,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "نسبة أفراد الأسرة الذين تبلغ أعمارهم 15 سنة فأكثرالذين يزاولون التجارة",
+    "ci": 0.301,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "عدد األبقار التي تمتلكها الأسرة",
+    "ci": 0.0257,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "مبلغ مصاريف الأسرة السنوية المتعلقة باستهالك غازالبوتان مقسوم على عدد أفراد الأسرة",
+    "ci": 0.000755,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "مبلغ مصاريف الأسرة السنوية المتعلقة باستهالك املاء والكهرباء مقسوم على عدد أفراد الأسرة ",
+    "ci": 0.000145,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "مبلغ مصاريف الأسرة السنوية املتعلقة باستهالك الهاتف والإنترنت  مقسوم على عدد أفراد الأسرة",
+    "ci": 0.00086,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  }
+]

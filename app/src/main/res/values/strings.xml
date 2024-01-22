@@ -1,0 +1,78 @@
+<resources>
+    <string name="app_name">Calculate RSU Notes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="env_question">اختر المجال الذي تقطن فيه </string>
+    <string name="env_rural_option">القروي </string>
+    <string name="env_urban_option">الحضري </string>
+    <string name="choose_region_qst">اختر الجهة </string>
+    <string name="full_name_txt"> الإسم الكامل</string>
+    <string name="age_txt"> السن</string>
+    <string name="basic_education_option"> مستوى تعليمي أساسي</string>
+    <string name="social_status_txt">الفئة الاجتماعية والمهنية لرب الأسرة:</string>
+    <string name="without_option"> بدون</string>
+    <string name="machinery_manager_txt"> رب الأسرة مسير للمعدات أو الآلات الثابتة</string>
+    <string name="high_position_btn"> ذو إطار عالي أو يعمل في منصب مسؤول </string>
+    <string name="craftsman_btn"> حرفي </string>
+    <string name="peasant_exploiter_btn"> مستغل فلاحي </string>
+    <string name="other_btn">آخر </string>
+    <string name="position_in_job_txt">الوضع في الوظيفة </string>
+    <string name="employee_btn_txt"> موظف</string>
+    <string name="recruiter_btn_txt"> مشغل</string>
+    <string name="does_commerce_question"> يمارس التجارة : </string>
+    <string name="calculate_rsu"> حساب المؤشر </string>
+    <string name="choose_regioQuestion"> اختر الجهة التي تقطن بها</string>
+    <string name="write_full_name"> اكتب اسمك كامل...</string>
+    <string name="full_name">الاسم كامل :</string>
+    <string name="educational_level_of_householder">المستوى التعليمي لرب الأسرة :</string>
+    <string name="high_education">تعليم العالي</string>
+    <string name="health_security">التغطية الصحية : </string>
+    <string name="has_health_security">يستفيد من التغطية الصحية </string>
+    <string name="without_health_security">بدون تغطية صحية </string>
+    <string name="literacy">معرفة القراءة و الكتابة : </string>
+    <string name="has_high_education_diploma">حاصل على شهادة التعليم العالي : </string>
+    <string name="yes">نعم</string>
+    <string name="congrats_for_ones_part">تهانينا خالد. لقد أكملت الجزء الخاص بك</string>
+    <string name="start">ابدأ</string>
+    <string name="write_age">اكتب سنك...</string>
+    <string name="start_home_part">ابدأ الجزء الخاص بالمنزل</string>
+    <string name="house_type_quest">هل أسرة تقيم بفيال شقة دار تقليدية، دار قروية
+مشيدة بالأحجار اليابسة أو بالأحجار المغطاة بالطين  ؟</string>
+    <string name="no">لا</string>
+    <string name="has_car"> هل تمتلك امتلاك سيارة ؟</string>
+    <string name="has_motorcycle">هل تمتلك امتلاك دراجة نارية ؟</string>
+    <string name="double_house">هل لديك سكن ثانوي ؟</string>
+    <string name="have_non_agricultural_land"> هل تمتلك أراضي غير فلاحية ؟</string>
+    <string name="have_arable_land"> هل تمتلك أراضي غير فلاحية ؟</string>
+    <string name="cows_number"> عدد الابقار</string>
+    <string name="rooms_number"> عدد الغرف</string>
+    <string name="write_number"> اكتب  العدد...</string>
+    <string name="big_gas_bottles_number"> عدد قنينات الغاز الكبيرة في الشهر</string>
+    <string name="small_gas_bottles_number"> عدد قنينات الغاز الصغيرة في الشهر</string>
+    <string name="internet_bill"> فاتورة الإنترنت الشهرية </string>
+    <string name="electricity_water_bill"> فاتورة الماء و الكهرباء :</string>
+    <string name="electricity"> الكهرباء :</string>
+    <string name="water"> الماء :</string>
+    <string name="first_month"> الشهر الأول </string>
+    <string name="second_month"> الشهر الثاني</string>
+    <string name="third_month"> الشهر الثالث</string>
+    <string name="add_family_member"> إضافة أحد أفراد العائلة</string>
+    <string name="your_rsu_is"> مؤشرك الإجتماعي و الاقتصادي هو :</string>
+    <string name="congrats_for_success">تهانينا خالد.هذا المؤشر يخول لك الحصول على دعم</string>
+    <string name="update">تعديل</string>
+    <string-array name="regions">
+        <item>طنجة - تطوان - الحسيمة</item>
+        <item>كلميم - واد نون</item>
+        <item>العيون - الساقية الحمراء</item>
+        <item>الداخلة - وادي الذهب</item>
+        <item>الشرق</item>
+        <item>فاس - مكناس</item>
+        <item>الرباط -سلا -القنيطرة</item>
+        <item>بني ملال - خنيفرة</item>
+        <item>الدار البيضاء - سطات</item>
+        <item>مراكش - آسفي</item>
+        <item>درعة - تافيلالت</item>
+        <item>سوس - ماسة</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

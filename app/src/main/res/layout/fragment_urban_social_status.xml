@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.rural.householder.RuralNameEducation">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="50dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_bottom_background"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:paddingTop="30dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="30dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/aref_ruqaa_bold"
+                android:text="@string/social_status_txt"
+                android:gravity="right"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/high_position_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/empty_btn_background"
+                android:fontFamily="@font/a_arghavan_bold"
+                android:text="@string/high_position_btn"
+                android:textColor="@color/secondaryWhite"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/machinery_manager_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/empty_btn_background"
+                android:fontFamily="@font/a_arghavan_bold"
+                android:text="@string/machinery_manager_txt"
+                android:textColor="@color/secondaryWhite"
+                android:textSize="16dp" />
+            <Button
+                android:id="@+id/craftsman_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/empty_btn_background"
+                android:fontFamily="@font/a_arghavan_bold"
+                android:text="@string/craftsman_btn"
+                android:textColor="@color/secondaryWhite"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/peasant_exploiter_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/empty_btn_background"
+                android:fontFamily="@font/a_arghavan_bold"
+                android:text="@string/peasant_exploiter_btn"
+                android:textColor="@color/secondaryWhite"
+                android:textSize="16dp" />
+            <Button
+                android:id="@+id/other_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/empty_btn_background"
+                android:fontFamily="@font/a_arghavan_bold"
+                android:text="@string/other_btn"
+                android:textColor="@color/secondaryWhite"
+                android:textSize="16dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/aref_ruqaa_bold"
+                android:text="@string/position_in_job_txt"
+                android:gravity="right"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+            <Button
+                android:id="@+id/employee_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/empty_btn_background"
+                android:fontFamily="@font/a_arghavan_bold"
+                android:text="@string/employee_btn_txt"
+                android:textColor="@color/secondaryWhite"
+                android:textSize="16dp" />
+            <Button
+                android:id="@+id/recruiter_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/empty_btn_background"
+                android:fontFamily="@font/a_arghavan_bold"
+                android:text="@string/recruiter_btn_txt"
+                android:textColor="@color/secondaryWhite"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/without_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/empty_btn_background"
+                android:fontFamily="@font/a_arghavan_bold"
+                android:text="@string/without_option"
+                android:textColor="@color/secondaryWhite"
+                android:textSize="16dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/aref_ruqaa_bold"
+                android:text="@string/does_commerce_question"
+                android:gravity="right"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/yes_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/empty_btn_background"
+                    android:fontFamily="@font/a_arghavan_bold"
+                    android:text="@string/yes"
+                    android:textColor="@color/secondaryWhite"
+                    android:textSize="16dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"/>
+
+                <Button
+                    android:id="@+id/no_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/empty_btn_background"
+                    android:fontFamily="@font/a_arghavan_bold"
+                    android:text="@string/no"
+                    android:textColor="@color/secondaryWhite"
+                    android:textSize="16dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </FrameLayout>
+</ScrollView>

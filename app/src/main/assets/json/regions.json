@@ -1,0 +1,136 @@
+[
+  {
+    "code": "R1",
+    "name": "طنجة - تطوان - الحسيمة",
+    "hierarchyLevel": 1,
+    "hierarchyName": "منطقة",
+    "parentLocCode": "MOR",
+    "langCode": "ara",
+    "isActive": true,
+    "kzgUrban": 0.107,
+    "kzgRural": 0.420
+  },
+  {
+    "code": "R10",
+    "name": "كلميم - واد نون",
+    "hierarchyLevel": 1,
+    "hierarchyName": "Region",
+    "parentLocCode": "MOR",
+    "langCode": "ara",
+    "isActive": true,
+    "kzgUrban": 0.285,
+    "kzgRural": 0.318
+  },
+  {
+    "code": "R11",
+    "name": "العيون - الساقية الحمراء",
+    "hierarchyLevel": 1,
+    "hierarchyName": "Region",
+    "parentLocCode": "MOR",
+    "langCode": "ara",
+    "isActive": true,
+    "kzgUrban": 0.285,
+    "kzgRural": 0.318
+  },
+  {
+    "code": "R12",
+    "name": "الداخلة - وادي الذهب",
+    "hierarchyLevel": 1,
+    "hierarchyName": "Region",
+    "parentLocCode": "MOR",
+    "langCode": "ara",
+    "isActive": true,
+    "kzgUrban": 0.285,
+    "kzgRural": 0.318
+  },
+  {
+    "code": "R2",
+    "name": "الشرق",
+    "hierarchyLevel": 1,
+    "hierarchyName": "Region",
+    "parentLocCode": "MOR",
+    "langCode": "ara",
+    "isActive": true,
+    "kzgUrban": 0.196,
+    "kzgRural": 0.230
+  },
+  {
+    "code": "R3",
+    "name": "فاس - مكناس",
+    "hierarchyLevel": 1,
+    "hierarchyName": "Region",
+    "parentLocCode": "MOR",
+    "langCode": "ara",
+    "isActive": true,
+    "kzgUrban": 0.123,
+    "kzgRural": 0.296
+  },
+  {
+    "code": "R4",
+    "name": "الرباط -سلا -القنيطرة",
+    "hierarchyLevel": 1,
+    "hierarchyName": "منطقة",
+    "parentLocCode": "MOR",
+    "langCode": "ara",
+    "isActive": true,
+    "kzgUrban": 0.0555,
+    "kzgRural": 0.302
+  },
+  {
+    "code": "R5",
+    "name": "بني ملال - خنيفرة",
+    "hierarchyLevel": 1,
+    "hierarchyName": "Region",
+    "parentLocCode": "MOR",
+    "langCode": "ara",
+    "isActive": true,
+    "kzgUrban": 0,
+    "kzgRural": 0.351
+  },
+  {
+    "code": "R6",
+    "name": "الدار البيضاء - سطات",
+    "hierarchyLevel": 1,
+    "hierarchyName": "Region",
+    "parentLocCode": "MOR",
+    "langCode": "ara",
+    "isActive": true,
+    "kzgUrban": 0.220,
+    "kzgRural": 0.464
+  },
+  {
+    "code": "R7",
+    "name": "مراكش - آسفي",
+    "hierarchyLevel": 1,
+    "hierarchyName": "Region",
+    "parentLocCode": "MOR",
+    "langCode": "ara",
+    "isActive": true,
+    "kzgUrban": 0.194,
+    "kzgRural": 0.377
+  },
+  {
+    "code": "R8",
+    "name": "درعة - تافيلالت",
+    "hierarchyLevel": 1,
+    "hierarchyName": "Region",
+    "parentLocCode": "MOR",
+    "langCode": "ara",
+    "isActive": true,
+    "kzgUrban": 0,
+    "kzgRural": 0
+  },
+  {
+    "code": "R9",
+    "name": "سوس - ماسة",
+    "hierarchyLevel": 1,
+    "hierarchyName": "Region",
+    "parentLocCode": "MOR",
+    "langCode": "ara",
+    "isActive": true,
+    "kzgUrban": 0,
+    "kzgRural": 0.221
+  }
+
+
+]

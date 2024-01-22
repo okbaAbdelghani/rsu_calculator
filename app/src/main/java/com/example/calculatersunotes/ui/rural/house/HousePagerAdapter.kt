@@ -1,0 +1,20 @@
+package com.example.calculatersunotes.ui.rural.house
+
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+
+class HousePagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+    override fun getItem(position: Int): Fragment {
+        return when(position) {
+            0 -> HouseServeyOne()
+            1 -> HouseServeyTwo()
+            2 -> HouseServeyThree()
+            else -> throw IllegalArgumentException("Invalid position")
+        }
+    }
+
+    override fun getCount(): Int {
+        return 3
+    }
+}
