@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/no_house_type_btn"
+                    android:id="@+id/no_second_house_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                     android:text="@string/no"
                     android:layout_marginRight="15dp"/>
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/yes_house_type_btn"
+                    android:id="@+id/yes_second_house_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/no_car_btn"
+                    android:id="@+id/no_agricultural_land_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
                     android:text="@string/no"
                     android:layout_marginRight="15dp"/>
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/yes_car_btn"
+                    android:id="@+id/yes_non_agricultural_land_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/no_motorcycle_btn"
+                    android:id="@+id/no_arable_land_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
                     android:text="@string/no"
                     android:layout_marginRight="15dp"/>
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/yes_motorcycle_btn"
+                    android:id="@+id/yes_arable_land_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -147,6 +147,7 @@
                     app:placeholderTextAppearance="@style/PlaceholderTextAppearance"
                     >
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/rooms_number_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/rooms_number"
@@ -176,6 +177,7 @@
                     app:placeholderTextAppearance="@style/PlaceholderTextAppearance"
                     >
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cows_number_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/normalGray"

@@ -47,6 +47,7 @@
                     app:placeholderTextAppearance="@style/PlaceholderTextAppearance"
                     >
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/big_gas_bottles"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/big_gas_bottles_number"
@@ -75,6 +76,7 @@
                     app:placeholderTextAppearance="@style/PlaceholderTextAppearance"
                     >
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/small_gas_bottles"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/normalGray"
@@ -105,6 +107,7 @@
                 app:placeholderTextAppearance="@style/PlaceholderTextAppearance"
                 >
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/internet_and_phone_bill"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColorHint="@color/normalGray"
@@ -157,6 +160,7 @@
                     android:layout_marginRight="20dp"
                     >
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/third_month_electricity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/normalGray"
@@ -189,6 +193,7 @@
                     android:layout_marginRight="20dp"
                     >
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/second_month_electricity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/normalGray"
@@ -220,6 +225,7 @@
                     app:placeholderTextAppearance="@style/PlaceholderTextAppearance"
                     >
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/first_month_electricity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/normalGray"
@@ -265,6 +271,7 @@
                     android:layout_marginRight="20dp"
                     >
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/third_month_water"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/normalGray"
@@ -297,6 +304,7 @@
                     android:layout_marginRight="20dp"
                     >
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/second_month_water"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/normalGray"
@@ -328,6 +336,7 @@
                     app:placeholderTextAppearance="@style/PlaceholderTextAppearance"
                     >
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/first_month_water"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/normalGray"

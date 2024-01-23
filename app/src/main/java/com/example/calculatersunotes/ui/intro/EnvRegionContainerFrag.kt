@@ -15,12 +15,14 @@ import com.example.calculatersunotes.ui.onboards.OnboardingPagerAdapter
 import com.example.calculatersunotes.ui.rural.Rural
 import com.example.calculatersunotes.ui.urban.Urban
 import com.example.calculatersunotes.utils.FragmentUtil
+import com.example.calculatersunotes.utils.SwipeUtil
 
 
 class EnvRegionContainerFrag : Fragment() {
     private lateinit var viewPager: ViewPager
     private lateinit var envRegionPagerAdapter: EnvRegionPagerAdapter
     private lateinit var fragmentUtil: FragmentUtil
+    private lateinit var swipeUtil: SwipeUtil
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +39,7 @@ class EnvRegionContainerFrag : Fragment() {
         envRegionPagerAdapter = EnvRegionPagerAdapter(childFragmentManager)
         viewPager.adapter = envRegionPagerAdapter
         fragmentUtil = FragmentUtil(requireContext())
+        swipeUtil = SwipeUtil()
 
         onNexBtnClicked(rootView);
 
@@ -63,20 +66,14 @@ class EnvRegionContainerFrag : Fragment() {
                 else -> {
                     Toast.makeText(requireContext(),"Env Required", Toast.LENGTH_SHORT).show()
                 }
-
             }
-            */
-            if(viewPager.currentItem == envRegionPagerAdapter.count - 1){
-                navigateToRural()
-            }
-            if (viewPager.currentItem < envRegionPagerAdapter.count){
-                viewPager.setCurrentItem(viewPager.currentItem + 1, true)
-            }
+             */
+            swipeUtil.navigateNext(viewPager, envRegionPagerAdapter, navigateToRural)
 
         }
     }
 
-    private fun navigateToRural(){
+    private val navigateToRural: () -> Unit = {
         fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, Rural())
     }
 

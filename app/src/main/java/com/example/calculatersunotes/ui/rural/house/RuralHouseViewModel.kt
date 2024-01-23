@@ -87,6 +87,22 @@ class RuralHouseViewModel: ViewModel() {
         _ruralHouse.value = ruralHouse
     }
 
+    fun updateWaterMonthFirst(value: Double){
+        val ruralHouse = _ruralHouse.value ?: createEmptyHouse()
+        ruralHouse.waterBillMonthOne = value
+        _ruralHouse.value = ruralHouse
+    }
+    fun updateWaterMonthSecond(value: Double){
+        val ruralHouse = _ruralHouse.value ?: createEmptyHouse()
+        ruralHouse.waterBillMonthTwo = value
+        _ruralHouse.value = ruralHouse
+    }
+    fun updateWaterMonthThree(value: Double){
+        val ruralHouse = _ruralHouse.value ?: createEmptyHouse()
+        ruralHouse.waterBillMonthThree = value
+        _ruralHouse.value = ruralHouse
+    }
+
     private fun createEmptyHouse(): RuralHouse {
         return RuralHouse()
     }

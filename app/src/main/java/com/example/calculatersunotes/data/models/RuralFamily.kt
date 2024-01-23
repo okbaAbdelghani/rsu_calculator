@@ -7,6 +7,7 @@ class RuralFamily(
     override var environment: String,
     var householder: RuralHouseHolder,
     var members: MutableList<RuralMember>,
+    var ruralHouse: RuralHouse
 
 ) : Family
 {

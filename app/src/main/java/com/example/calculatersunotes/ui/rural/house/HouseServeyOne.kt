@@ -6,12 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
+import com.example.calculatersunotes.ui.congrats.HouseDoneCongrats
+import com.example.calculatersunotes.ui.congrats.HouseHolderDoneCongrats
 import com.example.calculatersunotes.ui.rural.householder.RuralHouseHolderViewModel
 import com.example.calculatersunotes.utils.FragmentUtil
+import com.example.calculatersunotes.utils.SwipeUtil
 
 
 class HouseServeyOne : Fragment() {
@@ -19,9 +24,9 @@ class HouseServeyOne : Fragment() {
     private var buttonList: List<Button> = mutableListOf()
     private var exceptionButtonList: List<Button> = mutableListOf()
     private lateinit var fragmentUtil: FragmentUtil
-    private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
-    private val ruralHouseHolderViewModel: RuralHouseHolderViewModel by activityViewModels()
     private val ruralHouseViewModel: RuralHouseViewModel by activityViewModels()
+    private lateinit var housePagerAdapter: HousePagerAdapter
+    private lateinit var swipeUtil: SwipeUtil
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -31,6 +36,9 @@ class HouseServeyOne : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        fragmentUtil = FragmentUtil(requireContext())
+        swipeUtil = SwipeUtil()
+
         val rootView =  inflater.inflate(R.layout.fragment_house_servey_one, container, false)
         val noHouseTypeBtn = rootView.findViewById<Button>(R.id.no_house_type_btn)
         val yesHouseTypeBtn = rootView.findViewById<Button>(R.id.yes_house_type_btn)
@@ -39,19 +47,8 @@ class HouseServeyOne : Fragment() {
         val noMotorcycleBtn = rootView.findViewById<Button>(R.id.no_motorcycle_btn)
         val yesMotorcycleBtn = rootView.findViewById<Button>(R.id.yes_motorcycle_btn)
 
-        val parenFragment: RuralHouseFragment? = parentFragment as? RuralHouseFragment
 
-        parenFragment?.let {
-            val viewPager: ViewPager? = it.view?.findViewById(R.id.rural_house_pager)
-
-            viewPager?.let {
-                val currentItem: Int = it.currentItem
-                it.currentItem = currentItem + 1
-            }
-        }
-
-
-        fragmentUtil = FragmentUtil(requireContext())
+        swipeNext(rootView)
 
         buttonList = mutableListOf(
             noHouseTypeBtn,
@@ -109,6 +106,23 @@ class HouseServeyOne : Fragment() {
          */
 
         return rootView
+    }
+
+    private val navigateToHouseCongrats : () -> Unit = {
+        fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, HouseDoneCongrats())
+    }
+
+    private fun swipeNext(rootView: View){
+        val nextBtn = rootView.findViewById<ImageButton>(R.id.next_btn)
+
+        val parenFragment: RuralHouseFragment = parentFragment as RuralHouseFragment
+        val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.rural_house_pager)
+        housePagerAdapter = HousePagerAdapter(childFragmentManager)
+
+        //Swipe Next
+        nextBtn.setOnClickListener {
+            swipeUtil.navigateNext(viewPager , housePagerAdapter, navigateToHouseCongrats)
+        }
     }
 
 }

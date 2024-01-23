@@ -13,6 +13,7 @@ import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
 import com.example.calculatersunotes.ui.congrats.HouseHolderDoneCongrats
 import com.example.calculatersunotes.ui.rural.householder.RuralHouseHolderViewModel
 import com.example.calculatersunotes.utils.FragmentUtil
+import com.example.calculatersunotes.utils.SwipeUtil
 
 class Rural : Fragment() {
     private lateinit var viewPager: ViewPager
@@ -20,6 +21,7 @@ class Rural : Fragment() {
     private lateinit var fragmentUtil: FragmentUtil
     private val ruralHouseHolderViewModel: RuralHouseHolderViewModel by activityViewModels()
     private val sharedViewModel: RuralFamilyViewModel by activityViewModels()
+    private lateinit var swipeUtil: SwipeUtil
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +39,7 @@ class Rural : Fragment() {
         viewPager.adapter = mainPagerAdapter
 
         fragmentUtil = FragmentUtil(requireContext())
+        swipeUtil = SwipeUtil()
         onNexBtnClicked(rootView)
         return rootView
     }
@@ -44,22 +47,15 @@ class Rural : Fragment() {
     private fun onNexBtnClicked(view: View) {
         val nxtBtn = view.findViewById<ImageButton>(R.id.next_btn);
         nxtBtn.setOnClickListener {
-            if(viewPager.currentItem == mainPagerAdapter.count - 1){
-                setFamilyHouseHolder()
-                navigateToHouseHolderCongrats()
-            }
-            if (viewPager.currentItem < mainPagerAdapter.count){
-                viewPager.setCurrentItem(viewPager.currentItem + 1, true)
-            }
-
+            swipeUtil.navigateNext(viewPager, mainPagerAdapter, navigateToHouseHolderCongrats)
         }
     }
 
-    private fun navigateToHouseHolderCongrats(){
+    private val navigateToHouseHolderCongrats : () -> Unit = {
         fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, HouseHolderDoneCongrats())
     }
 
-    private fun setFamilyHouseHolder(){
+    private fun setFamilyHouseHolder() {
         ruralHouseHolderViewModel.ruralHouseHolder.observe(viewLifecycleOwner) { houseHolder ->
             sharedViewModel.updateFamilyHouseHolder(houseHolder)
         }

@@ -42,7 +42,7 @@
     <string name="has_motorcycle">هل تمتلك امتلاك دراجة نارية ؟</string>
     <string name="double_house">هل لديك سكن ثانوي ؟</string>
     <string name="have_non_agricultural_land"> هل تمتلك أراضي غير فلاحية ؟</string>
-    <string name="have_arable_land"> هل تمتلك أراضي غير فلاحية ؟</string>
+    <string name="have_arable_land">  هل تمتلك أراضي مسقية أو تستغلها الأسرة ؟</string>
     <string name="cows_number"> عدد الابقار</string>
     <string name="rooms_number"> عدد الغرف</string>
     <string name="write_number"> اكتب  العدد...</string>

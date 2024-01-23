@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Spinner
 import com.example.calculatersunotes.R
-import com.example.calculatersunotes.ui.intro.CustomSpinnerAdapter
 
 
 class RegionsFragment : Fragment() {

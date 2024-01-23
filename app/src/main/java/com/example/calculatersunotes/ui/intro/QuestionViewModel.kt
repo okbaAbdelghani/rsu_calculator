@@ -12,8 +12,5 @@ class QuestionViewModel(private val questionRepository: QuestionRepository): Vie
         return questionRepository.readJsonFromAssets(fileName)
     }
 
-    fun parseJsonToModel(jsonString: String?): List<SurveyItem> {
-        val gson = Gson()
-        return gson.fromJson(jsonString, object : TypeToken<List<SurveyItem>>() {}.type)
-    }
+
 }
