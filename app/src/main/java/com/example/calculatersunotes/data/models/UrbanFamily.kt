@@ -4,7 +4,6 @@ class UrbanFamily(
     override var hasSecondHouse: Boolean,
     override var region: Region,
     override var surveyItems: MutableList<SurveyItem>,
-    override var environment: String,
 
 
 ) : Family {

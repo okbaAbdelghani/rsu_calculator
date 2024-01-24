@@ -17,10 +17,9 @@ import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
 import com.example.calculatersunotes.ui.congrats.HouseDoneCongrats
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.utils.SwipeUtil
-import java.lang.NumberFormatException
 
 
-class HouseServeyTwo : Fragment() {
+class RuralHouseServeyTwo : Fragment() {
 
     private var buttonList: List<Button> = mutableListOf()
     private var exceptionButtonList: List<Button> = mutableListOf()
@@ -38,7 +37,7 @@ class HouseServeyTwo : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_house_servey_two, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_rural_house_servey_two, container, false)
 
         fragmentUtil = FragmentUtil(requireContext())
         swipeUtil = SwipeUtil()

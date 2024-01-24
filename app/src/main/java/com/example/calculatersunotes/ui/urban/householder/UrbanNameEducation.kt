@@ -1,4 +1,4 @@
-package com.example.calculatersunotes.ui.urban.patriarch
+package com.example.calculatersunotes.ui.urban.householder
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

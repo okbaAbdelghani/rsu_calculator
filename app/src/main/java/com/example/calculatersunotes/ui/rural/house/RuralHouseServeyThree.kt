@@ -16,7 +16,7 @@ import com.example.calculatersunotes.ui.congrats.HouseDoneCongrats
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.utils.SwipeUtil
 
-class HouseServeyThree : Fragment() {
+class RuralHouseServeyThree : Fragment() {
     private val ruralHouseViewModel: RuralHouseViewModel by activityViewModels()
     private lateinit var housePagerAdapter: HousePagerAdapter
     private lateinit var swipeUtil: SwipeUtil
@@ -30,7 +30,7 @@ class HouseServeyThree : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_house_servey_three, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_rural_house_servey_three, container, false)
         fragmentUtil = FragmentUtil(requireContext())
         swipeUtil = SwipeUtil()
 
@@ -45,6 +45,8 @@ class HouseServeyThree : Fragment() {
         val firstMonthWater = rootView.findViewById<EditText>(R.id.first_month_water)
         val secondMonthWater = rootView.findViewById<EditText>(R.id.second_month_water)
         val thirdMonthWater = rootView.findViewById<EditText>(R.id.third_month_water)
+
+
 
         bigGasBottles.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {

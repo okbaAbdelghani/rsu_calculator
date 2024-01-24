@@ -58,6 +58,15 @@
     <string name="add_family_member"> إضافة أحد أفراد العائلة</string>
     <string name="your_rsu_is"> مؤشرك الإجتماعي و الاقتصادي هو :</string>
     <string name="congrats_for_success">تهانينا خالد.هذا المؤشر يخول لك الحصول على دعم</string>
+    <string name="average_professional_position">ذو إطار متوسط</string>
+    <string name="is_retired_or_beneficiary_Of_income">متقاعد او يستفيد من إيراد</string>
+    <string name="highest_diploma_gotten">أعلى شهادة محصل عليها :</string>
+    <string name="is_machinery_manager">هل يزاول نشاط تسيير للمعدات ؟ </string>
+    <string name="certificate_or_diploma">شهادة أو دبلوم تقني </string>
+    <string name="without_diploma">بدون شهادة </string>
+    <string name="has_shower_or_bath"> هل التوفر على حمام أو رشاش : </string>
+    <string name="electricity_meter_type"> نوع عداد الكهرباء الذي تمتلكه الأسرة : </string>
+    <string name="individual_electricity_meter">فردي</string>
     <string name="update">تعديل</string>
     <string-array name="regions">
         <item>طنجة - تطوان - الحسيمة</item>

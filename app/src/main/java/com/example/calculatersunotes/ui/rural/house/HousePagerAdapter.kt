@@ -7,9 +7,9 @@ import androidx.fragment.app.FragmentPagerAdapter
 class HousePagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
     override fun getItem(position: Int): Fragment {
         return when(position) {
-            0 -> HouseServeyOne()
-            1 -> HouseServeyTwo()
-            2 -> HouseServeyThree()
+            0 -> RuralHouseServeyOne()
+            1 -> RuralHouseServeyTwo()
+            2 -> RuralHouseServeyThree()
             else -> throw IllegalArgumentException("Invalid position")
         }
     }

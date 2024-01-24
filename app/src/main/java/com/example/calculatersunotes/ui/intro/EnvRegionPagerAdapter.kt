@@ -14,6 +14,9 @@ class EnvRegionPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAda
             1 -> RegionsFragment()
             else -> throw IllegalArgumentException("Invalid position: $position")
         }
+
+
+
     }
 
     override fun getCount(): Int {

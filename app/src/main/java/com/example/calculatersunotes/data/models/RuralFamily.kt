@@ -4,7 +4,6 @@ class RuralFamily(
     override var hasSecondHouse: Boolean,
     override var region: Region,
     override var surveyItems: MutableList<SurveyItem>,
-    override var environment: String,
     var householder: RuralHouseHolder,
     var members: MutableList<RuralMember>,
     var ruralHouse: RuralHouse

@@ -8,8 +8,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.ui.base.EnvironmentViewModel
 import com.example.calculatersunotes.ui.congrats.HouseHolderDoneCongrats
 import com.example.calculatersunotes.ui.onboards.OnboardingPagerAdapter
 import com.example.calculatersunotes.ui.rural.Rural
@@ -23,6 +26,8 @@ class EnvRegionContainerFrag : Fragment() {
     private lateinit var envRegionPagerAdapter: EnvRegionPagerAdapter
     private lateinit var fragmentUtil: FragmentUtil
     private lateinit var swipeUtil: SwipeUtil
+    private val environmentViewModel: EnvironmentViewModel by activityViewModels()
+    private var selectedEnv = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +46,18 @@ class EnvRegionContainerFrag : Fragment() {
         fragmentUtil = FragmentUtil(requireContext())
         swipeUtil = SwipeUtil()
 
+        val nxtBtn = rootView.findViewById<ImageButton>(R.id.next_btn);
+        environmentViewModel.environment.observe(viewLifecycleOwner, Observer {env ->
+            if (env != ""){
+                nxtBtn.isEnabled = true
+                nxtBtn.alpha = 1.0f
+            } else {
+                nxtBtn.isEnabled = false
+                nxtBtn.alpha = 0.5f
+            }
+            selectedEnv = env
+        })
+
         onNexBtnClicked(rootView);
 
 
@@ -50,31 +67,20 @@ class EnvRegionContainerFrag : Fragment() {
     private fun onNexBtnClicked(view: View) {
         val nxtBtn = view.findViewById<ImageButton>(R.id.next_btn);
         nxtBtn.setOnClickListener {
-            /*
-            when (selectedEnv) {
-                "urban" -> fragmentUtil.replaceFragment(
-                    requireActivity().supportFragmentManager,
-                    R.id.fragmentContainer,
-                    Urban()
-                )
 
-                "rural" -> fragmentUtil.replaceFragment(
-                    requireActivity().supportFragmentManager,
-                    R.id.fragmentContainer,
-                    Rural()
-                )
-                else -> {
-                    Toast.makeText(requireContext(),"Env Required", Toast.LENGTH_SHORT).show()
-                }
-            }
-             */
-            swipeUtil.navigateNext(viewPager, envRegionPagerAdapter, navigateToRural)
+            swipeUtil.navigateNext(viewPager, envRegionPagerAdapter, navigateToRuralOrUrban)
 
         }
     }
 
-    private val navigateToRural: () -> Unit = {
-        fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, Rural())
+    private val navigateToRuralOrUrban: () -> Unit = {
+        when (selectedEnv) {
+            "rural" ->  fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, Rural())
+            "urban" ->  fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, Urban())
+            "" -> Toast.makeText(requireContext(),"environment required!", Toast.LENGTH_SHORT).show()
+        }
+
+
     }
 
 }

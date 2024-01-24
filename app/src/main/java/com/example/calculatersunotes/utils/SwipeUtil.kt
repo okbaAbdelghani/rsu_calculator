@@ -1,5 +1,6 @@
 package com.example.calculatersunotes.utils
 
+import android.widget.Button
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 
@@ -12,4 +13,5 @@ class SwipeUtil {
             viewPager.setCurrentItem(viewPager.currentItem + 1, true)
         }
     }
+
 }

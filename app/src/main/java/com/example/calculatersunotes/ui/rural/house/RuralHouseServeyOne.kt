@@ -7,19 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.ImageView
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
-import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
 import com.example.calculatersunotes.ui.congrats.HouseDoneCongrats
-import com.example.calculatersunotes.ui.congrats.HouseHolderDoneCongrats
-import com.example.calculatersunotes.ui.rural.householder.RuralHouseHolderViewModel
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.utils.SwipeUtil
 
 
-class HouseServeyOne : Fragment() {
+class RuralHouseServeyOne : Fragment() {
 
     private var buttonList: List<Button> = mutableListOf()
     private var exceptionButtonList: List<Button> = mutableListOf()
@@ -39,7 +35,7 @@ class HouseServeyOne : Fragment() {
         fragmentUtil = FragmentUtil(requireContext())
         swipeUtil = SwipeUtil()
 
-        val rootView =  inflater.inflate(R.layout.fragment_house_servey_one, container, false)
+        val rootView =  inflater.inflate(R.layout.fragment_rural_house_servey_one, container, false)
         val noHouseTypeBtn = rootView.findViewById<Button>(R.id.no_house_type_btn)
         val yesHouseTypeBtn = rootView.findViewById<Button>(R.id.yes_house_type_btn)
         val noCarBtn = rootView.findViewById<Button>(R.id.no_car_btn)

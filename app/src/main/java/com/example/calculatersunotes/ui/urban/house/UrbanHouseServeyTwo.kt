@@ -1,4 +1,4 @@
-package com.example.calculatersunotes.ui.urban.patriarch
+package com.example.calculatersunotes.ui.urban.house
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.calculatersunotes.R
 
-class UrbanSocialStatus : Fragment() {
+class UrbanHouseServeyTwo : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +18,7 @@ class UrbanSocialStatus : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_urban_social_status, container, false)
+        return inflater.inflate(R.layout.fragment_urban_house_servey_two, container, false)
     }
 
 }

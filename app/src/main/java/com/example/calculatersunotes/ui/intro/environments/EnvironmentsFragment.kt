@@ -9,6 +9,7 @@ import android.widget.Button
 import androidx.fragment.app.activityViewModels
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.ui.base.EnvironmentViewModel
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
 
 
@@ -16,7 +17,7 @@ class EnvironmentsFragment : Fragment() {
     private var buttonList: List<Button> = mutableListOf()
     private lateinit var fragmentUtil: FragmentUtil
     private var selectedEnv: String = ""
-    private val sharedViewModel: RuralFamilyViewModel by activityViewModels()
+    private val environmentViewModel: EnvironmentViewModel by activityViewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +60,7 @@ class EnvironmentsFragment : Fragment() {
     }
 
     private fun setEnvironment(value: String) {
-        sharedViewModel.updateFamilyEnvironment(value)
+        environmentViewModel.updateEnvironment(value)
     }
 
 }

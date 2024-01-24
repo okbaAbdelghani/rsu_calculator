@@ -18,20 +18,9 @@ class RuralFamilyViewModel : ViewModel() {
     private var _family = MutableLiveData<RuralFamily>()
     val family : LiveData<RuralFamily> = _family
 
+    private var _result = MutableLiveData<Double>()
+    val result : LiveData<Double> = _result
 
-    fun setCurrentFamily(family: RuralFamily) {
-        _family.value = family
-    }
-
-    fun getCurrentFamily(): LiveData<RuralFamily>  {
-        return family
-    }
-
-    fun updateFamilyEnvironment(value: String){
-        val currentFamily = _family.value ?: createEmptyFamily()
-        currentFamily.environment = value
-        _family.value = currentFamily
-    }
 
     fun updateFamilyRegion(region: Region) {
         val currentFamily = _family.value ?: createEmptyFamily()
@@ -52,9 +41,15 @@ class RuralFamilyViewModel : ViewModel() {
     }
 
     private fun createEmptyFamily(): RuralFamily {
-        return RuralFamily(false,Region(), mutableListOf(),"rural", RuralHouseHolder(), mutableListOf(),
+        return RuralFamily(false,Region(), mutableListOf(), RuralHouseHolder(), mutableListOf(),
             RuralHouse()
         )
+    }
+
+    fun updateFamilyHouse(ruralHouse : RuralHouse) {
+        val currentFamily = _family.value ?: createEmptyFamily()
+        currentFamily.ruralHouse = ruralHouse
+        _family.value = currentFamily
     }
     fun createSurveyItems(context: Context){
         val currentFamily = _family.value ?: createEmptyFamily()
@@ -93,8 +88,9 @@ class RuralFamilyViewModel : ViewModel() {
         var surveyItems = fetchQuestions(context)
         for ((i, item) in surveyItems.withIndex()){
             item.vi = surveyVis[i]
-            println(surveyVis[i].toString())
         }
+
+        _result.value = _family.value?.calculateRSU()
 
         _family.value = currentFamily
     }
@@ -103,10 +99,10 @@ class RuralFamilyViewModel : ViewModel() {
 
             val stringResult = readJsonFromAssets("json/ruralQuestions.json", context)
             val result = parseJsonToModel(stringResult)
+
             val currentFamily = _family.value ?: createEmptyFamily()
             currentFamily.surveyItems = result
             _family.value = currentFamily
-
 
             return result
 
@@ -263,8 +259,6 @@ class RuralFamilyViewModel : ViewModel() {
         var rate = 0.0
         val totalMembers = family.members.size + 1
         var gasCostByMonth = family.ruralHouse.bigGasBottlesInMonth + family.ruralHouse.smallGasBottlesInMonth
-
-
         rate = (gasCostByMonth*12.0)/totalMembers
         return rate
     }
@@ -288,21 +282,20 @@ class RuralFamilyViewModel : ViewModel() {
         return rate
     }
 
-    fun readJsonFromAssets(fileName: String, context: Context): String? {
+    private fun readJsonFromAssets(fileName: String, context: Context): String? {
         return try {
-            val inputStream = context.assets.open(fileName)
-            val size = inputStream.available()
-            val buffer = ByteArray(size)
-            inputStream.read(buffer)
-            inputStream.close()
-            String(buffer)
+            context.assets.open(fileName).use { inputStream ->
+                val size = inputStream.available()
+                val buffer = ByteArray(size)
+                inputStream.read(buffer)
+                String(buffer)}
         } catch (e: IOException) {
             e.printStackTrace()
             null
         }
     }
 
-    fun parseJsonToModel(jsonString: String?): MutableList<SurveyItem> {
+    private fun parseJsonToModel(jsonString: String?): MutableList<SurveyItem> {
         val gson = Gson()
         return gson.fromJson(jsonString, object : TypeToken<MutableList<SurveyItem>>() {}.type)
     }

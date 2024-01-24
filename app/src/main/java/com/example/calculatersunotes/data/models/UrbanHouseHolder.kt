@@ -16,4 +16,8 @@ class UrbanHouseHolder: HouseHolder, IUrbanMember {
     override var highProfessionalPosition: Boolean = false
     override var hasHighProfessionalPosition: Boolean = false
     override var isRecruiting: Boolean = false
+    var hasHighEducationLevel: Boolean = false
+    var hasAverageProfessionalPosition:Boolean = false
+    var isRetiredOrBeneficiaryOfIncome: Boolean = false
+
 }
