@@ -25,101 +25,13 @@
                 android:src="@drawable/black_back"
                 android:background="@color/white"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="40dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:theme="@style/EditTextThemeOverlay"
-                android:textColorHint="@color/black"
-                app:helperTextTextAppearance="@style/HelperTextAppearance"
-                app:boxStrokeColor="@color/secondaryColor"
-                app:expandedHintEnabled="false"
-                app:errorTextAppearance="@style/ErrorTextAppearance"
-                app:hintTextAppearance="@style/HintTextAppearance"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:placeholderText="@string/write_number"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:placeholderTextAppearance="@style/PlaceholderTextAppearance"
-                >
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/phones_number_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/phones_number"
-                    android:inputType="number"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:theme="@style/EditTextThemeOverlay"
-                android:textColorHint="@color/black"
-                app:helperTextTextAppearance="@style/HelperTextAppearance"
-                app:boxStrokeColor="@color/secondaryColor"
-                app:expandedHintEnabled="false"
-                app:errorTextAppearance="@style/ErrorTextAppearance"
-                app:hintTextAppearance="@style/HintTextAppearance"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:placeholderText="@string/write_number"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:placeholderTextAppearance="@style/PlaceholderTextAppearance"
-                >
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/motorcycles_number_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/motorcycles_number"
-                    android:inputType="number"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:theme="@style/EditTextThemeOverlay"
-                android:textColorHint="@color/black"
-                app:helperTextTextAppearance="@style/HelperTextAppearance"
-                app:boxStrokeColor="@color/secondaryColor"
-                app:expandedHintEnabled="false"
-                app:errorTextAppearance="@style/ErrorTextAppearance"
-                app:hintTextAppearance="@style/HintTextAppearance"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:placeholderText="@string/write_number"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:placeholderTextAppearance="@style/PlaceholderTextAppearance"
-                >
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/cars_number_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/cars_number"
-                    android:inputType="number"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/amiri_bold"
-                android:text="@string/having_garage"
+                android:text="@string/having_antenna"
                 android:gravity="right"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -128,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/no_garage_btn"
+                    android:id="@+id/no_antenna_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -136,7 +48,7 @@
                     android:text="@string/no"
                     android:layout_marginRight="15dp"/>
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/yes_garage_btn"
+                    android:id="@+id/yes_antenna_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -152,7 +64,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/amiri_bold"
-                android:text="@string/having_shops"
+                android:text="@string/having_fix"
                 android:gravity="right"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -161,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/no_shops_btn"
+                    android:id="@+id/no_fix_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -169,7 +81,7 @@
                     android:text="@string/no"
                     android:layout_marginRight="15dp"/>
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/yes_shops_btn"
+                    android:id="@+id/yes_fix_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -185,7 +97,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/amiri_bold"
-                android:text="@string/having_computer"
+                android:text="@string/having_loan"
                 android:gravity="right"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -194,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/no_computer_btn"
+                    android:id="@+id/no_loan_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -202,7 +114,7 @@
                     android:text="@string/no"
                     android:layout_marginRight="15dp"/>
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/yes_computer_btn"
+                    android:id="@+id/yes_loan_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -211,6 +123,40 @@
                     android:layout_marginLeft="15dp"/>
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/amiri_bold"
+                android:text="@string/having_second_house"
+                android:gravity="right"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/no_having_second_btn"
+                    style="@style/buttonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/no"
+                    android:layout_marginRight="15dp"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/yes_having_second_btn"
+                    style="@style/buttonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/yes"
+                    android:layout_marginLeft="15dp"/>
+
+            </LinearLayout>
+
             <include layout="@layout/next_button"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"

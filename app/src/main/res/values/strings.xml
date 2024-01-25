@@ -67,21 +67,28 @@
     <string name="has_shower_or_bath"> هل التوفر على حمام أو رشاش : </string>
     <string name="electricity_meter_type"> نوع عداد الكهرباء الذي تمتلكه الأسرة : </string>
     <string name="individual_electricity_meter">فردي</string>
+    <string name="phones_number">عدد الهواتف المحمولة :</string>
+    <string name="motorcycles_number">عدد الدراجات النارية :</string>
+    <string name="cars_number">عدد السيارات :</string>
+    <string name="having_garage">توفر على مرآب :</string>
+    <string name="having_shops">توفر على محلات مهنية :</string>
+    <string name="having_computer">التوفر على حاسوب :</string>
+    <string name="having_antenna">التوفر على لاقط هوائي :</string>
+    <string name="having_fix"> التوفر على هاتف ثابت :</string>
+    <string name="having_loan">الأسرة تستفيد من قرض :</string>
+    <string name="having_second_house"> تتوفر على سكن ثانوي :</string>
+    <string name="having_health_security"> هل يستفيد من التغطية الصحية ؟</string>
+    <string name="goes_to_school"> هل يتمدرس ؟</string>
+    <string name="in_which_sector"> في اي قطاع  ؟</string>
+    <string name="has_diploma_or_certif"> هل يتوفر على شهاة أو ديبلوم ؟</string>
+    <string name="social_and_economic_class">الفئة الاجتماعية و الاقتصادية  :</string>
+    <string name="works">يعمل</string>
+    <string name="private_school">خاص</string>
+    <string name="public_school">عام</string>
+    <string name="work_type">نوعية العمل :</string>
     <string name="update">تعديل</string>
-    <string-array name="regions">
-        <item>طنجة - تطوان - الحسيمة</item>
-        <item>كلميم - واد نون</item>
-        <item>العيون - الساقية الحمراء</item>
-        <item>الداخلة - وادي الذهب</item>
-        <item>الشرق</item>
-        <item>فاس - مكناس</item>
-        <item>الرباط -سلا -القنيطرة</item>
-        <item>بني ملال - خنيفرة</item>
-        <item>الدار البيضاء - سطات</item>
-        <item>مراكش - آسفي</item>
-        <item>درعة - تافيلالت</item>
-        <item>سوس - ماسة</item>
-    </string-array>
+    <string name="can_read_and_write">يستطيع القراءة و الكتابة :</string>
+    <string name="machinery_management_activity">نشاط تسيير المعدات</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

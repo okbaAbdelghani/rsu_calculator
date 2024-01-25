@@ -8,6 +8,7 @@ import com.example.calculatersunotes.data.models.Region
 import com.example.calculatersunotes.data.models.RuralFamily
 import com.example.calculatersunotes.data.models.RuralHouse
 import com.example.calculatersunotes.data.models.RuralHouseHolder
+import com.example.calculatersunotes.data.models.RuralMember
 import com.example.calculatersunotes.data.models.SurveyItem
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -20,7 +21,6 @@ class RuralFamilyViewModel : ViewModel() {
 
     private var _result = MutableLiveData<Double>()
     val result : LiveData<Double> = _result
-
 
     fun updateFamilyRegion(region: Region) {
         val currentFamily = _family.value ?: createEmptyFamily()
@@ -37,6 +37,12 @@ class RuralFamilyViewModel : ViewModel() {
     fun updateSecondHousePossession(value: Boolean){
         val currentFamily = _family.value ?: createEmptyFamily()
         currentFamily.hasSecondHouse = value
+        _family.value = currentFamily
+    }
+
+    fun addFamilyMember(member: RuralMember) {
+        val currentFamily = _family.value ?: createEmptyFamily()
+        currentFamily.members.add(member)
         _family.value = currentFamily
     }
 
