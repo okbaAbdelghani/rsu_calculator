@@ -18,6 +18,8 @@ import com.example.calculatersunotes.utils.FragmentUtil
 class AddRuralMember : Fragment() {
     private lateinit var fragmentUtil: FragmentUtil
     private val ruralMemberViewModel: RuralMemberViewModel by activityViewModels()
+    private var buttonList: List<Button> = mutableListOf()
+    private var exceptionButtonList: List<Button> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +39,17 @@ class AddRuralMember : Fragment() {
 
         val noHealthSecurityBtn = rootView.findViewById<Button>(R.id.no_having_health_security_btn)
         val yesHealthSecurityBtn = rootView.findViewById<Button>(R.id.yes_having_health_security_btn)
+
+        buttonList = listOf(
+            noHealthSecurityBtn,
+            yesHealthSecurityBtn
+        )
+
+        exceptionButtonList = listOf(
+            noHealthSecurityBtn
+        )
+
+        fragmentUtil.setDefaultActiveButtons(buttonList, exceptionButtonList)
 
         ageInput.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -80,10 +93,12 @@ class AddRuralMember : Fragment() {
         }
 
         noHealthSecurityBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(noHealthSecurityBtn, yesHealthSecurityBtn)
             ruralMemberViewModel.updateHealthSecurityPossession(false)
         }
 
         yesHealthSecurityBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(yesHealthSecurityBtn, noHealthSecurityBtn)
             ruralMemberViewModel.updateHealthSecurityPossession(true)
         }
 

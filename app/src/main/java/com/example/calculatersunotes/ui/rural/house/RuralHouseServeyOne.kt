@@ -93,13 +93,6 @@ class RuralHouseServeyOne : Fragment() {
             ruralHouseViewModel.updateCarPossession(true)
         }
 
-        /*
-        ruralHouseHolderViewModel.ruralHouseHolder.observe(viewLifecycleOwner) { householder ->
-            bool = householder.isCraftsman
-            println("this is name: $bool")
-        }
-
-         */
 
         return rootView
     }

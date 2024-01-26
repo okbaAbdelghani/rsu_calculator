@@ -17,6 +17,7 @@ import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
 import com.example.calculatersunotes.ui.congrats.HouseDoneCongrats
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.utils.SwipeUtil
+import java.text.ParseException
 
 
 class RuralHouseServeyTwo : Fragment() {
@@ -108,7 +109,16 @@ class RuralHouseServeyTwo : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {
                 val enteredValue = s.toString()
-                val number = enteredValue.toUInt()
+                var number = 0u
+
+                if(enteredValue != "") {
+                    try {
+                        number = enteredValue.toUInt()
+                    } catch (e: ParseException) {
+                        println(e.message)
+                    }
+
+                }
                 ruralHouseViewModel.updateCowsNumber(number)
             }
         })
@@ -122,7 +132,16 @@ class RuralHouseServeyTwo : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {
                 val enteredValue = s.toString()
-                val number = enteredValue.toUInt()
+                var number = 0u
+
+                if(enteredValue != "") {
+                    try {
+                        number = enteredValue.toUInt()
+                    } catch (e: ParseException) {
+                        println(e.message)
+                    }
+
+                }
                 ruralHouseViewModel.updateRoomsNumber(number)
             }
         })

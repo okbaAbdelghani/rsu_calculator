@@ -15,6 +15,8 @@ import com.example.calculatersunotes.R
 import com.example.calculatersunotes.ui.congrats.HouseDoneCongrats
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.utils.SwipeUtil
+import java.text.ParseException
+import java.util.InputMismatchException
 
 class RuralHouseServeyThree : Fragment() {
     private val ruralHouseViewModel: RuralHouseViewModel by activityViewModels()
@@ -57,7 +59,15 @@ class RuralHouseServeyThree : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {
                 val enteredValue = s.toString()
-                val number = enteredValue.toUInt()
+                var number = 0u
+                if(enteredValue != "") {
+                    try {
+                        number = enteredValue.toUInt()
+                    } catch (e: ParseException) {
+                        println(e.message)
+                    }
+                }
+
                 ruralHouseViewModel.updateBigGasBottlesInMonth(number)
             }
         })
@@ -71,7 +81,14 @@ class RuralHouseServeyThree : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {
                 val enteredValue = s.toString()
-                val number = enteredValue.toUInt()
+                var number = 0u
+                if(enteredValue != "") {
+                    try {
+                        number = enteredValue.toUInt()
+                    } catch (e: ParseException) {
+                        println(e.message)
+                    }
+                }
                 ruralHouseViewModel.updateSmallGasBottlesInMonth(number)
             }
         })
@@ -85,7 +102,15 @@ class RuralHouseServeyThree : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {
                 val enteredValue = s.toString()
-                val number = enteredValue.toDouble()
+                var number = 0.0
+                if(enteredValue != "") {
+                    try {
+                        number = enteredValue.toDouble()
+                    } catch (e: ParseException) {
+                        println(e.message)
+                    }
+                }
+
                 ruralHouseViewModel.updateInternetAndPhoneMonthlyBill(number)
             }
         })
@@ -99,7 +124,16 @@ class RuralHouseServeyThree : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {
                 val enteredValue = s.toString()
-                val number = enteredValue.toDouble()
+                var number = 0.0
+
+                if(enteredValue != "") {
+                    try {
+                        number = enteredValue.toDouble()
+                    } catch (e: ParseException) {
+                        println(e.message)
+                    }
+
+                }
                 ruralHouseViewModel.updateElectricityMonthOne(number)
             }
         })
@@ -113,7 +147,16 @@ class RuralHouseServeyThree : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {
                 val enteredValue = s.toString()
-                val number = enteredValue.toDouble()
+                var number = 0.0
+
+                if(enteredValue != "") {
+                    try {
+                        number = enteredValue.toDouble()
+                    } catch (e: ParseException) {
+                        println(e.message)
+                    }
+
+                }
                 ruralHouseViewModel.updateElectricityMonthTwo(number)
             }
         })
@@ -127,7 +170,16 @@ class RuralHouseServeyThree : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {
                 val enteredValue = s.toString()
-                val number = enteredValue.toDouble()
+                var number = 0.0
+
+                if(enteredValue != "") {
+                    try {
+                        number = enteredValue.toDouble()
+                    } catch (e: ParseException) {
+                        println(e.message)
+                    }
+
+                }
                 ruralHouseViewModel.updateElectricityMonthThree(number)
             }
         })
@@ -141,7 +193,16 @@ class RuralHouseServeyThree : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {
                 val enteredValue = s.toString()
-                val number = enteredValue.toDouble()
+                var number = 0.0
+
+                if(enteredValue != "") {
+                    try {
+                        number = enteredValue.toDouble()
+                    } catch (e: ParseException) {
+                        println(e.message)
+                    }
+
+                }
                 ruralHouseViewModel.updateWaterMonthFirst(number)
             }
         })
@@ -155,7 +216,16 @@ class RuralHouseServeyThree : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {
                 val enteredValue = s.toString()
-                val number = enteredValue.toDouble()
+                var number = 0.0
+
+                if(enteredValue != "") {
+                    try {
+                        number = enteredValue.toDouble()
+                    } catch (e: ParseException) {
+                        println(e.message)
+                    }
+
+                }
                 ruralHouseViewModel.updateWaterMonthSecond(number)
             }
         })
@@ -169,7 +239,16 @@ class RuralHouseServeyThree : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {
                 val enteredValue = s.toString()
-                val number = enteredValue.toDouble()
+                var number = 0.0
+
+                if(enteredValue != "") {
+                    try {
+                        number = enteredValue.toDouble()
+                    } catch (e: ParseException) {
+                        println(e.message)
+                    }
+
+                }
                 ruralHouseViewModel.updateWaterMonthThree(number)
             }
         })

@@ -87,8 +87,13 @@
     <string name="public_school">عام</string>
     <string name="work_type">نوعية العمل :</string>
     <string name="update">تعديل</string>
+    <string name="your_own_part"> الجزء الخاص بك</string>
+    <string name="home_part">  الجزء الخاص بالمنزل</string>
+    <string name="members_part">  الجزء الخاص بالأفراد</string>
     <string name="can_read_and_write">يستطيع القراءة و الكتابة :</string>
+    <string name="recalculate_rsu">إعادة حساب المؤشر</string>
     <string name="machinery_management_activity">نشاط تسيير المعدات</string>
+    <string name="edit_info">تعديل المعطيات :</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

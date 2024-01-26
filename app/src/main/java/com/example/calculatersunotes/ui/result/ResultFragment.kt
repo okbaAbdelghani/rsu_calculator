@@ -6,16 +6,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import com.example.calculatersunotes.R
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
+import com.example.calculatersunotes.ui.edit.Edit
+import com.example.calculatersunotes.ui.rural.house.RuralHouseFragment
 import com.example.calculatersunotes.ui.rural.house.RuralHouseViewModel
+import com.example.calculatersunotes.utils.FragmentUtil
 
 class ResultFragment : Fragment() {
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
     private val ruralHouseViewModel: RuralHouseViewModel by activityViewModels()
+    private lateinit var fragmentUtil: FragmentUtil
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -26,6 +32,8 @@ class ResultFragment : Fragment() {
     ): View? {
 
         val rootView = inflater.inflate(R.layout.fragment_result, container, false)
+
+        fragmentUtil = FragmentUtil(requireContext())
 
         val resultTxt = rootView.findViewById<TextView>(R.id.result_txt)
 
@@ -47,13 +55,21 @@ class ResultFragment : Fragment() {
         }
         // Inflate the layout for this fragment
         goBack(rootView)
+        navigateToEdit(rootView)
         return rootView
     }
 
     private fun goBack(view: View){
         val backBtn = view.findViewById<ImageButton>(R.id.back_button)
         backBtn.setOnClickListener{
-            activity?.onBackPressed()
+            fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, RuralHouseFragment())
+        }
+    }
+
+    private fun navigateToEdit(view: View){
+        val editBtn = view.findViewById<Button>(R.id.edit_btn)
+        editBtn.setOnClickListener{
+            fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, Edit())
         }
     }
 

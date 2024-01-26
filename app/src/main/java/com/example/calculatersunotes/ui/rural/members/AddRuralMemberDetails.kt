@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
 import com.example.calculatersunotes.R
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
+import com.example.calculatersunotes.ui.result.ResultFragment
 import com.example.calculatersunotes.utils.FragmentUtil
 
 
@@ -17,6 +18,8 @@ class AddRuralMemberDetails : Fragment() {
     private lateinit var fragmentUtil: FragmentUtil
     private val ruralMemberViewModel: RuralMemberViewModel by activityViewModels()
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
+    private var buttonList: List<Button> = mutableListOf()
+    private var exceptionButtonList: List<Button> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,27 +41,52 @@ class AddRuralMemberDetails : Fragment() {
 
         val nextBtn = rootView.findViewById<ImageButton>(R.id.next_btn)
 
+        fragmentUtil = FragmentUtil(requireContext())
+
+        buttonList = mutableListOf(
+            noLiteracyBtn,
+            yesLiteracyBtn,
+            noHighEducationBtn,
+            yesHighEducationBtn,
+            yesCommerceBtn,
+            noCommerceBtn
+        )
+
+        exceptionButtonList = mutableListOf(
+            noLiteracyBtn,
+            noHighEducationBtn,
+            noCommerceBtn
+        )
+
+        fragmentUtil.setDefaultActiveButtons(buttonList, exceptionButtonList)
+
         noLiteracyBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(noLiteracyBtn, yesLiteracyBtn)
             ruralMemberViewModel.updateLiteracyStatus(false)
         }
 
         yesLiteracyBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(yesLiteracyBtn, noLiteracyBtn)
             ruralMemberViewModel.updateLiteracyStatus(true)
         }
 
         noHighEducationBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(noHighEducationBtn, yesHighEducationBtn)
             ruralMemberViewModel.updateHighEducationDiploma(false)
         }
 
         yesHighEducationBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(yesHighEducationBtn, noHighEducationBtn)
             ruralMemberViewModel.updateHighEducationDiploma(true)
         }
 
         yesCommerceBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(yesCommerceBtn, noCommerceBtn)
             ruralMemberViewModel.isMerchant(true)
         }
 
         noCommerceBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(noCommerceBtn, yesCommerceBtn)
             ruralMemberViewModel.isMerchant(false)
         }
 
@@ -66,10 +94,16 @@ class AddRuralMemberDetails : Fragment() {
             val familyMember = ruralMemberViewModel.ruralMember.value
             if (familyMember != null) {
                 ruralFamilyViewModel.addFamilyMember(familyMember)
+                ruralFamilyViewModel.createSurveyItems(requireContext())
+                navigateToResult()
             }
         }
 
         return rootView
+    }
+
+    private fun navigateToResult(){
+        fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, ResultFragment())
     }
 
 }
