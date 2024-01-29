@@ -54,4 +54,11 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="RoundedDialog" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:background">@drawable/pop_up_background</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:padding">0dp</item>
+    </style>
+
 </resources>

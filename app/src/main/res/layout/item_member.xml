@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/member"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,17 +12,21 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <ImageButton
+            android:id="@+id/delete_member_btn"
             android:padding="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/delete"
             android:background="@color/white"
-            android:layout_marginRight="3dp"/>
+            android:layout_marginRight="3dp"
+            app:tint="@color/delete_button_states" />
         <ImageButton
+            android:id="@+id/edit_member_btn"
             android:padding="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/settings"
+            app:tint="@color/edit_button_states"
             android:background="@color/white"/>
 
     </LinearLayout>
@@ -34,7 +39,7 @@
         android:layout_marginTop="2dp"
         android:fontFamily="@font/amiri_bold"
         android:gravity="right|center_horizontal"
-        android:text="@string/members_part"
+        android:text="@string/member_name"
         android:textColor="@color/black"
         android:textSize="20sp" />
 

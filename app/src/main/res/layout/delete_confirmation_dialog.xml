@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/pop_up_background"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/info"
+        android:layout_gravity="end"
+        />
+    <TextView
+        android:id="@+id/deleteConfirmationTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/confirmation_required"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/amiri_bold"
+        android:textColor="@color/black"
+        android:textFontWeight="700"
+        android:gravity="right"/>
+
+    <TextView
+        android:id="@+id/deleteConfirmationMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/are_you_sure"
+        android:fontFamily="@font/amiri_bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="8dp"
+        android:textSize="20dp"
+        android:gravity="right"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/deletion_hint"
+        android:fontFamily="@font/amiri_bold"
+        android:layout_marginTop="8dp"
+        android:gravity="right"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:layout_marginTop="16dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDeleteNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/empty_btn_background"
+            android:layout_weight="1"
+            android:fontFamily="@font/amiri_bold"
+            android:textSize="16sp"
+            android:text="@string/back"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDeleteYes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/full_btn_background"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:fontFamily="@font/amiri_bold"
+            android:textSize="16sp"
+            android:text="@string/delete"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
+</LinearLayout>

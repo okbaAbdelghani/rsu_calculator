@@ -2,7 +2,9 @@ package com.example.calculatersunotes.utils
 
 import android.content.Context
 import android.graphics.Color
+import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -61,6 +63,22 @@ class FragmentUtil(val context: Context){
     fun toggleTwoOptions(activeButton: Button, inactiveButton: Button) {
         setActiveButtonColor(activeButton)
         setInactiveButtonColor(inactiveButton)
+    }
+
+    fun toggleButton(button: View, textView: TextView) {
+        val emptyBackground = ContextCompat.getDrawable(context, R.drawable.empty_btn_background)
+        val fullBackground = ContextCompat.getDrawable(context, R.drawable.full_btn_background)
+
+        button.background = if (button.background == emptyBackground) {
+            textView.setTextColor(Color.WHITE)
+            println("empty")
+            fullBackground
+        } else {
+            textView.setTextColor(Color.BLACK)
+            println("full")
+            emptyBackground
+        }
+
     }
 
 
