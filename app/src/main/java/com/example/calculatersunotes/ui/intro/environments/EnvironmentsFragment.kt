@@ -18,6 +18,7 @@ class EnvironmentsFragment : Fragment() {
     private lateinit var fragmentUtil: FragmentUtil
     private var selectedEnv: String = ""
     private val environmentViewModel: EnvironmentViewModel by activityViewModels()
+    private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +62,7 @@ class EnvironmentsFragment : Fragment() {
 
     private fun setEnvironment(value: String) {
         environmentViewModel.updateEnvironment(value)
+
     }
 
 }

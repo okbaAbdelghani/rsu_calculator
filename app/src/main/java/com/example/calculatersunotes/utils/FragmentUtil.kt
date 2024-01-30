@@ -65,21 +65,5 @@ class FragmentUtil(val context: Context){
         setInactiveButtonColor(inactiveButton)
     }
 
-    fun toggleButton(button: View, textView: TextView) {
-        val emptyBackground = ContextCompat.getDrawable(context, R.drawable.empty_btn_background)
-        val fullBackground = ContextCompat.getDrawable(context, R.drawable.full_btn_background)
-
-        button.background = if (button.background == emptyBackground) {
-            textView.setTextColor(Color.WHITE)
-            println("empty")
-            fullBackground
-        } else {
-            textView.setTextColor(Color.BLACK)
-            println("full")
-            emptyBackground
-        }
-
-    }
-
 
 }

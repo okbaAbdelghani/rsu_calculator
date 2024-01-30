@@ -1,6 +1,7 @@
 package com.example.calculatersunotes.ui.base
 
 import android.content.Context
+import android.os.Environment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,6 +28,7 @@ class RuralFamilyViewModel : ViewModel() {
         currentFamily.region = region
         _family.value = currentFamily
     }
+
 
     fun updateFamilyHouseHolder(houseHolder: RuralHouseHolder){
         val currentFamily = _family.value ?: createEmptyFamily()

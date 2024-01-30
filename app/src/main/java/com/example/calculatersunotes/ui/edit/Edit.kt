@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
@@ -17,6 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.calculatersunotes.R
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
+import com.example.calculatersunotes.ui.edit.householder.EditHouseholder
+import com.example.calculatersunotes.ui.result.ResultFragment
 import com.example.calculatersunotes.utils.FragmentUtil
 
 class Edit : Fragment() {
@@ -36,9 +39,10 @@ class Edit : Fragment() {
 
         val recyclerView = rootView.findViewById<RecyclerView>(R.id.members_recycler)
         val editMembersBtn = rootView.findViewById<FrameLayout>(R.id.members_part_btn)
-
         val membersCardView = rootView.findViewById<CardView>(R.id.members_card_view)
         val textView = rootView.findViewById<TextView>(R.id.members_part_txt)
+        val backBtn = rootView.findViewById<ImageButton>(R.id.back_button)
+        val householderBtn = rootView.findViewById<FrameLayout>(R.id.your_own_part_btn)
 
         fragmentUtil = FragmentUtil(requireContext())
 
@@ -56,6 +60,15 @@ class Edit : Fragment() {
         editMembersBtn.setOnClickListener {
             toggleViewVisibilityWithAnimation(membersCardView, textView, editMembersBtn)
         }
+
+        householderBtn.setOnClickListener {
+            fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, EditHouseholder())
+        }
+
+        backBtn.setOnClickListener {
+            fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, ResultFragment())
+        }
+
 
         return rootView
     }

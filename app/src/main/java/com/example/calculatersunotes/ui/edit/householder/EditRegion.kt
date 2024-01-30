@@ -1,4 +1,4 @@
-package com.example.calculatersunotes.ui.intro.regions
+package com.example.calculatersunotes.ui.edit.householder
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,14 +11,13 @@ import android.widget.Spinner
 import androidx.fragment.app.activityViewModels
 import com.example.calculatersunotes.R
 import com.example.calculatersunotes.data.models.Region
-import com.example.calculatersunotes.data.models.SurveyItem
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-
-class RegionsFragment : Fragment() {
+class EditRegion : Fragment() {
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -28,16 +27,26 @@ class RegionsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_regions, container, false)
-        val spinner: Spinner = rootView.findViewById<Spinner>(R.id.regions_spinner)
+        val rootView = inflater.inflate(R.layout.fragment_edit_region, container, false)
 
+        val spinner: Spinner = rootView.findViewById<Spinner>(R.id.regions_spinner)
         val regions = parseJsonToModel(regionsJson())
         val regionsNames = regions.map { it.name}
-
         val adapter =  ArrayAdapter(requireContext(), R.layout.region_spinner_item, regionsNames)
         adapter.setDropDownViewResource(R.layout.region_spinner_item)
 
         spinner.adapter = adapter
+
+        ruralFamilyViewModel.family.observe(viewLifecycleOwner) { family ->
+            // set selected item for spinner
+            val selectedRegion = family.region
+            val selectedIndex = regions.indexOf(selectedRegion)
+            if(selectedIndex != -1) {
+                spinner.setSelection(selectedIndex)
+            }
+
+        }
+
         spinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -45,9 +54,9 @@ class RegionsFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
+                // Handle the selected item if needed
                 val selectedRegionName = regions[position]
                 ruralFamilyViewModel.updateFamilyRegion(selectedRegionName)
-                println(selectedRegionName.code)
 
             }
 
@@ -55,7 +64,7 @@ class RegionsFragment : Fragment() {
                 // Handle case where nothing is selected (if needed)
             }
         })
-
+        adapter.setDropDownViewResource(R.layout.region_spinner_item)
 
         return rootView
     }

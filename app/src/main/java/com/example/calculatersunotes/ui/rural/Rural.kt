@@ -48,6 +48,9 @@ class Rural : Fragment() {
         val nxtBtn = view.findViewById<ImageButton>(R.id.next_btn);
         nxtBtn.setOnClickListener {
             swipeUtil.navigateNext(viewPager, mainPagerAdapter, navigateToHouseHolderCongrats)
+            if(viewPager.currentItem == mainPagerAdapter.count - 1) {
+                setFamilyHouseHolder()
+            }
         }
     }
 
@@ -60,5 +63,7 @@ class Rural : Fragment() {
             sharedViewModel.updateFamilyHouseHolder(houseHolder)
         }
     }
+
+
 
 }

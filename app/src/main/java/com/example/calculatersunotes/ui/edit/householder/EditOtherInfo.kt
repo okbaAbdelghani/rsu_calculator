@@ -1,4 +1,4 @@
-package com.example.calculatersunotes.ui.rural.householder
+package com.example.calculatersunotes.ui.edit.householder
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,15 +8,19 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.activityViewModels
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
+import com.example.calculatersunotes.ui.edit.Edit
+import com.example.calculatersunotes.ui.intro.EnvRegionContainerFrag
+import com.example.calculatersunotes.ui.rural.householder.RuralHouseHolderViewModel
 import com.example.calculatersunotes.utils.FragmentUtil
 
-
-class OtherRuralPatriarchInfoFragment : Fragment() {
-
+class EditOtherInfo : Fragment() {
     private var buttonList: List<Button> = mutableListOf()
-    private var exceptionButtonList: List<Button> = mutableListOf()
+    private var exceptionButtonList: MutableList<Button> = mutableListOf()
     private lateinit var fragmentUtil: FragmentUtil
     private val ruralHouseHolderViewModel: RuralHouseHolderViewModel by activityViewModels()
+    private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,10 +30,12 @@ class OtherRuralPatriarchInfoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_other_rural_patriarch_info, container, false)
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_edit_other_info, container, false)
 
         fragmentUtil = FragmentUtil(requireContext())
 
+        val doneBtn = view.findViewById<Button>(R.id.done_btn)
         val noCommerceBtn = view.findViewById<Button>(R.id.no_btn)
         val yesCommerceBtn = view.findViewById<Button>(R.id.yes_btn)
         val hasHealthSecurity = view.findViewById<Button>(R.id.has_health_security_btn)
@@ -50,14 +56,37 @@ class OtherRuralPatriarchInfoFragment : Fragment() {
             highEducationDiplomaYesBtn
         )
 
-        exceptionButtonList = mutableListOf(
-            noCommerceBtn,
-            noLiteracy,
-            highEducationDiplomaNoBtn,
-            withoutHealthSecurityBtn
-        )
 
-        fragmentUtil.setDefaultActiveButtons(buttonList, exceptionButtonList)
+        ruralFamilyViewModel.family.observe(viewLifecycleOwner) { family ->
+
+            val householder = family.householder
+
+            if(householder.isMerchant){
+                exceptionButtonList.add(yesCommerceBtn)
+            } else {
+                exceptionButtonList.add(noCommerceBtn)
+            }
+
+            if(householder.hasHealthCoverage){
+                exceptionButtonList.add(hasHealthSecurity)
+            } else {
+                exceptionButtonList.add(withoutHealthSecurityBtn)
+            }
+
+            if(householder.isLiterate){
+                exceptionButtonList.add(yesLiteracy)
+            } else {
+                exceptionButtonList.add(noLiteracy)
+            }
+
+            if(householder.hasHighEducationDiploma){
+                exceptionButtonList.add(highEducationDiplomaYesBtn)
+            } else {
+                exceptionButtonList.add(highEducationDiplomaNoBtn)
+            }
+
+            fragmentUtil.setDefaultActiveButtons(buttonList, exceptionButtonList)
+        }
 
         noCommerceBtn.setOnClickListener {
             ruralHouseHolderViewModel.isMerchant(false)
@@ -99,9 +128,10 @@ class OtherRuralPatriarchInfoFragment : Fragment() {
             fragmentUtil.toggleTwoOptions(highEducationDiplomaYesBtn , highEducationDiplomaNoBtn)
         }
 
+        doneBtn.setOnClickListener {
+            fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, Edit())
+        }
+
         return view
     }
-
-
-
 }

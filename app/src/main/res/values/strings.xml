@@ -100,6 +100,7 @@
     <string name="deletion_hint"> ستفقد جميع البيانات حول هذا الفرد</string>
     <string name="delete">حذف</string>
     <string name="back">الرجوع</string>
+    <string name="done">تم</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
