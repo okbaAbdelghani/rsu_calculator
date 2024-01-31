@@ -8,13 +8,14 @@ class EditHousePagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAda
 
     override fun getItem(position: Int): Fragment {
         return when(position) {
-            1 -> throw IllegalArgumentException("Invalid Position: $position")
-            2 -> throw IllegalArgumentException("Invalid Position: $position")
+            0 -> EditRuralHouseInfoOne()
+            1 -> EditRuralHouseInfoTwo()
+            2 -> EditRuralHouseInfoThree()
             else -> throw IllegalArgumentException("Invalid Position: $position")
         }
     }
 
     override fun getCount(): Int {
-        return 1
+        return 3
     }
 }

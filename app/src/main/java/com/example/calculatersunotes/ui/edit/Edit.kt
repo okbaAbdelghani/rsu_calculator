@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.calculatersunotes.R
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
+import com.example.calculatersunotes.ui.edit.house.EditHouse
 import com.example.calculatersunotes.ui.edit.householder.EditHouseholder
 import com.example.calculatersunotes.ui.result.ResultFragment
 import com.example.calculatersunotes.utils.FragmentUtil
@@ -42,7 +43,10 @@ class Edit : Fragment() {
         val membersCardView = rootView.findViewById<CardView>(R.id.members_card_view)
         val textView = rootView.findViewById<TextView>(R.id.members_part_txt)
         val backBtn = rootView.findViewById<ImageButton>(R.id.back_button)
+        val recalculateBtn = rootView.findViewById<Button>(R.id.recalculate_btn)
+
         val householderBtn = rootView.findViewById<FrameLayout>(R.id.your_own_part_btn)
+        val homePartBtn = rootView.findViewById<FrameLayout>(R.id.home_part_btn)
 
         fragmentUtil = FragmentUtil(requireContext())
 
@@ -65,7 +69,16 @@ class Edit : Fragment() {
             fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, EditHouseholder())
         }
 
+        homePartBtn.setOnClickListener {
+            fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, EditHouse())
+        }
+
         backBtn.setOnClickListener {
+            fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, ResultFragment())
+        }
+
+        recalculateBtn.setOnClickListener {
+            recalculateBtn.setTextColor(Color.WHITE)
             fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, ResultFragment())
         }
 

@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/white"
             android:gravity="center_vertical"
             android:orientation="vertical"
@@ -30,76 +30,16 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="25dp"
-                android:fontFamily="@font/amiri_bold"
-                android:text="@string/does_commerce_question"
+                style="@style/mainText"
+                android:text="@string/house_type_quest"
                 android:gravity="right"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/no_btn"
-                    style="@style/buttonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/no"
-                    android:layout_marginRight="15dp"/>
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/yes_btn"
-                    style="@style/buttonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/yes"
-                    android:layout_marginLeft="15dp"/>
-
-            </LinearLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/amiri_bold"
-                android:text="@string/health_security"
-                android:gravity="right"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/has_health_security_btn"
-                style="@style/buttonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/has_health_security"
                 />
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/without_health_security_btn"
-                style="@style/buttonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"
-                android:text="@string/without_health_security"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/amiri_bold"
-                android:text="@string/literacy"
-                android:gravity="right"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/literacy_no_btn"
+                    android:id="@+id/no_house_type_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -107,7 +47,7 @@
                     android:text="@string/no"
                     android:layout_marginRight="15dp"/>
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/literacy_yes_btn"
+                    android:id="@+id/yes_house_type_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -122,7 +62,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/amiri_bold"
-                android:text="@string/has_high_education_diploma"
+                android:text="@string/has_car"
                 android:gravity="right"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -131,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/high_education_diploma_no_btn"
+                    android:id="@+id/no_car_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -139,7 +79,7 @@
                     android:text="@string/no"
                     android:layout_marginRight="15dp"/>
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/high_education_diploma_yes_btn"
+                    android:id="@+id/yes_car_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -148,14 +88,43 @@
                     android:layout_marginLeft="15dp"/>
 
             </LinearLayout>
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/done_btn"
-                style="@style/doneButtonStyle"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/done"
-                android:layout_marginTop="25dp"/>
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/amiri_bold"
+                android:text="@string/has_motorcycle"
+                android:gravity="right"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/no_motorcycle_btn"
+                    style="@style/buttonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/no"
+                    android:layout_marginRight="15dp"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/yes_motorcycle_btn"
+                    style="@style/buttonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/yes"
+                    android:layout_marginLeft="15dp"/>
+
+            </LinearLayout>
+            <include layout="@layout/next_button"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="30dp"/>
         </LinearLayout>
     </ScrollView>
 

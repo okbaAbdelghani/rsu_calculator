@@ -8,15 +8,14 @@ class EditHouseholderAdapter(fragmentManager: FragmentManager) : FragmentPagerAd
 
     override fun getItem(position: Int): Fragment {
         return when(position) {
-            0 -> EditRegion()
-            1 -> EditNameEducation()
-            2 -> EditSocialStatus()
-            3 -> EditOtherInfo()
+            0 -> EditNameEducation()
+            1 -> EditSocialStatus()
+            2 -> EditOtherInfo()
             else -> throw IllegalArgumentException("Invalid Position: $position")
         }
     }
 
     override fun getCount(): Int {
-        return 4
+        return 3
     }
 }

@@ -14,4 +14,10 @@ class SwipeUtil {
         }
     }
 
+    fun navigateBack(viewPager:  ViewPager?, pagerAdapter: PagerAdapter) {
+        if (viewPager?.currentItem!! < pagerAdapter.count){
+            viewPager.setCurrentItem(viewPager.currentItem - 1, true)
+        }
+    }
+
 }

@@ -17,6 +17,7 @@ import com.google.gson.reflect.TypeToken
 
 class EditRegion : Fragment() {
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
+    private var isFirstSelection = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,9 +55,14 @@ class EditRegion : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                // Handle the selected item if needed
-                val selectedRegionName = regions[position]
-                ruralFamilyViewModel.updateFamilyRegion(selectedRegionName)
+
+                if (isFirstSelection) {
+                    isFirstSelection = false
+                } else {
+                    val selectedRegionName = regions[position]
+                    ruralFamilyViewModel.updateFamilyRegion(selectedRegionName)
+                    println("called")
+                }
 
             }
 

@@ -44,7 +44,7 @@
                 android:layout_marginTop="10dp"
                 />
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/craftsman_btn"
+                android:id="@+id/medium_position_btn"
                 style="@style/buttonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,6 +72,16 @@
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/employee_btn"
+                style="@style/buttonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/employee_btn_txt"
+                />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/recruiter_btn"
                 style="@style/buttonStyle"
@@ -79,15 +89,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/recruiter_btn_txt"
-                />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/without_btn"
-                style="@style/buttonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/without_option"
                 />
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/without_position_btn"

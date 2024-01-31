@@ -9,18 +9,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
+import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
 import com.example.calculatersunotes.ui.rural.householder.RuralHouseHolderViewModel
 import com.example.calculatersunotes.utils.FragmentUtil
+import com.example.calculatersunotes.utils.SwipeUtil
 import java.lang.NumberFormatException
 
 class EditNameEducation : Fragment() {
     private var buttonList: List<Button> = mutableListOf()
-    private lateinit var fragmentUtil: FragmentUtil
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
     private val ruralHouseHolderViewModel: RuralHouseHolderViewModel by activityViewModels()
+    private lateinit var swipeUtil: SwipeUtil
+    private lateinit var fragmentUtil: FragmentUtil
+    private lateinit var editHouseHolderAdapter: EditHouseholderAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +37,11 @@ class EditNameEducation : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_edit_name_education, container, false)
+
         fragmentUtil = FragmentUtil(requireContext())
+        swipeUtil = SwipeUtil()
+
+        val nextBtn = rootView.findViewById<ImageButton>(R.id.next_btn)
 
         val nameInput = rootView.findViewById<EditText>(R.id.full_name_input)
         val ageInput = rootView.findViewById<EditText>(R.id.age_input)
@@ -95,6 +104,15 @@ class EditNameEducation : Fragment() {
                 ruralHouseHolderViewModel.updateName(enteredValue)
             }
         })
+
+        nextBtn.setOnClickListener {
+            val parenFragment: EditHouseholder = parentFragment as EditHouseholder
+            val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.edit_householder_pager)
+
+            editHouseHolderAdapter = EditHouseholderAdapter(childFragmentManager)
+            swipeUtil.navigateNext(viewPager, editHouseHolderAdapter) {}
+        }
+
         return rootView
     }
 }

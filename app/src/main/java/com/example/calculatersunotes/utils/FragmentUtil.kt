@@ -1,8 +1,10 @@
 package com.example.calculatersunotes.utils
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.Color
 import android.view.View
+import android.view.ViewTreeObserver
 import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -20,11 +22,18 @@ class FragmentUtil(val context: Context){
         addToBackStack: Boolean = false
     ) {
         val transaction: FragmentTransaction = fragmentManager.beginTransaction()
+
+        transaction.setCustomAnimations(R.anim.slide_in_right, 0, 0, 0)
+
         transaction.replace(containerId, fragment)
+
         if (addToBackStack) {
             transaction.addToBackStack(null)
         }
+
+
         transaction.commit()
+
     }
 
      fun setInactiveButtonColors(buttonsList: List<Button>, exceptionButton: Button?){
