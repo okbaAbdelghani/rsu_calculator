@@ -11,17 +11,26 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.ui.base.EnvironmentViewModel
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
+import com.example.calculatersunotes.ui.base.UrbanFamilyViewModel
 import com.example.calculatersunotes.ui.edit.Edit
 import com.example.calculatersunotes.ui.rural.house.RuralHouseFragment
 import com.example.calculatersunotes.ui.rural.house.RuralHouseViewModel
+import com.example.calculatersunotes.ui.urban.house.UrbanHouseViewModel
 import com.example.calculatersunotes.utils.FragmentUtil
 
 class ResultFragment : Fragment() {
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
+    private val urbanFamilyViewModel: UrbanFamilyViewModel by activityViewModels()
     private val ruralHouseViewModel: RuralHouseViewModel by activityViewModels()
+    private val urbanHouseViewModel: UrbanHouseViewModel by activityViewModels()
+    private val environmentViewModel: EnvironmentViewModel by activityViewModels()
     private lateinit var fragmentUtil: FragmentUtil
+    private var selectedEnv = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -35,24 +44,26 @@ class ResultFragment : Fragment() {
 
         fragmentUtil = FragmentUtil(requireContext())
 
-        val resultTxt = rootView.findViewById<TextView>(R.id.result_txt)
 
-        ruralHouseViewModel.ruralHouse.observe(viewLifecycleOwner) { householder ->
-            ruralFamilyViewModel.updateFamilyHouse(householder)
-            ruralFamilyViewModel.createSurveyItems(requireContext())
-        }
 
-        ruralFamilyViewModel.result.observe(viewLifecycleOwner) { result ->
 
-            val valueAnimator = ValueAnimator.ofFloat(0f, result.toFloat())
-            valueAnimator.duration = 2000
 
-            valueAnimator.addUpdateListener {animator ->
-                val animatedValue = animator.animatedValue as Float
-                resultTxt.text = String.format("%.2f", animatedValue)
+        environmentViewModel.environment.observe(viewLifecycleOwner, Observer {env ->
+            selectedEnv = env
+            val rootView = inflater.inflate(R.layout.fragment_result, container, false)
+
+            when (env) {
+                "urban" -> {
+                    observeUrbanHouse()
+                    observeUrbanFamilyResult(rootView)
+                }
+                "rural" -> {
+                    observeRuralHouse()
+                    observeRuralFamilyResult(rootView)
+                }
             }
-            valueAnimator.start()
-        }
+        })
+
         // Inflate the layout for this fragment
         goBack(rootView)
         navigateToEdit(rootView)
@@ -71,6 +82,45 @@ class ResultFragment : Fragment() {
         editBtn.setOnClickListener{
             fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, Edit())
         }
+    }
+
+    private fun observeUrbanHouse() {
+        urbanHouseViewModel.urbanHouse.observe(viewLifecycleOwner) { householder ->
+            urbanFamilyViewModel.updateFamilyHouse(householder)
+            urbanFamilyViewModel.createSurveyItems(requireContext())
+        }
+    }
+
+    private fun observeRuralHouse() {
+        ruralHouseViewModel.ruralHouse.observe(viewLifecycleOwner) { householder ->
+            ruralFamilyViewModel.updateFamilyHouse(householder)
+            ruralFamilyViewModel.createSurveyItems(requireContext())
+        }
+    }
+
+    private fun observeUrbanFamilyResult(rootView: View) {
+        urbanFamilyViewModel.result.observe(viewLifecycleOwner) { result ->
+            animateResult(result, rootView )
+        }
+    }
+
+    private fun observeRuralFamilyResult(rootView: View) {
+
+        ruralFamilyViewModel.result.observe(viewLifecycleOwner) { result ->
+            animateResult(result, rootView)
+        }
+    }
+
+    private fun animateResult(result: Double, rootView: View) {
+        val resultTxt = rootView.findViewById<TextView>(R.id.result_txt)
+        val valueAnimator = ValueAnimator.ofFloat(0f, result.toFloat())
+        valueAnimator.duration = 2000
+
+        valueAnimator.addUpdateListener { animator ->
+            val animatedValue = animator.animatedValue as Float
+            resultTxt.text = String.format("%.2f", animatedValue)
+        }
+        valueAnimator.start()
     }
 
 }

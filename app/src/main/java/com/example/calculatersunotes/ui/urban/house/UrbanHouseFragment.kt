@@ -5,11 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
 
 class UrbanHouseFragment : Fragment() {
-
-
+    private lateinit var viewPager: ViewPager
+    private lateinit var urbanHousePagerAdapter: UrbanHousePagerAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -18,8 +19,14 @@ class UrbanHouseFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_urban_house, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_urban_house, container, false)
+
+        viewPager = rootView.findViewById<ViewPager>(R.id.urban_house_pager)
+        urbanHousePagerAdapter = UrbanHousePagerAdapter(childFragmentManager)
+        viewPager.adapter = urbanHousePagerAdapter
+
+
+        return rootView
     }
 
 }

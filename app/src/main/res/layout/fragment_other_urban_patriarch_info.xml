@@ -20,6 +20,8 @@
             android:paddingRight="10dp"
             android:paddingBottom="30dp">
             <ImageButton
+                android:id="@+id/back_button"
+                android:padding="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/black_back"
@@ -40,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/has_health_security"
+                android:text="@string/is_retired_or_beneficiary_Of_income"
                 />
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/without_income_btn"
@@ -121,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/high_education_diploma_no_btn"
+                    android:id="@+id/machinery_management_no_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -129,7 +131,7 @@
                     android:text="@string/no"
                     android:layout_marginRight="15dp"/>
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/high_education_diploma_yes_btn"
+                    android:id="@+id/machinery_management_yes_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -138,6 +140,13 @@
                     android:layout_marginLeft="15dp"/>
 
             </LinearLayout>
+            <include layout="@layout/next_button"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="30dp"/>
         </LinearLayout>
     </ScrollView>
 

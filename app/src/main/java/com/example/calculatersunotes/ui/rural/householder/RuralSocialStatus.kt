@@ -6,16 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
+import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.ui.edit.house.EditHouse
+import com.example.calculatersunotes.ui.edit.house.EditHousePagerAdapter
 import com.example.calculatersunotes.utils.FragmentUtil
+import com.example.calculatersunotes.utils.SwipeUtil
 
 class RuralSocialStatus : Fragment() {
 
     private var buttonList: List<Button> = mutableListOf()
     private var exceptionButtonList: List<Button> = mutableListOf()
     private lateinit var fragmentUtil: FragmentUtil
+    private lateinit var swipeUtil: SwipeUtil
     private val ruralHouseHolderViewModel: RuralHouseHolderViewModel by activityViewModels()
+    private lateinit var editHousePagerAdapter: EditHousePagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +35,7 @@ class RuralSocialStatus : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_rural_social_status, container, false)
         fragmentUtil = FragmentUtil(requireContext())
+        swipeUtil = SwipeUtil()
 
         val machineryManagerBtn = view.findViewById<Button>(R.id.machinery_manager_btn)
         val craftsmanBtn = view.findViewById<Button>(R.id.craftsman_btn)
@@ -126,6 +134,26 @@ class RuralSocialStatus : Fragment() {
     }
     private fun setHouseHolderAsJobless(){
         ruralHouseHolderViewModel.updateJobPosition("without")
+    }
+
+    private fun swipeBack(button: ImageButton) {
+        button.setOnClickListener {
+            val parenFragment: EditHouse = parentFragment as EditHouse
+            val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.edit_house_container)
+
+            editHousePagerAdapter = EditHousePagerAdapter(childFragmentManager)
+            swipeUtil.navigateBack(viewPager, editHousePagerAdapter)
+        }
+    }
+
+    private fun swipeNext(button: ImageButton) {
+        button.setOnClickListener {
+            val parenFragment: EditHouse = parentFragment as EditHouse
+            val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.edit_house_container)
+
+            editHousePagerAdapter = EditHousePagerAdapter(childFragmentManager)
+            swipeUtil.navigateNext(viewPager, editHousePagerAdapter) {}
+        }
     }
 
 }

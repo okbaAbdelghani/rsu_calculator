@@ -20,6 +20,8 @@
             android:paddingRight="10dp"
             android:paddingBottom="30dp">
             <ImageButton
+                android:id="@+id/back_button"
+                android:padding="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/black_back"
@@ -139,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/no_having_second_btn"
+                    android:id="@+id/no_second_house_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -147,7 +149,7 @@
                     android:text="@string/no"
                     android:layout_marginRight="15dp"/>
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/yes_having_second_btn"
+                    android:id="@+id/yes_second_house_btn"
                     style="@style/buttonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -56,15 +56,39 @@ class UrbanHouseHolderViewModel : ViewModel() {
         if(status == "employer"){
             currentHouseHolder.isRecruiting = true
             currentHouseHolder.hasAJob = false
-
         }
         if(status == "employee"){
             currentHouseHolder.hasAJob = true
-
+            currentHouseHolder.isRecruiting = false
         }
         if(status == "without"){
             currentHouseHolder.isRecruiting = false
+            currentHouseHolder.hasAJob = false
         }
+        _urbanHouseHolder.value = currentHouseHolder
+    }
+
+    fun healthSecurityPossession(value: Boolean){
+        val currentHouseHolder = _urbanHouseHolder.value ?: createEmptyHouseHolder()
+        currentHouseHolder.hasHealthCoverage = value
+        _urbanHouseHolder.value = currentHouseHolder
+    }
+
+    fun retirementPossession(value: Boolean){
+        val currentHouseHolder = _urbanHouseHolder.value ?: createEmptyHouseHolder()
+        currentHouseHolder.isRetiredOrBeneficiaryOfIncome = value
+        _urbanHouseHolder.value = currentHouseHolder
+    }
+
+    fun diplomaPossession(value: Boolean){
+        val currentHouseHolder = _urbanHouseHolder.value ?: createEmptyHouseHolder()
+        currentHouseHolder.hasDiploma = value
+        _urbanHouseHolder.value = currentHouseHolder
+    }
+
+    fun machineryActivityManagement(value: Boolean){
+        val currentHouseHolder = _urbanHouseHolder.value ?: createEmptyHouseHolder()
+        currentHouseHolder.equipmentManagementActivity = value
         _urbanHouseHolder.value = currentHouseHolder
     }
 }
