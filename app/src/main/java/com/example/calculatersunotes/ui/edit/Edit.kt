@@ -10,22 +10,28 @@ import android.view.animation.AlphaAnimation
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.ui.base.EnvironmentViewModel
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
-import com.example.calculatersunotes.ui.edit.house.EditHouse
-import com.example.calculatersunotes.ui.edit.householder.EditHouseholder
+import com.example.calculatersunotes.ui.edit.rural.house.EditRuralHouse
+import com.example.calculatersunotes.ui.edit.rural.householder.EditRuralHouseholder
+import com.example.calculatersunotes.ui.edit.urban.householder.EditUrbanHouseHolder
 import com.example.calculatersunotes.ui.result.ResultFragment
 import com.example.calculatersunotes.utils.FragmentUtil
 
 class Edit : Fragment() {
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
     private lateinit var fragmentUtil: FragmentUtil
+    private val environmentViewModel: EnvironmentViewModel by activityViewModels()
+    private var selectedEnv = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,12 +44,30 @@ class Edit : Fragment() {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_edit, container, false)
 
+        environmentViewModel.environment.observe(viewLifecycleOwner, Observer {env ->
+            selectedEnv = env
+
+            when (env) {
+                "urban" -> {
+
+                }
+                "rural" -> {
+
+                }
+            }
+        })
+
         val recyclerView = rootView.findViewById<RecyclerView>(R.id.members_recycler)
         val editMembersBtn = rootView.findViewById<FrameLayout>(R.id.members_part_btn)
         val membersCardView = rootView.findViewById<CardView>(R.id.members_card_view)
         val textView = rootView.findViewById<TextView>(R.id.members_part_txt)
         val backBtn = rootView.findViewById<ImageButton>(R.id.back_button)
         val recalculateBtn = rootView.findViewById<Button>(R.id.recalculate_btn)
+
+        val addMemberBtn = rootView.findViewById<Button>(R.id.add_member_btn)
+
+        val emptyStateView = rootView.findViewById<LinearLayout>(R.id.empty_state_view)
+        emptyStateView.visibility = View.GONE
 
         val householderBtn = rootView.findViewById<FrameLayout>(R.id.your_own_part_btn)
         val homePartBtn = rootView.findViewById<FrameLayout>(R.id.home_part_btn)
@@ -55,6 +79,11 @@ class Edit : Fragment() {
         ruralFamilyViewModel.family.observe(viewLifecycleOwner) { family ->
             val members = family.members
             val adapter = MemberAdapter(members)
+            if(members.isEmpty()) {
+                emptyStateView.visibility = View.VISIBLE
+            } else {
+                emptyStateView.visibility = View.GONE
+            }
 
             recyclerView.adapter = adapter
         }
@@ -66,12 +95,26 @@ class Edit : Fragment() {
         }
 
         householderBtn.setOnClickListener {
-            fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, EditHouseholder())
+            if (selectedEnv == "urban") {
+                fragmentUtil.replaceFragment(
+                    requireActivity().supportFragmentManager,
+                    R.id.fragmentContainer,
+                    EditUrbanHouseHolder()
+                )
+            }
+            if (selectedEnv == "rural") {
+                fragmentUtil.replaceFragment(
+                    requireActivity().supportFragmentManager,
+                    R.id.fragmentContainer,
+                    EditRuralHouseholder()
+                )
+            }
         }
 
         homePartBtn.setOnClickListener {
-            fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, EditHouse())
+            fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, EditRuralHouse())
         }
+
 
         backBtn.setOnClickListener {
             fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, ResultFragment())
@@ -81,6 +124,11 @@ class Edit : Fragment() {
             recalculateBtn.setTextColor(Color.WHITE)
             fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, ResultFragment())
         }
+
+        addMemberBtn.setOnClickListener {
+            addMemberBtn.setTextColor(Color.WHITE)
+        }
+
 
 
         return rootView

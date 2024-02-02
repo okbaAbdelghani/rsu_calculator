@@ -1,16 +1,16 @@
-package com.example.calculatersunotes.ui.edit.householder
+package com.example.calculatersunotes.ui.edit.rural.house
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
-class EditHouseholderAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+class EditRuralHousePagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
 
     override fun getItem(position: Int): Fragment {
         return when(position) {
-            0 -> EditNameEducation()
-            1 -> EditSocialStatus()
-            2 -> EditOtherInfo()
+            0 -> EditRuralHouseInfoOne()
+            1 -> EditRuralHouseInfoTwo()
+            2 -> EditRuralHouseInfoThree()
             else -> throw IllegalArgumentException("Invalid Position: $position")
         }
     }

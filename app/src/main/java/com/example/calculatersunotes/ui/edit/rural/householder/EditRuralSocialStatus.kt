@@ -1,4 +1,4 @@
-package com.example.calculatersunotes.ui.edit.householder
+package com.example.calculatersunotes.ui.edit.rural.house.householder
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,18 +11,20 @@ import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
+import com.example.calculatersunotes.ui.edit.rural.householder.EditRuralHouseholder
+import com.example.calculatersunotes.ui.edit.rural.householder.EditRuralHouseholderAdapter
 import com.example.calculatersunotes.ui.rural.householder.RuralHouseHolderViewModel
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.utils.SwipeUtil
 
-class EditSocialStatus : Fragment() {
+class EditRuralSocialStatus : Fragment() {
     private var buttonList: List<Button> = mutableListOf()
     private var exceptionButtonList: MutableList<Button> = mutableListOf()
     private lateinit var fragmentUtil: FragmentUtil
     private val ruralHouseHolderViewModel: RuralHouseHolderViewModel by activityViewModels()
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
     private lateinit var swipeUtil: SwipeUtil
-    private lateinit var editHouseHolderAdapter: EditHouseholderAdapter
+    private lateinit var editHouseHolderAdapter: EditRuralHouseholderAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -142,18 +144,18 @@ class EditSocialStatus : Fragment() {
         }
 
         backBtn.setOnClickListener {
-            val parenFragment: EditHouseholder = parentFragment as EditHouseholder
+            val parenFragment: EditRuralHouseholder = parentFragment as EditRuralHouseholder
             val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.edit_householder_pager)
 
-            editHouseHolderAdapter = EditHouseholderAdapter(childFragmentManager)
+            editHouseHolderAdapter = EditRuralHouseholderAdapter(childFragmentManager)
             swipeUtil.navigateBack(viewPager, editHouseHolderAdapter)
         }
 
         nextBtn.setOnClickListener {
-            val parenFragment: EditHouseholder = parentFragment as EditHouseholder
+            val parenFragment: EditRuralHouseholder = parentFragment as EditRuralHouseholder
             val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.edit_householder_pager)
 
-            editHouseHolderAdapter = EditHouseholderAdapter(childFragmentManager)
+            editHouseHolderAdapter = EditRuralHouseholderAdapter(childFragmentManager)
             swipeUtil.navigateNext(viewPager, editHouseHolderAdapter) {}
         }
 

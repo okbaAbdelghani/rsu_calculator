@@ -10,8 +10,8 @@ import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
-import com.example.calculatersunotes.ui.edit.house.EditHouse
-import com.example.calculatersunotes.ui.edit.house.EditHousePagerAdapter
+import com.example.calculatersunotes.ui.edit.rural.house.EditRuralHouse
+import com.example.calculatersunotes.ui.edit.rural.house.EditRuralHousePagerAdapter
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.utils.SwipeUtil
 
@@ -22,7 +22,7 @@ class RuralSocialStatus : Fragment() {
     private lateinit var fragmentUtil: FragmentUtil
     private lateinit var swipeUtil: SwipeUtil
     private val ruralHouseHolderViewModel: RuralHouseHolderViewModel by activityViewModels()
-    private lateinit var editHousePagerAdapter: EditHousePagerAdapter
+    private lateinit var editHousePagerAdapter: EditRuralHousePagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -138,20 +138,20 @@ class RuralSocialStatus : Fragment() {
 
     private fun swipeBack(button: ImageButton) {
         button.setOnClickListener {
-            val parenFragment: EditHouse = parentFragment as EditHouse
+            val parenFragment: EditRuralHouse = parentFragment as EditRuralHouse
             val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.edit_house_container)
 
-            editHousePagerAdapter = EditHousePagerAdapter(childFragmentManager)
+            editHousePagerAdapter = EditRuralHousePagerAdapter(childFragmentManager)
             swipeUtil.navigateBack(viewPager, editHousePagerAdapter)
         }
     }
 
     private fun swipeNext(button: ImageButton) {
         button.setOnClickListener {
-            val parenFragment: EditHouse = parentFragment as EditHouse
+            val parenFragment: EditRuralHouse = parentFragment as EditRuralHouse
             val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.edit_house_container)
 
-            editHousePagerAdapter = EditHousePagerAdapter(childFragmentManager)
+            editHousePagerAdapter = EditRuralHousePagerAdapter(childFragmentManager)
             swipeUtil.navigateNext(viewPager, editHousePagerAdapter) {}
         }
     }

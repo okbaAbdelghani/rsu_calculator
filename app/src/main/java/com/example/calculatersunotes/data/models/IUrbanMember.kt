@@ -7,5 +7,5 @@ interface IUrbanMember: Member {
     var publicSector: Boolean
     var hasAJob: Boolean
     var equipmentManagementActivity: Boolean
-    var highProfessionalPosition: Boolean
+    var hasHighProfessionalPosition: Boolean
 }

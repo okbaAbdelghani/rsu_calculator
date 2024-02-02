@@ -1,0 +1,282 @@
+[
+  {
+    "viQuestion": "أسرة مكونة من فرد واحد، أومن زوجين بدون أطفال",
+    "ci": 0.103,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": true
+  },
+  {
+    "viQuestion": "أسرة مكونة من أكثر من نواة عائلية",
+    "ci": 0.035,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "غرفة واحدة يتقاسمها شخصان على األكثر",
+    "ci": 0.0475,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": true
+  },
+  {
+    "viQuestion": "سكن األسرة يتوفرعلى حمام أورشاش",
+    "ci": 0.096,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "سكن األسرة يتوفر على عداد فردي للكهرباء",
+    "ci": 0.0466,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "يتوفررب األسرة على مستوى تعليمي عالي",
+    "ci": 0.0806,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Householder",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "رب األسرة إطارعالي أويشغل منصب مسؤولية",
+    "ci": 0.0782,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Householder",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "رب األسرة إطار متوسط",
+    "ci": 0.110,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Householder",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "رب األسرة مشغل",
+    "ci": 0.182,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Householder",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "رب األسرة متقاعد أو يستفيد من إيراد",
+    "ci": 0.0605,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Householder",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "تتوفر األسرة على حاسوب أو أكثر",
+    "ci": 0.138,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Householder",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "تتوفر األسرة على القط هوائي",
+    "ci": 0.0873,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Householder",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "األسرة تتوفر على هاتف ثابت",
+    "ci": 0.0532,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "Householder",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "يستفيد فرد واحد من األسرة على األقل من نظام للتغطية الصحية غير نظام املساعدة الطبية (راميد)",
+    "ci": 0.151,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "تستفيد األسرة من قرض لدى إحدى األبناك أو املؤسسات املالية أو املشغل",
+    "ci": 0.135,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "تتوفراألسرة على سكن ثانوي",
+    "ci": 0.173,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "تتوفر األسرة على مرآب",
+    "ci": 0.117,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "تتوفر األسرة على محالت مهنية",
+    "ci": 0.111,
+    "vi": 0,
+    "type": "YesNo",
+    "category": "family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "عدد أفراد األسرة",
+    "ci": -0.177,
+    "vi": 0,
+    "type": "variant",
+    "category": "family",
+    "isCalculated": false
+  },
+  {
+    "viQuestion": "مربع عدد أفراد األسرة",
+    "ci": 0.00533,
+    "vi": 0,
+    "type": "variant",
+    "category": "family",
+    "isCalculated": true
+  },
+  {
+    "viQuestion": "سن رب األسرة",
+    "ci": -0.0104,
+    "vi": 0,
+    "type": "variant",
+    "category": "family",
+    "isCalculated": true
+  },
+  {
+    "viQuestion": "مربع سن رب األسرة",
+    "ci": 0.0000771,
+    "vi": 0,
+    "type": "variant",
+    "category": "family",
+    "isCalculated": true
+  },
+  {
+    "viQuestion": "عدد األطفال املتمدرسين في القطاع الخاص الذين تتراوح أعمارهم ما بين 6 و 14 سنة",
+    "ci": 0.105,
+    "vi": 0,
+    "type": "variant",
+    "category": "family",
+    "isCalculated": true
+  },
+  {
+    "viQuestion": "عدد األطفال املتمدرسين في القطاع العمومي الذين تتراوح أعمارهم ما بين 6 و 14 سنة",
+    "ci": -0.0319,
+    "vi": 0,
+    "type": "variant",
+    "category": "family",
+    "isCalculated": true
+  },
+  {
+    "viQuestion": "نسبة أفراد األسرة الذين تبلغ أعمارهم 15 سنة فأكثر والذين ال يتوفرون على أي شهادة",
+    "ci": -0.0557,
+    "vi": 0,
+    "type": "variant",
+    "category": "family",
+    "isCalculated": true
+  },
+  {
+    "viQuestion": "نسبة أفراد األسرة الذين تبلغ أعمارهم 15 سنة فأكثر الحاصلين على شهادة أو دبلوم تقني",
+    "ci": 0.120,
+    "vi": 0,
+    "type": "variant",
+    "category": "family",
+    "isCalculated": true
+  },
+  {
+    "viQuestion": "نسبة أفراد األسرة الذين تبلغ أعمارهم 15 سنة فأكثرالذين يزاولون نشاطا مدرا للدخل",
+    "ci": 0.139,
+    "vi": 0,
+    "type": "variant",
+    "category": "family",
+    "isCalculated": true
+  },
+  {
+    "viQuestion": "نسبة أفراد األسرة الذين تبلغ أعمارهم 15 سنة فأكثرالذين يزاولون نشاط تسيير للمعدات",
+    "ci": 0.307,
+    "vi": 0,
+    "type": "variant",
+    "category": "family",
+    "isCalculated": true
+  },
+  {
+    "viQuestion": "نسبة أفراد األسرة الذين يشتغلون كأطرعليا أو يشغلون منصب مسؤولية",
+    "ci": 0.180,
+    "vi": 0,
+    "type": "variant",
+    "category": "family",
+    "isCalculated": true
+  },
+  {
+    "viQuestion": "عدد الهواتف املحمولة داخل األسر",
+    "ci": 0.0516,
+    "vi": 0,
+    "type": "variant",
+    "category": "family",
+    "isCalculated": true
+  },
+  {
+    "viQuestion": "عدد السيارات في حوزة األسرة",
+    "ci": 0.226,
+    "vi": 0,
+    "type": "variant",
+    "category": "family",
+    "isCalculated": true
+  },
+  {
+    "viQuestion": "عدد الدراجات النارية",
+    "ci": 0.0598,
+    "vi": 0,
+    "type": "variant",
+    "category": "family",
+    "isCalculated": true
+  },
+  {
+    "viQuestion": "مبلغ مصاريف األسرة السنوية املتعلقة باستهالك غازالبوتان مقسوم على عدد أفراد األسرة",
+    "ci": 0.000422,
+    "vi": 0,
+    "type": "variant",
+    "category": "family",
+    "isCalculated": true
+  },
+  {
+    "viQuestion": "مبلغ مصاريف األسرة السنوية املتعلقة باستهالك املاء والكهرباء مقسوم على عدد أفراد األسرة",
+    "ci": 0.00011,
+    "vi": 0,
+    "type": "variant",
+    "category": "family",
+    "isCalculated": true
+  },
+  {
+    "viQuestion": "مبلغ مصاريف لألسرة السنوية املتعلقة باستهالك الهاتف واإلنترنت مقسوم على عدد أفراد األسرة",
+    "ci": 0.000302,
+    "vi": 0,
+    "type": "variant",
+    "category": "family",
+    "isCalculated": true
+  }
+]

@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.edit.house.EditHouse">
+    tools:context=".ui.edit.urban.householder.EditUrbanHouseHolder">
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/edit_house_container"
+        android:id="@+id/edit_urban_householder_pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
     </androidx.viewpager.widget.ViewPager>
 
 </FrameLayout>

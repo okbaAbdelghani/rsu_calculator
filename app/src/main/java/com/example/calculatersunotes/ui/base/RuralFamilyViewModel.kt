@@ -222,7 +222,7 @@ class RuralFamilyViewModel : ViewModel() {
             literateMembers ++
         }
 
-        rate = (literateMembers*100.0)/totalMembers
+        rate = literateMembers.toDouble()/totalMembers
         return rate
     }
     private fun getV23(family: RuralFamily): Double{
@@ -240,7 +240,7 @@ class RuralFamilyViewModel : ViewModel() {
             highEduDiplomaMembers ++
         }
 
-        rate = (highEduDiplomaMembers*100.0)/totalMembers
+        rate = highEduDiplomaMembers.toDouble()/totalMembers
         return rate
     }
 
@@ -259,7 +259,7 @@ class RuralFamilyViewModel : ViewModel() {
             merchantMembers ++
         }
 
-        rate = (merchantMembers*100.0)/totalMembers
+        rate = merchantMembers.toDouble()/totalMembers
         return rate
     }
 

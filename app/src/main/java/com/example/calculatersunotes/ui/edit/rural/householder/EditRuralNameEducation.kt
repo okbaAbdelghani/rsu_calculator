@@ -1,4 +1,4 @@
-package com.example.calculatersunotes.ui.edit.householder
+package com.example.calculatersunotes.ui.edit.rural.house.householder
 
 import android.os.Bundle
 import android.text.Editable
@@ -14,18 +14,20 @@ import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
+import com.example.calculatersunotes.ui.edit.rural.householder.EditRuralHouseholder
+import com.example.calculatersunotes.ui.edit.rural.householder.EditRuralHouseholderAdapter
 import com.example.calculatersunotes.ui.rural.householder.RuralHouseHolderViewModel
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.utils.SwipeUtil
 import java.lang.NumberFormatException
 
-class EditNameEducation : Fragment() {
+class EditRuralNameEducation : Fragment() {
     private var buttonList: List<Button> = mutableListOf()
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
     private val ruralHouseHolderViewModel: RuralHouseHolderViewModel by activityViewModels()
     private lateinit var swipeUtil: SwipeUtil
     private lateinit var fragmentUtil: FragmentUtil
-    private lateinit var editHouseHolderAdapter: EditHouseholderAdapter
+    private lateinit var editHouseHolderAdapter: EditRuralHouseholderAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,10 +108,10 @@ class EditNameEducation : Fragment() {
         })
 
         nextBtn.setOnClickListener {
-            val parenFragment: EditHouseholder = parentFragment as EditHouseholder
+            val parenFragment: EditRuralHouseholder = parentFragment as EditRuralHouseholder
             val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.edit_householder_pager)
 
-            editHouseHolderAdapter = EditHouseholderAdapter(childFragmentManager)
+            editHouseHolderAdapter = EditRuralHouseholderAdapter(childFragmentManager)
             swipeUtil.navigateNext(viewPager, editHouseHolderAdapter) {}
         }
 

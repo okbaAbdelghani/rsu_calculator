@@ -13,7 +13,6 @@ class UrbanHouseHolder: HouseHolder, IUrbanMember {
     override var sphere: String = ""
     override var hasAJob: Boolean = false
     override var equipmentManagementActivity: Boolean = false
-    override var highProfessionalPosition: Boolean = false
     override var hasHighProfessionalPosition: Boolean = false
     override var isRecruiting: Boolean = false
     var hasHighEducationLevel: Boolean = false

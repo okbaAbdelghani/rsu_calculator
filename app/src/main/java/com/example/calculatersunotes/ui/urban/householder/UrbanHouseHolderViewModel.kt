@@ -35,17 +35,17 @@ class UrbanHouseHolderViewModel : ViewModel() {
     fun updateSocialStatus(job: String){
         val currentHouseHolder = _urbanHouseHolder.value ?: createEmptyHouseHolder()
         if(job == "high_position"){
-            currentHouseHolder.highProfessionalPosition = true
+            currentHouseHolder.hasHighProfessionalPosition = true
             currentHouseHolder.hasAverageProfessionalPosition = false
         }
 
         if(job == "medium_position"){
-            currentHouseHolder.highProfessionalPosition = false
+            currentHouseHolder.hasHighProfessionalPosition = false
             currentHouseHolder.hasAverageProfessionalPosition = true
         }
 
         if(job == "none"){
-            currentHouseHolder.highProfessionalPosition = false
+            currentHouseHolder.hasHighProfessionalPosition = false
             currentHouseHolder.hasAverageProfessionalPosition = false
         }
         _urbanHouseHolder.value = currentHouseHolder

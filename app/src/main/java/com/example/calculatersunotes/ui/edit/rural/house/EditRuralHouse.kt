@@ -1,4 +1,4 @@
-package com.example.calculatersunotes.ui.edit.householder
+package com.example.calculatersunotes.ui.edit.rural.house
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,15 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
-import com.example.calculatersunotes.ui.edit.house.EditHousePagerAdapter
 
 
-class EditHouseholder : Fragment() {
+class EditRuralHouse : Fragment() {
     private lateinit var viewPager: ViewPager
-    private lateinit var editHouseHolderPagerAdapter: EditHouseholderAdapter
+    private lateinit var editHousePagerAdapter: EditRuralHousePagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -23,11 +23,13 @@ class EditHouseholder : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_edit_householder, container, false)
-        viewPager = rootView.findViewById(R.id.edit_householder_pager)
-        editHouseHolderPagerAdapter = EditHouseholderAdapter(childFragmentManager)
+        val rootView = inflater.inflate(R.layout.fragment_edit_rural_house, container, false)
 
-        viewPager.adapter = editHouseHolderPagerAdapter
+        viewPager = rootView.findViewById(R.id.edit_house_container)
+        editHousePagerAdapter = EditRuralHousePagerAdapter(childFragmentManager)
+
+        viewPager.adapter = editHousePagerAdapter
+
         return rootView
     }
 

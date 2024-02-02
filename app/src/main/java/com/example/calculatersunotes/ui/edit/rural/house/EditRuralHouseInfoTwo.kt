@@ -1,4 +1,4 @@
-package com.example.calculatersunotes.ui.edit.house
+package com.example.calculatersunotes.ui.edit.rural.house
 
 import android.os.Bundle
 import android.text.Editable
@@ -14,7 +14,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
-import com.example.calculatersunotes.ui.rural.house.HousePagerAdapter
 import com.example.calculatersunotes.ui.rural.house.RuralHouseViewModel
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.utils.SwipeUtil
@@ -27,7 +26,7 @@ class EditRuralHouseInfoTwo : Fragment() {
     private lateinit var fragmentUtil: FragmentUtil
     private val ruralHouseViewModel: RuralHouseViewModel by activityViewModels()
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
-    private lateinit var editHousePagerAdapter: EditHousePagerAdapter
+    private lateinit var editHousePagerAdapter: EditRuralHousePagerAdapter
     private lateinit var swipeUtil: SwipeUtil
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -173,20 +172,20 @@ class EditRuralHouseInfoTwo : Fragment() {
 
     private fun swipeBack(button: ImageButton) {
         button.setOnClickListener {
-            val parenFragment: EditHouse = parentFragment as EditHouse
+            val parenFragment: EditRuralHouse = parentFragment as EditRuralHouse
             val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.edit_house_container)
 
-            editHousePagerAdapter = EditHousePagerAdapter(childFragmentManager)
+            editHousePagerAdapter = EditRuralHousePagerAdapter(childFragmentManager)
             swipeUtil.navigateBack(viewPager, editHousePagerAdapter)
         }
     }
 
     private fun swipeNext(button: ImageButton) {
         button.setOnClickListener {
-            val parenFragment: EditHouse = parentFragment as EditHouse
+            val parenFragment: EditRuralHouse = parentFragment as EditRuralHouse
             val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.edit_house_container)
 
-            editHousePagerAdapter = EditHousePagerAdapter(childFragmentManager)
+            editHousePagerAdapter = EditRuralHousePagerAdapter(childFragmentManager)
             swipeUtil.navigateNext(viewPager, editHousePagerAdapter) {}
         }
     }

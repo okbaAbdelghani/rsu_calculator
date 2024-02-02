@@ -1,4 +1,4 @@
-package com.example.calculatersunotes.ui.edit.house
+package com.example.calculatersunotes.ui.edit.urban.householder
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,12 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
-import com.example.calculatersunotes.ui.edit.householder.EditHouseholderAdapter
 
 
-class EditHouse : Fragment() {
+class EditUrbanHouseHolder : Fragment() {
     private lateinit var viewPager: ViewPager
-    private lateinit var editHousePagerAdapter: EditHousePagerAdapter
+    private lateinit var editHouseHolderPagerAdapter: EditUrbanHouseHolderAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,12 +23,12 @@ class EditHouse : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_edit_house, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_edit_urban_house_holder, container, false)
 
-        viewPager = rootView.findViewById(R.id.edit_house_container)
-        editHousePagerAdapter = EditHousePagerAdapter(childFragmentManager)
+        viewPager = rootView.findViewById(R.id.edit_urban_householder_pager)
+        editHouseHolderPagerAdapter = EditUrbanHouseHolderAdapter(childFragmentManager)
 
-        viewPager.adapter = editHousePagerAdapter
+        viewPager.adapter = editHouseHolderPagerAdapter
 
         return rootView
     }

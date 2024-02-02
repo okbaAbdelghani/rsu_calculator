@@ -7,7 +7,7 @@ class UrbanMember(
     override var publicSector: Boolean,
     override var hasAJob: Boolean,
     override var equipmentManagementActivity: Boolean,
-    override var highProfessionalPosition: Boolean,
+    override var hasHighProfessionalPosition: Boolean,
     override var fullName: String,
     override var hasHealthCoverage: Boolean,
     override var isChildOfHouseHolder: Boolean,

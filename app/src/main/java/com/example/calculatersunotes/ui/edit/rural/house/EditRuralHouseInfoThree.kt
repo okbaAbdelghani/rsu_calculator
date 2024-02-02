@@ -1,4 +1,4 @@
-package com.example.calculatersunotes.ui.edit.house
+package com.example.calculatersunotes.ui.edit.rural.house
 
 import android.os.Bundle
 import android.text.Editable
@@ -25,7 +25,7 @@ class EditRuralHouseInfoThree : Fragment() {
     private lateinit var fragmentUtil: FragmentUtil
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
     private val ruralHouseViewModel: RuralHouseViewModel by activityViewModels()
-    private lateinit var editHousePagerAdapter: EditHousePagerAdapter
+    private lateinit var editHousePagerAdapter: EditRuralHousePagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -289,10 +289,10 @@ class EditRuralHouseInfoThree : Fragment() {
 
     private fun swipeBack(button: ImageButton) {
         button.setOnClickListener {
-            val parenFragment: EditHouse = parentFragment as EditHouse
+            val parenFragment: EditRuralHouse = parentFragment as EditRuralHouse
             val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.edit_house_container)
 
-            editHousePagerAdapter = EditHousePagerAdapter(childFragmentManager)
+            editHousePagerAdapter = EditRuralHousePagerAdapter(childFragmentManager)
             swipeUtil.navigateBack(viewPager, editHousePagerAdapter)
         }
     }

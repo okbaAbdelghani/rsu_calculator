@@ -50,7 +50,6 @@ class ResultFragment : Fragment() {
 
         environmentViewModel.environment.observe(viewLifecycleOwner, Observer {env ->
             selectedEnv = env
-            val rootView = inflater.inflate(R.layout.fragment_result, container, false)
 
             when (env) {
                 "urban" -> {
@@ -112,13 +111,13 @@ class ResultFragment : Fragment() {
     }
 
     private fun animateResult(result: Double, rootView: View) {
-        val resultTxt = rootView.findViewById<TextView>(R.id.result_txt)
         val valueAnimator = ValueAnimator.ofFloat(0f, result.toFloat())
         valueAnimator.duration = 2000
 
         valueAnimator.addUpdateListener { animator ->
+            val resultTxt = rootView.findViewById<TextView>(R.id.result_txt)
             val animatedValue = animator.animatedValue as Float
-            resultTxt.text = String.format("%.2f", animatedValue)
+            resultTxt.text = String.format("%.3f", animatedValue)
         }
         valueAnimator.start()
     }
