@@ -21,14 +21,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.calculatersunotes.R
 import com.example.calculatersunotes.ui.base.EnvironmentViewModel
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
+import com.example.calculatersunotes.ui.base.UrbanFamilyViewModel
 import com.example.calculatersunotes.ui.edit.rural.house.EditRuralHouse
 import com.example.calculatersunotes.ui.edit.rural.householder.EditRuralHouseholder
 import com.example.calculatersunotes.ui.edit.urban.householder.EditUrbanHouseHolder
 import com.example.calculatersunotes.ui.result.ResultFragment
+import com.example.calculatersunotes.ui.rural.members.AddRuralMember
+import com.example.calculatersunotes.ui.urban.members.AddUrbanMember
 import com.example.calculatersunotes.utils.FragmentUtil
 
 class Edit : Fragment() {
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
+    private val urbanFamilyViewModel: UrbanFamilyViewModel by activityViewModels()
     private lateinit var fragmentUtil: FragmentUtil
     private val environmentViewModel: EnvironmentViewModel by activityViewModels()
     private var selectedEnv = ""
@@ -44,18 +48,6 @@ class Edit : Fragment() {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_edit, container, false)
 
-        environmentViewModel.environment.observe(viewLifecycleOwner, Observer {env ->
-            selectedEnv = env
-
-            when (env) {
-                "urban" -> {
-
-                }
-                "rural" -> {
-
-                }
-            }
-        })
 
         val recyclerView = rootView.findViewById<RecyclerView>(R.id.members_recycler)
         val editMembersBtn = rootView.findViewById<FrameLayout>(R.id.members_part_btn)
@@ -76,17 +68,18 @@ class Edit : Fragment() {
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        ruralFamilyViewModel.family.observe(viewLifecycleOwner) { family ->
-            val members = family.members
-            val adapter = MemberAdapter(members)
-            if(members.isEmpty()) {
-                emptyStateView.visibility = View.VISIBLE
-            } else {
-                emptyStateView.visibility = View.GONE
+        environmentViewModel.environment.observe(viewLifecycleOwner, Observer {env ->
+            selectedEnv = env
+            if(env == "urban") {
+                listenToUrbanMembers(emptyStateView, recyclerView)
             }
 
-            recyclerView.adapter = adapter
-        }
+            if(env == "rural") {
+                listenToRuralMembers(emptyStateView, recyclerView)
+            }
+        })
+
+
 
         membersCardView.visibility = View.GONE
 
@@ -126,7 +119,13 @@ class Edit : Fragment() {
         }
 
         addMemberBtn.setOnClickListener {
-            addMemberBtn.setTextColor(Color.WHITE)
+            if(selectedEnv == "urban") {
+                fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, AddUrbanMember())
+            }
+
+            if(selectedEnv == "rural") {
+                fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, AddRuralMember())
+            }
         }
 
 
@@ -171,6 +170,36 @@ class Edit : Fragment() {
 
             btn.background = fullBackground
             textView.setTextColor(Color.WHITE)
+        }
+    }
+
+    private fun listenToRuralMembers(emptyStateView: LinearLayout, recyclerView: RecyclerView) {
+        ruralFamilyViewModel.family.observe(viewLifecycleOwner) { family ->
+            val members = family.members
+            val adapter = RuralMemberAdapter(members)
+
+            if(members.isEmpty()) {
+                emptyStateView.visibility = View.VISIBLE
+            } else {
+                emptyStateView.visibility = View.GONE
+            }
+
+            recyclerView.adapter = adapter
+        }
+    }
+
+    private fun listenToUrbanMembers(emptyStateView: LinearLayout, recyclerView: RecyclerView) {
+        urbanFamilyViewModel.family.observe(viewLifecycleOwner) { family ->
+            val members = family.members
+            val adapter = UrbanMemberAdapter(members)
+
+            if(members.isEmpty()) {
+                emptyStateView.visibility = View.VISIBLE
+            } else {
+                emptyStateView.visibility = View.GONE
+            }
+
+            recyclerView.adapter = adapter
         }
     }
 

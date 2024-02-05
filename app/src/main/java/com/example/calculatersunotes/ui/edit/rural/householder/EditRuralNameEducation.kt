@@ -1,4 +1,4 @@
-package com.example.calculatersunotes.ui.edit.rural.house.householder
+package com.example.calculatersunotes.ui.edit.rural.householder
 
 import android.os.Bundle
 import android.text.Editable
@@ -14,8 +14,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
-import com.example.calculatersunotes.ui.edit.rural.householder.EditRuralHouseholder
-import com.example.calculatersunotes.ui.edit.rural.householder.EditRuralHouseholderAdapter
 import com.example.calculatersunotes.ui.rural.householder.RuralHouseHolderViewModel
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.utils.SwipeUtil
@@ -71,6 +69,16 @@ class EditRuralNameEducation : Fragment() {
             }
 
 
+        }
+
+        basicEducationBtn.setOnClickListener {
+            fragmentUtil.setInactiveButtonColors(buttonList,basicEducationBtn)
+            ruralHouseHolderViewModel.updateEducationLevel(true)
+        }
+
+        withoutBtn.setOnClickListener {
+            fragmentUtil.setInactiveButtonColors(buttonList,withoutBtn)
+            ruralHouseHolderViewModel.updateEducationLevel(false)
         }
 
         //Update Householder age

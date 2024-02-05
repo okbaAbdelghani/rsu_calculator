@@ -10,6 +10,7 @@ import com.example.calculatersunotes.data.models.SurveyItem
 import com.example.calculatersunotes.data.models.UrbanFamily
 import com.example.calculatersunotes.data.models.UrbanHouse
 import com.example.calculatersunotes.data.models.UrbanHouseHolder
+import com.example.calculatersunotes.data.models.UrbanMember
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.IOException
@@ -33,6 +34,15 @@ class UrbanFamilyViewModel : ViewModel() {
         urbanFamily.hasSecondHouse = value
         _family.value = urbanFamily
     }
+
+    fun addFamilyMember(member: UrbanMember) {
+        val urbanFamily = _family.value ?: createEmptyFamily()
+        urbanFamily.members.add(member)
+        println(urbanFamily.members.toString())
+        _family.value = urbanFamily
+    }
+
+
 
     fun updateFamilyHouse(urbanHouse: UrbanHouse) {
         val currentFamily = _family.value ?: createEmptyFamily()

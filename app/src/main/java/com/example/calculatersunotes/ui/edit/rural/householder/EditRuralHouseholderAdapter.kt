@@ -3,9 +3,6 @@ package com.example.calculatersunotes.ui.edit.rural.householder
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.calculatersunotes.ui.edit.rural.house.householder.EditRuralNameEducation
-import com.example.calculatersunotes.ui.edit.rural.house.householder.EditRuralOtherInfo
-import com.example.calculatersunotes.ui.edit.rural.house.householder.EditRuralSocialStatus
 
 class EditRuralHouseholderAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
 

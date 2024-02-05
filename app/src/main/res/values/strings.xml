@@ -103,6 +103,9 @@
     <string name="done">تم</string>
     <string name="no_member_found">حاليا ليس هنالك اي فرد.</string>
     <string name="add_member">اضافة فرد</string>
+    <string name="relationship_with_householder">العلاقة مع رب الأسرة :</string>
+    <string name="child">ابن(ة)</string>
+    <string name="partner">زوج (ة)</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

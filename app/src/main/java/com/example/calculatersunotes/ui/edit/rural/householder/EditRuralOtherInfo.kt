@@ -1,4 +1,4 @@
-package com.example.calculatersunotes.ui.edit.rural.house.householder
+package com.example.calculatersunotes.ui.edit.rural.householder
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -97,11 +97,6 @@ class EditRuralOtherInfo : Fragment() {
             fragmentUtil.setDefaultActiveButtons(buttonList, exceptionButtonList)
         }
 
-        noCommerceBtn.setOnClickListener {
-            ruralHouseHolderViewModel.isMerchant(false)
-            fragmentUtil.toggleTwoOptions(noCommerceBtn, yesCommerceBtn)
-        }
-
         yesCommerceBtn.setOnClickListener {
             ruralHouseHolderViewModel.isMerchant(true)
             fragmentUtil.toggleTwoOptions(yesCommerceBtn , noCommerceBtn)
@@ -138,7 +133,11 @@ class EditRuralOtherInfo : Fragment() {
         }
 
         doneBtn.setOnClickListener {
+            ruralHouseHolderViewModel.ruralHouseHolder.observe(viewLifecycleOwner) {householder ->
+                ruralFamilyViewModel.updateFamilyHouseHolder(householder)
+            }
             fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, Edit())
+
         }
 
         backBtn.setOnClickListener {

@@ -140,13 +140,14 @@
                     android:layout_marginLeft="15dp"/>
 
             </LinearLayout>
-            <include layout="@layout/next_button"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/done_btn"
+                style="@style/doneButtonStyle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="30dp"/>
+                android:layout_weight="1"
+                android:text="@string/done"
+                android:layout_marginTop="25dp"/>
         </LinearLayout>
     </ScrollView>
 
