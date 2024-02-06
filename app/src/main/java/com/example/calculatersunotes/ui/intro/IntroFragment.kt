@@ -11,6 +11,7 @@ import android.view.animation.TranslateAnimation
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.R
 import com.example.calculatersunotes.ui.intro.environments.EnvironmentsFragment

@@ -38,7 +38,6 @@ class UrbanFamilyViewModel : ViewModel() {
     fun addFamilyMember(member: UrbanMember) {
         val urbanFamily = _family.value ?: createEmptyFamily()
         urbanFamily.members.add(member)
-        println(urbanFamily.members.toString())
         _family.value = urbanFamily
     }
 
@@ -107,6 +106,7 @@ class UrbanFamilyViewModel : ViewModel() {
             item.vi = surveyVis[i]
         }
         println(surveyItems.toString())
+        println(_family.value?.region.toString())
 
         _result.value = _family.value?.calculateRSU()
         _family.value = currentFamily

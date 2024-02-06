@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.data.models.UrbanMember
 import com.example.calculatersunotes.ui.base.UrbanFamilyViewModel
 import com.example.calculatersunotes.ui.edit.Edit
 import com.example.calculatersunotes.utils.FragmentUtil
@@ -81,7 +82,22 @@ class AddUrbanMemberMinus : Fragment() {
 
         doneBtn.setOnClickListener {
             urbanMemberViewModel.urbanMember.observe(viewLifecycleOwner) {member ->
-                urbanFamilyViewModel.addFamilyMember(member)
+                val urbanMember = UrbanMember(
+                    member.hasDiploma,
+                    member.isSchooler,
+                    member.privateSector,
+                    member.publicSector,
+                    member.hasAJob,
+                    member.equipmentManagementActivity,
+                    member.hasHighProfessionalPosition,
+                    member.fullName,
+                    member.hasHealthCoverage,
+                    member.isChildOfHouseHolder,
+                    member.age,
+                    member.isPartnerOfHouseHolder
+                )
+
+                urbanFamilyViewModel.addFamilyMember(urbanMember)
                 println(member.fullName)
             }
             fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, Edit())

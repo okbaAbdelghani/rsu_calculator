@@ -230,52 +230,58 @@
             app:contentPaddingRight="14dp"
             app:contentPaddingTop="26dp">
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/members_recycler"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="30dp"
-                    android:elevation="2dp"
-                    tools:listitem="@layout/item_member" />
+                android:layout_height="wrap_content">
                 <LinearLayout
-                    android:id="@+id/empty_state_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/empty_state"/>
-                    <TextView
+                    android:orientation="vertical">
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/members_recycler"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/no_member_found"
-                        android:gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/amiri_bold"
-                        android:textSize="18sp"
-                        android:textColor="@color/black"/>
+                        android:layout_marginBottom="30dp"
+                        android:elevation="2dp"
+                        tools:listitem="@layout/item_member" />
+                    <LinearLayout
+                        android:id="@+id/empty_state_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/empty_state"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/no_member_found"
+                            android:gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/amiri_bold"
+                            android:textSize="18sp"
+                            android:textColor="@color/black"/>
+                    </LinearLayout>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/add_member_btn"
+                        style="@style/buttonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/add_member" />
                 </LinearLayout>
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/add_member_btn"
-                    style="@style/buttonStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/add_member" />
-            </LinearLayout>
+            </ScrollView>
+
 
 
 

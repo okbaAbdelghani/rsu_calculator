@@ -12,7 +12,16 @@ data class SurveyItem(
     var isCalculated: Boolean = false
 ){
     override fun toString(): String {
-        return "Question(viQuestion='$viQuestion', vi=$vi, ci=$ci, type='$type', category='$category', isCalculated=$isCalculated)"
+        return """
+            {
+                "viQuestion": "$viQuestion",
+                "vi": $vi,
+                "ci": $ci,
+                "type": "$type",
+                "category": "$category",
+                "isCalculated": $isCalculated
+            }
+        """.trimIndent()
     }
 
     fun getItemProduct(): Double{
