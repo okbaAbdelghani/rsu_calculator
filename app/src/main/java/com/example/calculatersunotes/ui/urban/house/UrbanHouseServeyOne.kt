@@ -3,28 +3,25 @@ package com.example.calculatersunotes.ui.urban.house
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
-import com.example.calculatersunotes.ui.congrats.HouseDoneCongrats
-import com.example.calculatersunotes.ui.result.ResultFragment
-import com.example.calculatersunotes.ui.rural.house.HousePagerAdapter
-import com.example.calculatersunotes.ui.rural.house.RuralHouseFragment
-import com.example.calculatersunotes.ui.rural.house.RuralHouseViewModel
 import com.example.calculatersunotes.ui.urban.Urban
-import com.example.calculatersunotes.ui.urban.householder.OtherUrbanPatriarchInfoFragment
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.utils.SwipeUtil
+import com.example.calculatersunotes.databinding.FragmentUrbanHouseServeyOneBinding
 import java.text.ParseException
 
 class UrbanHouseServeyOne : Fragment() {
+   // private var _binding: FragmentUrbanHouseServeyOneBinding? = null
+
     private var buttonList: List<Button> = mutableListOf()
     private var exceptionButtonList: List<Button> = mutableListOf()
     private lateinit var fragmentUtil: FragmentUtil
@@ -32,9 +29,12 @@ class UrbanHouseServeyOne : Fragment() {
     private lateinit var housePagerAdapter: UrbanHousePagerAdapter
     private lateinit var swipeUtil: SwipeUtil
 
+    //private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -11,4 +11,20 @@ class Region(
     var kzgUrban: Double = 0.0,
     var kzgRural: Double = 0.0,
 
-)
+) {
+    override fun toString(): String {
+        return """
+            {
+                "code": "$code",
+                "name": "$name",
+                "hierarchyLevel": $hierarchyLevel,
+                "hierarchyName": "$hierarchyName",
+                "parentLocCode": "$parentLocCode",
+                "langCode": "$langCode",
+                "isActive": $isActive,
+                "kzgUrban": $kzgUrban,
+                "kzgRural": $kzgRural
+            }
+        """.trimIndent()
+    }
+}

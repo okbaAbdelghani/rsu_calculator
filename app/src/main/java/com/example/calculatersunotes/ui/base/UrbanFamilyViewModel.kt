@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.calculatersunotes.data.models.Region
-import com.example.calculatersunotes.data.models.RuralFamily
 import com.example.calculatersunotes.data.models.SurveyItem
 import com.example.calculatersunotes.data.models.UrbanFamily
 import com.example.calculatersunotes.data.models.UrbanHouse
@@ -26,6 +25,12 @@ class UrbanFamilyViewModel : ViewModel() {
     fun updateFamilyHouseHolder(houseHolder: UrbanHouseHolder) {
         val currentFamily = _family.value ?: createEmptyFamily()
         currentFamily.householder = houseHolder
+        _family.value = currentFamily
+    }
+
+    fun updateFamilyRegion(region: Region) {
+        val currentFamily = _family.value ?: createEmptyFamily()
+        currentFamily.region = region
         _family.value = currentFamily
     }
 
@@ -106,7 +111,6 @@ class UrbanFamilyViewModel : ViewModel() {
             item.vi = surveyVis[i]
         }
         println(surveyItems.toString())
-        println(_family.value?.region.toString())
 
         _result.value = _family.value?.calculateRSU()
         _family.value = currentFamily

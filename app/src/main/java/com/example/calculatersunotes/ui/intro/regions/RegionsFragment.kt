@@ -9,16 +9,21 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.example.calculatersunotes.R
 import com.example.calculatersunotes.data.models.Region
 import com.example.calculatersunotes.data.models.SurveyItem
+import com.example.calculatersunotes.ui.base.EnvironmentViewModel
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
+import com.example.calculatersunotes.ui.base.UrbanFamilyViewModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 
 class RegionsFragment : Fragment() {
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
+    private val urbanFamilyViewModel: UrbanFamilyViewModel by activityViewModels()
+    private val environmentViewModel: EnvironmentViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -45,9 +50,18 @@ class RegionsFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                val selectedRegionName = regions[position]
-                ruralFamilyViewModel.updateFamilyRegion(selectedRegionName)
-                println(selectedRegionName.code)
+
+                environmentViewModel.environment.observe(viewLifecycleOwner, Observer {env ->
+                    val selectedRegionName = regions[position]
+                    when (env) {
+                        "urban" -> {
+                            updateUrbanRegion(selectedRegionName)
+                        }
+                        "rural" -> {
+                           updateRuralRegion(selectedRegionName)
+                        }
+                    }
+                })
 
             }
 
@@ -202,6 +216,14 @@ class RegionsFragment : Fragment() {
                 "\n" +
                 "\n" +
                 "]\n"
+    }
+
+    private fun updateUrbanRegion(selectedRegionName: Region) {
+        urbanFamilyViewModel.updateFamilyRegion(selectedRegionName)
+    }
+
+    private fun updateRuralRegion(selectedRegionName: Region) {
+        ruralFamilyViewModel.updateFamilyRegion(selectedRegionName)
     }
 
 }

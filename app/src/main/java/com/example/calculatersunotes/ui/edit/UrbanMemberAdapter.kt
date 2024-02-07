@@ -14,6 +14,7 @@ import com.example.calculatersunotes.R
 import com.example.calculatersunotes.data.models.UrbanMember
 
 class UrbanMemberAdapter(private var members: MutableList<UrbanMember>) : RecyclerView.Adapter<UrbanMemberAdapter.ViewHolder>() {
+    private var memberClickListener: MemberClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UrbanMemberAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -30,7 +31,7 @@ class UrbanMemberAdapter(private var members: MutableList<UrbanMember>) : Recycl
         }
 
         holder.editButton.setOnClickListener {
-
+            memberClickListener?.onEditClick(member)
         }
     }
 
@@ -68,5 +69,9 @@ class UrbanMemberAdapter(private var members: MutableList<UrbanMember>) : Recycl
         }
 
         alertDialog.show()
+    }
+
+    interface MemberClickListener {
+        fun onEditClick(member: UrbanMember)
     }
 }

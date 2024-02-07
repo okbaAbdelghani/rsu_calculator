@@ -84,15 +84,15 @@ class ResultFragment : Fragment() {
     }
 
     private fun observeUrbanHouse() {
-        urbanHouseViewModel.urbanHouse.observe(viewLifecycleOwner) { householder ->
-            urbanFamilyViewModel.updateFamilyHouse(householder)
+        urbanHouseViewModel.urbanHouse.observe(viewLifecycleOwner) { house ->
+            urbanFamilyViewModel.updateFamilyHouse(house)
             urbanFamilyViewModel.createSurveyItems(requireContext())
         }
     }
 
     private fun observeRuralHouse() {
-        ruralHouseViewModel.ruralHouse.observe(viewLifecycleOwner) { householder ->
-            ruralFamilyViewModel.updateFamilyHouse(householder)
+        ruralHouseViewModel.ruralHouse.observe(viewLifecycleOwner) { house ->
+            ruralFamilyViewModel.updateFamilyHouse(house)
             ruralFamilyViewModel.createSurveyItems(requireContext())
         }
     }
@@ -101,6 +101,10 @@ class ResultFragment : Fragment() {
         urbanFamilyViewModel.result.observe(viewLifecycleOwner) { result ->
             animateResult(result, rootView )
         }
+
+        urbanFamilyViewModel.family.observe(viewLifecycleOwner) { family ->
+            println("Region is : ${family.region}")
+        }
     }
 
     private fun observeRuralFamilyResult(rootView: View) {
@@ -108,6 +112,7 @@ class ResultFragment : Fragment() {
         ruralFamilyViewModel.result.observe(viewLifecycleOwner) { result ->
             animateResult(result, rootView)
         }
+
     }
 
     private fun animateResult(result: Double, rootView: View) {
