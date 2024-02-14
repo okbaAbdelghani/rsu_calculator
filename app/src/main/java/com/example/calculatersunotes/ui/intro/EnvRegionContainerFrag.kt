@@ -12,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.ui.base.ConditionalViewPager
 import com.example.calculatersunotes.ui.base.EnvironmentViewModel
 import com.example.calculatersunotes.ui.congrats.HouseHolderDoneCongrats
 import com.example.calculatersunotes.ui.onboards.OnboardingPagerAdapter
@@ -22,7 +23,7 @@ import com.example.calculatersunotes.utils.SwipeUtil
 
 
 class EnvRegionContainerFrag : Fragment() {
-    private lateinit var viewPager: ViewPager
+    private lateinit var viewPager: ConditionalViewPager
     private lateinit var envRegionPagerAdapter: EnvRegionPagerAdapter
     private lateinit var fragmentUtil: FragmentUtil
     private lateinit var swipeUtil: SwipeUtil
@@ -46,19 +47,52 @@ class EnvRegionContainerFrag : Fragment() {
         fragmentUtil = FragmentUtil(requireContext())
         swipeUtil = SwipeUtil()
 
-        val nxtBtn = rootView.findViewById<ImageButton>(R.id.next_btn);
+        val nxtBtn = rootView.findViewById<ImageButton>(R.id.next_btn)
+        val backBtn = rootView.findViewById<ImageButton>(R.id.back_btn)
+
+        viewPager.setSwipeEnabled(false)
+
+        if (viewPager.currentItem == 0) {
+            backBtn.visibility = View.GONE
+        }
+
         environmentViewModel.environment.observe(viewLifecycleOwner, Observer {env ->
             if (env != ""){
                 nxtBtn.isEnabled = true
                 nxtBtn.alpha = 1.0f
+                viewPager.setSwipeEnabled(true)
             } else {
                 nxtBtn.isEnabled = false
                 nxtBtn.alpha = 0.5f
             }
+
             selectedEnv = env
         })
 
         onNexBtnClicked(rootView);
+        onBackBtnClicked(rootView);
+
+        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+
+            }
+
+            override fun onPageSelected(position: Int) {
+                if(position == 0) {
+                    backBtn.visibility = View.GONE
+                } else {
+                    backBtn.visibility = View.VISIBLE
+                }
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+        })
 
 
         return rootView
@@ -73,13 +107,19 @@ class EnvRegionContainerFrag : Fragment() {
         }
     }
 
+    private fun onBackBtnClicked(view: View) {
+        val backBtn = view.findViewById<ImageButton>(R.id.back_btn)
+        backBtn.setOnClickListener {
+            swipeUtil.navigateBack(viewPager, envRegionPagerAdapter)
+        }
+    }
+
     private val navigateToRuralOrUrban: () -> Unit = {
         when (selectedEnv) {
             "rural" ->  fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, Rural())
             "urban" ->  fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, Urban())
             "" -> Toast.makeText(requireContext(),"environment required!", Toast.LENGTH_SHORT).show()
         }
-
 
     }
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -25,6 +26,42 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/black_back"
                 android:background="@color/white"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/amiri_bold"
+                android:text="@string/relationship_with_householder"
+                android:gravity="right"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/child_btn"
+                style="@style/buttonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/child" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/partner_btn"
+                style="@style/buttonStyle"
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/partner" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/other_relationship_btn"
+                style="@style/buttonStyle"
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/other_btn" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_beranda">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp">
+
+        <include layout="@layout/back_button" />
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,6 +32,7 @@
             android:orientation="vertical"
             android:paddingTop="40dp"
             android:paddingBottom="50dp">
+
             <ImageView
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
@@ -45,12 +57,12 @@
                 android:layout_gravity="center"
                 android:background="@drawable/rectangle"
                 />
-            <androidx.viewpager.widget.ViewPager
+            <com.example.calculatersunotes.ui.base.ConditionalViewPager
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 >
-            </androidx.viewpager.widget.ViewPager>
+            </com.example.calculatersunotes.ui.base.ConditionalViewPager>
         </LinearLayout>
     </LinearLayout>
     <RelativeLayout

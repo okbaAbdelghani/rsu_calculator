@@ -72,7 +72,7 @@ class ResultFragment : Fragment() {
     private fun goBack(view: View){
         val backBtn = view.findViewById<ImageButton>(R.id.back_button)
         backBtn.setOnClickListener{
-            fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, RuralHouseFragment())
+            fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, RuralHouseFragment(), "left")
         }
     }
 

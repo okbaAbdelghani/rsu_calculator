@@ -12,14 +12,21 @@ import android.widget.EditText
 import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.databinding.FragmentAddUrbanMemberBinding
+import com.example.calculatersunotes.ui.edit.Edit
+import com.example.calculatersunotes.ui.rural.house.RuralHouseFragment
 import com.example.calculatersunotes.utils.FragmentUtil
 import java.lang.NumberFormatException
 
 class AddUrbanMember : Fragment() {
+    private var _binding : FragmentAddUrbanMemberBinding? = null
+
     private lateinit var fragmentUtil: FragmentUtil
     private val urbanMemberViewModel: UrbanMemberViewModel by activityViewModels()
     private var exceptionButtonList: List<Button> = mutableListOf()
     private var buttonList: List<Button> = mutableListOf()
+
+    private val binding get() = _binding!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,41 +37,34 @@ class AddUrbanMember : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         fragmentUtil = FragmentUtil(requireContext())
-        val rootView = inflater.inflate(R.layout.fragment_add_urban_member, container, false)
+        _binding = FragmentAddUrbanMemberBinding.inflate(inflater, container, false)
 
-        val nextBtn = rootView.findViewById<ImageButton>(R.id.next_btn)
-        val ageInput = rootView.findViewById<EditText>(R.id.age_input)
-        val fullNameInput = rootView.findViewById<EditText>(R.id.full_name_input)
-
-        val noHealthSecurityBtn = rootView.findViewById<Button>(R.id.no_health_security_btn)
-        val yesHealthSecurityBtn = rootView.findViewById<Button>(R.id.yes_health_security_btn)
-
-        noHealthSecurityBtn.setOnClickListener {
+        binding.noHealthSecurityBtn.setOnClickListener {
             urbanMemberViewModel.updateHealthSecurityPossession(false)
-            fragmentUtil.toggleTwoOptions(noHealthSecurityBtn, yesHealthSecurityBtn)
+            fragmentUtil.toggleTwoOptions(binding.noHealthSecurityBtn, binding.yesHealthSecurityBtn)
         }
 
-        yesHealthSecurityBtn.setOnClickListener {
+        binding.yesHealthSecurityBtn.setOnClickListener {
             urbanMemberViewModel.updateHealthSecurityPossession(true)
-            fragmentUtil.toggleTwoOptions(yesHealthSecurityBtn, noHealthSecurityBtn)
+            fragmentUtil.toggleTwoOptions(binding.yesHealthSecurityBtn, binding.noHealthSecurityBtn)
         }
 
         buttonList = mutableListOf(
-            noHealthSecurityBtn,
-            yesHealthSecurityBtn
+            binding.noHealthSecurityBtn,
+            binding.yesHealthSecurityBtn
         )
 
         exceptionButtonList = mutableListOf(
-            noHealthSecurityBtn
+            binding.noHealthSecurityBtn,
         )
 
         fragmentUtil.setDefaultActiveButtons(buttonList, exceptionButtonList)
 
         var ageValue = 0
 
-        ageInput.addTextChangedListener(object : TextWatcher {
+        binding.ageInput.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
@@ -90,7 +90,7 @@ class AddUrbanMember : Fragment() {
             }
         })
 
-        fullNameInput.addTextChangedListener(object : TextWatcher {
+        binding.fullNameInput.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
@@ -109,7 +109,7 @@ class AddUrbanMember : Fragment() {
             }
         })
 
-        nextBtn.setOnClickListener {
+        binding?.nextBtn?.nextBtn?.setOnClickListener {
             if(ageValue >= 15) {
                 navigateToMemberPlus15()
             } else {
@@ -117,7 +117,9 @@ class AddUrbanMember : Fragment() {
             }
 
         }
-        return rootView
+
+        goBack(binding?.backButton?.backBtn)
+        return binding.root
     }
 
     private fun navigateToMemberMinus15(){
@@ -126,6 +128,12 @@ class AddUrbanMember : Fragment() {
 
     private fun navigateToMemberPlus15(){
         fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, AddUrbanMemberPlus())
+    }
+
+    private fun goBack(btn: ImageButton?){
+        btn?.setOnClickListener{
+            fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, Edit(), "left")
+        }
     }
 
 }

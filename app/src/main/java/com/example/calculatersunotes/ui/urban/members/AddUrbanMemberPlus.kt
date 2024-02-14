@@ -10,16 +10,21 @@ import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
 import com.example.calculatersunotes.R
 import com.example.calculatersunotes.data.models.UrbanMember
+import com.example.calculatersunotes.databinding.FragmentAddUrbanMemberPlusBinding
 import com.example.calculatersunotes.ui.base.UrbanFamilyViewModel
 import com.example.calculatersunotes.ui.edit.Edit
 import com.example.calculatersunotes.utils.FragmentUtil
 
 class AddUrbanMemberPlus : Fragment() {
+    private var _binding : FragmentAddUrbanMemberPlusBinding? = null
+
     private lateinit var fragmentUtil: FragmentUtil
     private var exceptionButtonList: List<Button> = mutableListOf()
     private var buttonList: List<Button> = mutableListOf()
     private val urbanMemberViewModel: UrbanMemberViewModel by activityViewModels()
     private val urbanFamilyViewModel: UrbanFamilyViewModel by activityViewModels()
+
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,110 +35,97 @@ class AddUrbanMemberPlus : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         fragmentUtil = FragmentUtil(requireContext())
-        val rootView = inflater.inflate(R.layout.fragment_add_urban_member_plus, container, false)
-        val doneBtn = rootView.findViewById<Button>(R.id.done_btn)
-        val backBtn = rootView.findViewById<ImageButton>(R.id.back_button)
+        _binding = FragmentAddUrbanMemberPlusBinding.inflate(inflater, container, false)
 
-        backBtn.setOnClickListener{
+        binding.backButton.setOnClickListener{
             navigateToAddMember()
         }
 
-        val childBtn = rootView.findViewById<Button>(R.id.child_btn)
-        val partnerBtn = rootView.findViewById<Button>(R.id.partner_btn)
-        val otherRelationshipBtn = rootView.findViewById<Button>(R.id.other_relationship_btn)
-        val yesDiplomaBtn = rootView.findViewById<Button>(R.id.yes_diploma_btn)
-        val noDiplomaBtn = rootView.findViewById<Button>(R.id.no_diploma_btn)
-        val hasJobBtn = rootView.findViewById<Button>(R.id.has_job_btn)
-        val noJobBtn = rootView.findViewById<Button>(R.id.no_job_btn)
-        val highPositionBtn = rootView.findViewById<Button>(R.id.high_position_btn)
-        val machineryManagementActivityBtn = rootView.findViewById<Button>(R.id.machinery_management_activity_btn)
-        val otherJobBtn = rootView.findViewById<Button>(R.id.other_btn)
-
         buttonList = mutableListOf(
-            childBtn,
-            partnerBtn,
-            otherRelationshipBtn,
-            yesDiplomaBtn,
-            noDiplomaBtn,
-            hasJobBtn,
-            noJobBtn,
-            highPositionBtn,
-            machineryManagementActivityBtn,
-            otherJobBtn
+            binding.childBtn,
+            binding.partnerBtn,
+            binding.otherRelationshipBtn,
+            binding.yesDiplomaBtn,
+            binding.noDiplomaBtn,
+            binding.hasJobBtn,
+            binding.noJobBtn,
+            binding.highPositionBtn,
+            binding.machineryManagementActivityBtn,
+            binding.otherBtn
         )
 
         exceptionButtonList = mutableListOf(
-            otherRelationshipBtn,
-            noDiplomaBtn,
-            noJobBtn,
-            otherJobBtn
+            binding.otherRelationshipBtn,
+            binding.noDiplomaBtn,
+            binding.noJobBtn,
+            binding.otherBtn
         )
 
         val relationshipBtns = mutableListOf(
-            childBtn,
-            partnerBtn,
-            otherRelationshipBtn
+            binding.childBtn,
+            binding.partnerBtn,
+            binding.otherRelationshipBtn
         )
 
         val jobTypeButtons = mutableListOf(
-            highPositionBtn,
-            machineryManagementActivityBtn,
-            otherJobBtn
+            binding.highPositionBtn,
+            binding.machineryManagementActivityBtn,
+            binding.otherBtn
         )
 
         fragmentUtil.setDefaultActiveButtons(buttonList, exceptionButtonList)
 
-        childBtn.setOnClickListener {
+        binding.childBtn.setOnClickListener {
             urbanMemberViewModel.updateRelationship("child")
-            fragmentUtil.setInactiveButtonColors(relationshipBtns, childBtn)
+            fragmentUtil.setInactiveButtonColors(relationshipBtns,  binding.childBtn)
         }
 
-        partnerBtn.setOnClickListener {
+        binding.partnerBtn.setOnClickListener {
             urbanMemberViewModel.updateRelationship("partner")
-            fragmentUtil.setInactiveButtonColors(relationshipBtns, partnerBtn)
+            fragmentUtil.setInactiveButtonColors(relationshipBtns, binding.partnerBtn)
         }
 
-        otherRelationshipBtn.setOnClickListener {
+        binding.otherRelationshipBtn.setOnClickListener {
             urbanMemberViewModel.updateRelationship("other")
-            fragmentUtil.setInactiveButtonColors(relationshipBtns, otherRelationshipBtn)
+            fragmentUtil.setInactiveButtonColors(relationshipBtns, binding.otherRelationshipBtn)
         }
 
-        highPositionBtn.setOnClickListener {
+        binding.highPositionBtn.setOnClickListener {
             urbanMemberViewModel.updatePositionStatus("high_position")
-            fragmentUtil.setInactiveButtonColors(jobTypeButtons, highPositionBtn)
+            fragmentUtil.setInactiveButtonColors(jobTypeButtons, binding.highPositionBtn)
         }
 
-        machineryManagementActivityBtn.setOnClickListener {
+        binding.machineryManagementActivityBtn.setOnClickListener {
             urbanMemberViewModel.updatePositionStatus("machinery")
-            fragmentUtil.setInactiveButtonColors(jobTypeButtons, machineryManagementActivityBtn)
+            fragmentUtil.setInactiveButtonColors(jobTypeButtons, binding.machineryManagementActivityBtn)
         }
 
-        otherJobBtn.setOnClickListener {
+        binding.otherBtn.setOnClickListener {
             urbanMemberViewModel.updatePositionStatus("other")
-            fragmentUtil.setInactiveButtonColors(jobTypeButtons, otherJobBtn)
+            fragmentUtil.setInactiveButtonColors(jobTypeButtons,  binding.otherBtn)
         }
 
-        noDiplomaBtn.setOnClickListener {
+        binding.noDiplomaBtn.setOnClickListener {
             urbanMemberViewModel.updateDiplomaPossession(false)
-            fragmentUtil.toggleTwoOptions(noDiplomaBtn, yesDiplomaBtn)
+            fragmentUtil.toggleTwoOptions(binding.noDiplomaBtn, binding.yesDiplomaBtn)
         }
 
-        yesDiplomaBtn.setOnClickListener {
+        binding.yesDiplomaBtn.setOnClickListener {
             urbanMemberViewModel.updateDiplomaPossession(true)
-            fragmentUtil.toggleTwoOptions(yesDiplomaBtn, noDiplomaBtn)
+            fragmentUtil.toggleTwoOptions( binding.yesDiplomaBtn,  binding.noDiplomaBtn)
         }
 
-        hasJobBtn.setOnClickListener {
+        binding.hasJobBtn.setOnClickListener {
             urbanMemberViewModel.updateWorkStatus(true)
-            fragmentUtil.toggleTwoOptions(hasJobBtn, noJobBtn)
+            fragmentUtil.toggleTwoOptions(binding.hasJobBtn, binding.noJobBtn)
         }
 
-        noJobBtn.setOnClickListener {
+        binding.noJobBtn.setOnClickListener {
             urbanMemberViewModel.updateWorkStatus(false)
-            fragmentUtil.toggleTwoOptions(noJobBtn, hasJobBtn)
+            fragmentUtil.toggleTwoOptions(binding.noJobBtn, binding.hasJobBtn)
         }
 
-        doneBtn.setOnClickListener {
+        binding.doneBtn.setOnClickListener {
             urbanMemberViewModel.urbanMember.observe(viewLifecycleOwner) {member ->
                 val urbanMember = UrbanMember(
                     member.hasDiploma,
@@ -155,11 +147,11 @@ class AddUrbanMemberPlus : Fragment() {
         }
 
 
-        return rootView
+        return binding.root
     }
 
     private fun navigateToAddMember() {
-        fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, AddUrbanMember())
+        fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, AddUrbanMember(), "left")
     }
 
 }

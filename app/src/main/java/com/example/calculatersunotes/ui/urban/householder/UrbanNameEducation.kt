@@ -10,10 +10,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.ui.intro.EnvRegionContainerFrag
+import com.example.calculatersunotes.ui.rural.Rural
 import com.example.calculatersunotes.ui.rural.householder.RuralHouseHolderViewModel
 import com.example.calculatersunotes.ui.urban.Urban
 import com.example.calculatersunotes.ui.urban.UrbanPagerAdapter
@@ -42,6 +45,7 @@ class UrbanNameEducation : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_urban_name_education, container, false)
 
         val nextBtn = rootView.findViewById<ImageButton>(R.id.next_btn)
+        val backBtn = rootView.findViewById<ImageButton>(R.id.back_btn)
 
         val basicEducationBtn = rootView.findViewById<Button>(R.id.high_education_btn)
         val withoutBtn = rootView.findViewById<Button>(R.id.without_btn)
@@ -98,6 +102,7 @@ class UrbanNameEducation : Fragment() {
         })
 
         swipeNext(nextBtn)
+        onBackBtnClicked(backBtn)
 
         return rootView
     }
@@ -112,4 +117,10 @@ class UrbanNameEducation : Fragment() {
         }
     }
 
-}
+    private fun onBackBtnClicked(btn: ImageButton) {
+        btn.setOnClickListener {
+            fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, EnvRegionContainerFrag(),"left")
+            }
+        }
+    }
+

@@ -19,11 +19,18 @@ class FragmentUtil(val context: Context){
         fragmentManager: FragmentManager,
         containerId: Int,
         fragment: Fragment,
+        direction: String = "right",
         addToBackStack: Boolean = false
     ) {
         val transaction: FragmentTransaction = fragmentManager.beginTransaction()
 
-        transaction.setCustomAnimations(R.anim.slide_in_right, 0, 0, 0)
+        if(direction == "right") {
+            transaction.setCustomAnimations(R.anim.slide_in_right, 0, 0, 0)
+        }
+
+        if(direction == "left") {
+            transaction.setCustomAnimations(R.anim.slide_in_left, 0, 0, 0)
+        }
 
         transaction.replace(containerId, fragment)
 

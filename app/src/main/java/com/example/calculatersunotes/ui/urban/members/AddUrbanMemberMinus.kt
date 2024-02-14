@@ -10,16 +10,21 @@ import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
 import com.example.calculatersunotes.R
 import com.example.calculatersunotes.data.models.UrbanMember
+import com.example.calculatersunotes.databinding.FragmentAddUrbanMemberMinusBinding
 import com.example.calculatersunotes.ui.base.UrbanFamilyViewModel
 import com.example.calculatersunotes.ui.edit.Edit
 import com.example.calculatersunotes.utils.FragmentUtil
 
 class AddUrbanMemberMinus : Fragment() {
+    private var _binding : FragmentAddUrbanMemberMinusBinding? = null
+
     private lateinit var fragmentUtil: FragmentUtil
     private val urbanMemberViewModel: UrbanMemberViewModel by activityViewModels()
     private val urbanFamilyViewModel: UrbanFamilyViewModel by activityViewModels()
     private var exceptionButtonList: List<Button> = mutableListOf()
     private var buttonList: List<Button> = mutableListOf()
+
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,57 +35,73 @@ class AddUrbanMemberMinus : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         fragmentUtil = FragmentUtil(requireContext())
-        val rootView = inflater.inflate(R.layout.fragment_add_urban_member_minus, container, false)
-        val backBtn = rootView.findViewById<ImageButton>(R.id.back_button)
-        val doneBtn = rootView.findViewById<Button>(R.id.done_btn)
-
-        val yesSchoolBtn = rootView.findViewById<Button>(R.id.yes_school_btn)
-        val noSchoolBtn = rootView.findViewById<Button>(R.id.no_school_btn)
-        val publicBtn = rootView.findViewById<Button>(R.id.public_btn)
-        val privateBtn = rootView.findViewById<Button>(R.id.private_btn)
-
+        _binding = FragmentAddUrbanMemberMinusBinding.inflate(inflater, container, false)
 
         buttonList = mutableListOf(
-            noSchoolBtn,
-            yesSchoolBtn,
-            publicBtn,
-            privateBtn
+            binding.noSchoolBtn,
+            binding.yesSchoolBtn,
+            binding.publicBtn,
+            binding.privateBtn,
+            binding.childBtn,
+            binding.partnerBtn,
+            binding.otherRelationshipBtn
         )
 
         exceptionButtonList = mutableListOf(
-            noSchoolBtn,
-            privateBtn
+            binding.noSchoolBtn,
+            binding.privateBtn,
+            binding.otherRelationshipBtn
         )
+
+        val relationshipBtns = mutableListOf(
+            binding.childBtn,
+            binding.partnerBtn,
+            binding.otherRelationshipBtn
+        )
+
+        binding.childBtn.setOnClickListener {
+            urbanMemberViewModel.updateRelationship("child")
+            fragmentUtil.setInactiveButtonColors(relationshipBtns,  binding.childBtn)
+        }
+
+        binding.partnerBtn.setOnClickListener {
+            urbanMemberViewModel.updateRelationship("partner")
+            fragmentUtil.setInactiveButtonColors(relationshipBtns, binding.partnerBtn)
+        }
+
+        binding.otherRelationshipBtn.setOnClickListener {
+            urbanMemberViewModel.updateRelationship("other")
+            fragmentUtil.setInactiveButtonColors(relationshipBtns, binding.otherRelationshipBtn)
+        }
 
         fragmentUtil.setDefaultActiveButtons(buttonList, exceptionButtonList)
 
-        yesSchoolBtn.setOnClickListener {
+        binding.yesSchoolBtn.setOnClickListener {
             urbanMemberViewModel.updateSchooling(true)
-            fragmentUtil.toggleTwoOptions(yesSchoolBtn, noSchoolBtn)
+            fragmentUtil.toggleTwoOptions( binding.yesSchoolBtn,  binding.noSchoolBtn)
         }
 
-        noSchoolBtn.setOnClickListener {
+        binding.noSchoolBtn.setOnClickListener {
             urbanMemberViewModel.updateSchooling(false)
-            fragmentUtil.toggleTwoOptions(noSchoolBtn, yesSchoolBtn)
+            fragmentUtil.toggleTwoOptions(binding.noSchoolBtn, binding.yesSchoolBtn)
         }
 
-        publicBtn.setOnClickListener {
+        binding.publicBtn.setOnClickListener {
             urbanMemberViewModel.updateSchoolType("public")
-            fragmentUtil.toggleTwoOptions(publicBtn, privateBtn)
+            fragmentUtil.toggleTwoOptions(binding.publicBtn, binding.privateBtn)
         }
 
-        privateBtn.setOnClickListener {
+            binding.privateBtn.setOnClickListener {
             urbanMemberViewModel.updateSchoolType("private")
-            fragmentUtil.toggleTwoOptions(privateBtn, publicBtn)
+            fragmentUtil.toggleTwoOptions(binding.privateBtn, binding.publicBtn)
         }
 
-        backBtn.setOnClickListener{
+        binding.backButton.setOnClickListener{
             navigateToAddMember()
         }
 
-        doneBtn.setOnClickListener {
+        binding.doneBtn.setOnClickListener {
             urbanMemberViewModel.urbanMember.observe(viewLifecycleOwner) {member ->
                 val urbanMember = UrbanMember(
                     member.hasDiploma,
@@ -102,11 +123,11 @@ class AddUrbanMemberMinus : Fragment() {
             }
             fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, Edit())
         }
-        return rootView
+        return binding.rootView
     }
 
     private fun navigateToAddMember() {
-        fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, AddUrbanMember())
+        fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, AddUrbanMember(), "left")
     }
 
 }

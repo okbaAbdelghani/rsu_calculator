@@ -71,7 +71,7 @@ class UrbanHouseServeyOne : Fragment() {
         fragmentUtil.setDefaultActiveButtons(buttonList, exceptionButtonList)
 
         backBtn.setOnClickListener {
-            fragmentUtil.replaceFragment(requireActivity().supportFragmentManager, R.id.fragmentContainer, Urban())
+            fragmentUtil.replaceFragment(requireActivity().supportFragmentManager, R.id.fragmentContainer, Urban(), "left")
         }
 
         noShowerBtn.setOnClickListener {
