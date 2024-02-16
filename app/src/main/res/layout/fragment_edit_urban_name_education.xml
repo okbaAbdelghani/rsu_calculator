@@ -46,7 +46,6 @@
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
                     android:paddingRight="10dp"
-                    android:paddingBottom="100dp"
                     app:layout_constraintBottom_toBottomOf="parent">
                     <TextView
                         android:layout_width="match_parent"
@@ -119,11 +118,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="60dp"
-                android:layout_marginBottom="40dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="40dp"
+                app:layout_constraintBottom_toBottomOf="@+id/without_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
-                <include layout="@layout/next_button"/>
+                <include
+                    android:id="@+id/included_next"
+                    layout="@layout/next_button"/>
             </RelativeLayout>
         </LinearLayout>
 

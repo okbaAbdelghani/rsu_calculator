@@ -14,7 +14,6 @@ class ConditionalViewPager : ViewPager {
 
     fun setSwipeEnabled(enabled: Boolean) {
         isSwipeEnabled = enabled
-        println("Enabled set to: $enabled" )
     }
 
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {

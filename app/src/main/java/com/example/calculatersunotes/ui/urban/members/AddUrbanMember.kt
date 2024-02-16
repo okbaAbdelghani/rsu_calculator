@@ -38,8 +38,8 @@ class AddUrbanMember : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        fragmentUtil = FragmentUtil(requireContext())
         _binding = FragmentAddUrbanMemberBinding.inflate(inflater, container, false)
+        fragmentUtil = FragmentUtil(requireContext())
 
         binding.noHealthSecurityBtn.setOnClickListener {
             urbanMemberViewModel.updateHealthSecurityPossession(false)

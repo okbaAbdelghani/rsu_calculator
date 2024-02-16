@@ -9,16 +9,20 @@ import android.widget.Button
 import androidx.fragment.app.activityViewModels
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.databinding.FragmentEnvironmentsBinding
 import com.example.calculatersunotes.ui.base.EnvironmentViewModel
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
 
 
 class EnvironmentsFragment : Fragment() {
+    private var _binding : FragmentEnvironmentsBinding? = null
+
     private var buttonList: List<Button> = mutableListOf()
     private lateinit var fragmentUtil: FragmentUtil
     private var selectedEnv: String = ""
     private val environmentViewModel: EnvironmentViewModel by activityViewModels()
-    private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
+
+    private val binding get() = _binding!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,39 +34,46 @@ class EnvironmentsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_environments, container, false)
-
+        _binding = FragmentEnvironmentsBinding.inflate(inflater, container, false)
 
         fragmentUtil = FragmentUtil(requireContext())
 
-        val ruralBtn = rootView.findViewById<Button>(R.id.rural_btn)
-        val urbanBtn = rootView.findViewById<Button>(R.id.urban_btn)
+        buttonList = mutableListOf(
+            binding.ruralBtn,
+            binding.urbanBtn
+        )
 
-        buttonList += ruralBtn
-        buttonList += urbanBtn
+        environmentViewModel.environment.observe(viewLifecycleOwner) {
+            val isNull : Boolean = it.isNullOrEmpty()
 
-        fragmentUtil.setInactiveButtonColors(buttonList, null)
+            if(isNull) {
+                fragmentUtil.setInactiveButtonColors(buttonList, null)
+            } else {
+                when(it) {
+                    "urban" -> fragmentUtil.setInactiveButtonColors(buttonList, binding.urbanBtn)
+                    "rural" -> fragmentUtil.setInactiveButtonColors(buttonList, binding.ruralBtn)
+                }
+            }
+        }
 
 
-        ruralBtn.setOnClickListener {
+        binding.ruralBtn.setOnClickListener {
             selectedEnv = "rural"
             setEnvironment(selectedEnv)
-            fragmentUtil.setInactiveButtonColors(buttonList, ruralBtn)
+            fragmentUtil.setInactiveButtonColors(buttonList, binding.ruralBtn)
         }
 
-        urbanBtn.setOnClickListener {
+        binding.urbanBtn.setOnClickListener {
             selectedEnv = "urban"
             setEnvironment(selectedEnv)
-            fragmentUtil.setInactiveButtonColors(buttonList, urbanBtn)
+            fragmentUtil.setInactiveButtonColors(buttonList, binding.urbanBtn)
         }
 
-        return rootView
+        return binding.root
     }
 
     private fun setEnvironment(value: String) {
         environmentViewModel.updateEnvironment(value)
-
     }
 
 }

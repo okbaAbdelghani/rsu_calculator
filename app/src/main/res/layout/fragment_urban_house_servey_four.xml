@@ -21,7 +21,7 @@
             android:paddingBottom="30dp">
             <ImageButton
                 android:id="@+id/back_button"
-                android:padding="10dp"
+                android:padding="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/black_back"
@@ -349,7 +349,9 @@
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
-            <include layout="@layout/next_button"
+            <include
+                android:id="@+id/included_next"
+                layout="@layout/next_button"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_gravity="end"

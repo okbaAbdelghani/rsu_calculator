@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.ViewPager
-import com.example.calculatersunotes.R
+import com.example.calculatersunotes.databinding.FragmentUrbanHouseBinding
 
 class UrbanHouseFragment : Fragment() {
+    private var _binding : FragmentUrbanHouseBinding? = null
     private lateinit var viewPager: ViewPager
     private lateinit var urbanHousePagerAdapter: UrbanHousePagerAdapter
+
+    private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -19,14 +22,13 @@ class UrbanHouseFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_urban_house, container, false)
+        _binding = FragmentUrbanHouseBinding.inflate(inflater, container, false)
 
-        viewPager = rootView.findViewById<ViewPager>(R.id.urban_house_pager)
+        viewPager = binding.urbanHousePager
         urbanHousePagerAdapter = UrbanHousePagerAdapter(childFragmentManager)
         viewPager.adapter = urbanHousePagerAdapter
 
-
-        return rootView
+        return binding.root
     }
 
 }

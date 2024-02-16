@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
@@ -20,7 +18,7 @@ import com.example.calculatersunotes.databinding.FragmentUrbanHouseServeyOneBind
 import java.text.ParseException
 
 class UrbanHouseServeyOne : Fragment() {
-   // private var _binding: FragmentUrbanHouseServeyOneBinding? = null
+    private var _binding: FragmentUrbanHouseServeyOneBinding? = null
 
     private var buttonList: List<Button> = mutableListOf()
     private var exceptionButtonList: List<Button> = mutableListOf()
@@ -29,7 +27,7 @@ class UrbanHouseServeyOne : Fragment() {
     private lateinit var housePagerAdapter: UrbanHousePagerAdapter
     private lateinit var swipeUtil: SwipeUtil
 
-    //private val binding get() = _binding!!
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,61 +38,53 @@ class UrbanHouseServeyOne : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_urban_house_servey_one, container, false)
+
+        _binding = FragmentUrbanHouseServeyOneBinding.inflate(inflater, container, false)
 
         fragmentUtil = FragmentUtil(requireContext())
         swipeUtil = SwipeUtil()
 
-        val backBtn = rootView.findViewById<ImageButton>(R.id.back_button)
-
-        val roomsNumberInput = rootView.findViewById<EditText>(R.id.rooms_number_input)
-
-        val noShowerBtn = rootView.findViewById<Button>(R.id.no_shower_btn)
-        val yesShowerBtn = rootView.findViewById<Button>(R.id.yes_shower_btn)
-        val hasElectricityMeterBtn = rootView.findViewById<Button>(R.id.has_electricity_meter_btn)
-        val withoutElectricityMeterBtn = rootView.findViewById<Button>(R.id.without_electricity_meter_btn)
-
-        swipeNext(rootView)
+        swipeNext()
 
         buttonList = mutableListOf(
-            noShowerBtn,
-            yesShowerBtn,
-            hasElectricityMeterBtn,
-            withoutElectricityMeterBtn
+            binding.noShowerBtn,
+            binding.yesShowerBtn,
+            binding.hasElectricityMeterBtn,
+            binding.withoutElectricityMeterBtn
         )
 
         exceptionButtonList = mutableListOf(
-            noShowerBtn,
-            withoutElectricityMeterBtn
+            binding.noShowerBtn,
+            binding.withoutElectricityMeterBtn
         )
 
         fragmentUtil.setDefaultActiveButtons(buttonList, exceptionButtonList)
 
-        backBtn.setOnClickListener {
+        binding.backButton.setOnClickListener {
             fragmentUtil.replaceFragment(requireActivity().supportFragmentManager, R.id.fragmentContainer, Urban(), "left")
         }
 
-        noShowerBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(noShowerBtn , yesShowerBtn)
+        binding.noShowerBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.noShowerBtn , binding.yesShowerBtn)
             urbanHouseViewModel.updateShowerPossession(false)
         }
 
-        yesShowerBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(yesShowerBtn , noShowerBtn)
+        binding.yesShowerBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.yesShowerBtn , binding.noShowerBtn)
             urbanHouseViewModel.updateShowerPossession(true)
         }
 
-        hasElectricityMeterBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(hasElectricityMeterBtn , withoutElectricityMeterBtn)
+        binding.hasElectricityMeterBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.hasElectricityMeterBtn , binding.withoutElectricityMeterBtn)
             urbanHouseViewModel.updateElectricityMeterPossession(true)
         }
 
-        withoutElectricityMeterBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(withoutElectricityMeterBtn , hasElectricityMeterBtn)
+        binding.withoutElectricityMeterBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.withoutElectricityMeterBtn , binding.hasElectricityMeterBtn)
             urbanHouseViewModel.updateElectricityMeterPossession(false)
         }
 
-        roomsNumberInput.addTextChangedListener(object : TextWatcher {
+        binding.roomsNumberInput.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -115,17 +105,15 @@ class UrbanHouseServeyOne : Fragment() {
             }
         })
 
-        return rootView
+        return binding.root
     }
 
-    private fun swipeNext(rootView: View){
-        val nextBtn = rootView.findViewById<ImageButton>(R.id.next_btn)
-
+    private fun swipeNext(){
         val parenFragment: UrbanHouseFragment = parentFragment as UrbanHouseFragment
         val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.urban_house_pager)
         housePagerAdapter = UrbanHousePagerAdapter(childFragmentManager)
 
-        nextBtn.setOnClickListener {
+        binding.includedNext.nextBtn.setOnClickListener {
             swipeUtil.navigateNext(viewPager , housePagerAdapter) {}
         }
     }

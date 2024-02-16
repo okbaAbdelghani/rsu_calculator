@@ -1,74 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.result.ResultFragment">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
         android:paddingTop="30dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="30dp">
+        android:paddingEnd="10dp"
+        android:paddingBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageButton
             android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/black_back"
+            android:background="@color/white"
             android:contentDescription="navigate back"
             android:padding="20dp"
-            android:background="@color/white"/>
+            android:src="@drawable/black_back" />
+
         <TextView
+            style="@style/mainText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
-            style="@style/mainText"
-            android:text="@string/your_rsu_is"
-            android:gravity="start"/>
+            android:gravity="start"
+            android:text="@string/your_rsu_is" />
+
         <FrameLayout
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="@drawable/ellipse_border">
+
             <TextView
                 android:id="@+id/result_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="30sp"
                 android:fontFamily="@font/amiri_bold"
-                android:text="0.00"/>
+                android:gravity="center"
+                android:text="0.00"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
         </FrameLayout>
 
         <TextView
+            android:id="@+id/tv_result_description"
+            style="@style/mainText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
-            style="@style/mainText"
-            android:textColor="@color/mainColor"
-            android:text="@string/congrats_for_success"
+            android:text="@string/congrats_for_success_first"
             android:textAlignment="center"
-           />
+            android:textColor="@color/mainColor"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_result_additional"
+            style="@style/mainText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/you_can_have_amo"
+            android:textAlignment="center"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="30dp">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/edit_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/full_btn_background"
+            android:enabled="false"
             android:fontFamily="@font/amiri_bold"
-            android:textColor="@color/secondaryWhite"
-            android:textSize="16sp"
             android:text="@string/update"
-            />
-    </LinearLayout>
-</FrameLayout>
+            android:textColor="@color/secondaryWhite"
+            android:textSize="16sp" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

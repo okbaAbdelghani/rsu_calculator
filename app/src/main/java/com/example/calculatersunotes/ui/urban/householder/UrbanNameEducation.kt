@@ -8,28 +8,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.databinding.FragmentUrbanNameEducationBinding
 import com.example.calculatersunotes.ui.intro.EnvRegionContainerFrag
-import com.example.calculatersunotes.ui.rural.Rural
-import com.example.calculatersunotes.ui.rural.householder.RuralHouseHolderViewModel
 import com.example.calculatersunotes.ui.urban.Urban
 import com.example.calculatersunotes.ui.urban.UrbanPagerAdapter
 import com.example.calculatersunotes.utils.SwipeUtil
 import java.lang.NumberFormatException
 
 class UrbanNameEducation : Fragment() {
+    private var _binding : FragmentUrbanNameEducationBinding? = null
 
     private var buttonList: List<Button> = mutableListOf()
     private lateinit var fragmentUtil: FragmentUtil
     private val urbanHouseHolderViewModel: UrbanHouseHolderViewModel by activityViewModels()
     private lateinit var urbanPagerAdapter: UrbanPagerAdapter
     private lateinit var swipeUtil: SwipeUtil
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,33 +40,27 @@ class UrbanNameEducation : Fragment() {
         fragmentUtil = FragmentUtil(requireContext())
         swipeUtil = SwipeUtil()
 
-        val rootView = inflater.inflate(R.layout.fragment_urban_name_education, container, false)
+        _binding = FragmentUrbanNameEducationBinding.inflate(inflater, container, false)
 
-        val nextBtn = rootView.findViewById<ImageButton>(R.id.next_btn)
-        val backBtn = rootView.findViewById<ImageButton>(R.id.back_btn)
+        buttonList = listOf(
+            binding.highEducationBtn,
+            binding.withoutBtn
+        )
 
-        val basicEducationBtn = rootView.findViewById<Button>(R.id.high_education_btn)
-        val withoutBtn = rootView.findViewById<Button>(R.id.without_btn)
-        val ageInput = rootView.findViewById<EditText>(R.id.age_input)
-        val fullNameInput = rootView.findViewById<EditText>(R.id.full_name_input)
+        fragmentUtil.setInactiveButtonColors(buttonList, binding.withoutBtn)
 
-        buttonList += basicEducationBtn
-        buttonList += withoutBtn
-
-        fragmentUtil.setInactiveButtonColors(buttonList, withoutBtn)
-
-        basicEducationBtn.setOnClickListener {
-            fragmentUtil.setInactiveButtonColors(buttonList,basicEducationBtn)
+        binding.highEducationBtn.setOnClickListener {
+            fragmentUtil.setInactiveButtonColors(buttonList, binding.highEducationBtn)
             urbanHouseHolderViewModel.updateEducationLevel(true)
         }
 
-        withoutBtn.setOnClickListener {
-            fragmentUtil.setInactiveButtonColors(buttonList,withoutBtn)
+        binding.withoutBtn.setOnClickListener {
+            fragmentUtil.setInactiveButtonColors(buttonList, binding.withoutBtn)
             urbanHouseHolderViewModel.updateEducationLevel(false)
         }
 
         //Update Householder age
-        ageInput.addTextChangedListener(object : TextWatcher {
+        binding.ageInput.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -88,7 +80,7 @@ class UrbanNameEducation : Fragment() {
         })
 
         //Update householder name
-        fullNameInput.addTextChangedListener(object : TextWatcher {
+        binding.fullNameInput.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -101,14 +93,14 @@ class UrbanNameEducation : Fragment() {
             }
         })
 
-        swipeNext(nextBtn)
-        onBackBtnClicked(backBtn)
+        swipeNext()
+        onBackBtnClicked()
 
-        return rootView
+        return binding.root
     }
 
-    private fun swipeNext(button: ImageButton) {
-        button.setOnClickListener {
+    private fun swipeNext() {
+        binding.included.nextBtn.setOnClickListener {
             val parenFragment: Urban = parentFragment as Urban
             val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.questions_container)
 
@@ -117,8 +109,8 @@ class UrbanNameEducation : Fragment() {
         }
     }
 
-    private fun onBackBtnClicked(btn: ImageButton) {
-        btn.setOnClickListener {
+    private fun onBackBtnClicked() {
+        binding.backBtn.setOnClickListener {
             fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, EnvRegionContainerFrag(),"left")
             }
         }

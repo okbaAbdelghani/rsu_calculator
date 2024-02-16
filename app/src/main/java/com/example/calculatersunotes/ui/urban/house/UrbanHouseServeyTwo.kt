@@ -13,6 +13,8 @@ import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.databinding.FragmentUrbanHouseServeyOneBinding
+import com.example.calculatersunotes.databinding.FragmentUrbanHouseServeyTwoBinding
 import com.example.calculatersunotes.ui.result.ResultFragment
 import com.example.calculatersunotes.ui.rural.house.HousePagerAdapter
 import com.example.calculatersunotes.ui.urban.Urban
@@ -22,12 +24,16 @@ import com.example.calculatersunotes.utils.SwipeUtil
 import java.text.ParseException
 
 class UrbanHouseServeyTwo : Fragment() {
+    private var _binding: FragmentUrbanHouseServeyTwoBinding? = null
+
     private var buttonList: List<Button> = mutableListOf()
     private var exceptionButtonList: List<Button> = mutableListOf()
     private lateinit var fragmentUtil: FragmentUtil
     private val urbanHouseViewModel: UrbanHouseViewModel by activityViewModels()
     private lateinit var housePagerAdapter: UrbanHousePagerAdapter
     private lateinit var swipeUtil: SwipeUtil
+
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,70 +43,57 @@ class UrbanHouseServeyTwo : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_urban_house_servey_two, container, false)
+        _binding = FragmentUrbanHouseServeyTwoBinding.inflate(inflater, container, false)
 
         fragmentUtil = FragmentUtil(requireContext())
         swipeUtil = SwipeUtil()
 
-        val backBtn = rootView.findViewById<ImageButton>(R.id.back_button)
-
-        val phonesNumberInput = rootView.findViewById<EditText>(R.id.phones_number_input)
-        val motorcycleNumberInput = rootView.findViewById<EditText>(R.id.motorcycles_number_input)
-        val carsNumberInput = rootView.findViewById<EditText>(R.id.cars_number_input)
-
-        val yesGarageBtn = rootView.findViewById<Button>(R.id.yes_garage_btn)
-        val noGarageBtn = rootView.findViewById<Button>(R.id.no_garage_btn)
-        val noShopsBtn = rootView.findViewById<Button>(R.id.no_shops_btn)
-        val yesShopsBtn = rootView.findViewById<Button>(R.id.yes_shops_btn)
-        val yesComputerBtn = rootView.findViewById<Button>(R.id.yes_computer_btn)
-        val noComputerBtn = rootView.findViewById<Button>(R.id.no_computer_btn)
-
         buttonList = mutableListOf(
-            yesGarageBtn,
-            noGarageBtn,
-            noShopsBtn,
-            yesShopsBtn,
-            yesComputerBtn,
-            noComputerBtn
+            binding.yesGarageBtn,
+            binding.noGarageBtn,
+            binding.noShopsBtn,
+            binding.yesShopsBtn,
+            binding.yesComputerBtn,
+            binding.noComputerBtn
         )
 
         exceptionButtonList = mutableListOf(
-            noComputerBtn,
-            noGarageBtn,
-            noShopsBtn
+            binding.noComputerBtn,
+            binding.noGarageBtn,
+            binding.noShopsBtn
         )
 
-        yesGarageBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(yesGarageBtn , noGarageBtn)
+        binding.yesGarageBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.yesGarageBtn , binding.noGarageBtn)
             urbanHouseViewModel.updateGaragePossession(true)
         }
 
-        noGarageBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(noGarageBtn , yesGarageBtn)
+        binding.noGarageBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.noGarageBtn , binding.yesGarageBtn)
             urbanHouseViewModel.updateGaragePossession(false)
         }
 
-        yesShopsBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(yesShopsBtn , noShopsBtn)
+        binding.yesShopsBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.yesShopsBtn , binding.noShopsBtn)
             urbanHouseViewModel.updateShopsPossession(true)
         }
 
-        noShopsBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(noShopsBtn , yesShopsBtn)
+        binding.noShopsBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.noShopsBtn , binding.yesShopsBtn)
             urbanHouseViewModel.updateShopsPossession(false)
         }
 
-        yesComputerBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(yesComputerBtn , noComputerBtn)
+        binding.yesComputerBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.yesComputerBtn , binding.noComputerBtn)
             urbanHouseViewModel.updateComputerPossession(true)
         }
 
-        noComputerBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(noComputerBtn , yesComputerBtn)
+        binding.noComputerBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.noComputerBtn , binding.yesComputerBtn)
             urbanHouseViewModel.updateComputerPossession(false)
         }
 
-        phonesNumberInput.addTextChangedListener(object : TextWatcher {
+        binding.phonesNumberInput.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -121,7 +114,7 @@ class UrbanHouseServeyTwo : Fragment() {
             }
         })
 
-        motorcycleNumberInput.addTextChangedListener(object : TextWatcher {
+        binding.motorcyclesNumberInput.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -142,7 +135,7 @@ class UrbanHouseServeyTwo : Fragment() {
             }
         })
 
-        carsNumberInput.addTextChangedListener(object : TextWatcher {
+        binding.carsNumberInput.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -163,28 +156,26 @@ class UrbanHouseServeyTwo : Fragment() {
             }
         })
 
-        swipeNext(rootView)
-        swipeBack(backBtn)
+        swipeNext()
+        swipeBack()
 
         fragmentUtil.setDefaultActiveButtons(buttonList, exceptionButtonList)
 
-        return rootView
+        return binding.root
     }
 
-    private fun swipeNext(rootView: View){
-        val nextBtn = rootView.findViewById<ImageButton>(R.id.next_btn)
-
+    private fun swipeNext(){
         val parenFragment: UrbanHouseFragment = parentFragment as UrbanHouseFragment
         val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.urban_house_pager)
         housePagerAdapter = UrbanHousePagerAdapter(childFragmentManager)
 
-        nextBtn.setOnClickListener {
+        binding.includedNext.nextBtn.setOnClickListener {
             swipeUtil.navigateNext(viewPager , housePagerAdapter) {}
         }
     }
 
-    private fun swipeBack(button: ImageButton) {
-        button.setOnClickListener {
+    private fun swipeBack() {
+        binding.backButton.setOnClickListener {
             val parenFragment: UrbanHouseFragment = parentFragment as UrbanHouseFragment
             val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.urban_house_pager)
 

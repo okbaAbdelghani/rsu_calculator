@@ -8,11 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.databinding.FragmentEditNameEducationBinding
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
 import com.example.calculatersunotes.ui.rural.householder.RuralHouseHolderViewModel
 import com.example.calculatersunotes.utils.FragmentUtil
@@ -20,12 +19,15 @@ import com.example.calculatersunotes.utils.SwipeUtil
 import java.lang.NumberFormatException
 
 class EditRuralNameEducation : Fragment() {
+    private var _binding : FragmentEditNameEducationBinding? = null
+
     private var buttonList: List<Button> = mutableListOf()
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
     private val ruralHouseHolderViewModel: RuralHouseHolderViewModel by activityViewModels()
     private lateinit var swipeUtil: SwipeUtil
     private lateinit var fragmentUtil: FragmentUtil
     private lateinit var editHouseHolderAdapter: EditRuralHouseholderAdapter
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,54 +37,45 @@ class EditRuralNameEducation : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_edit_name_education, container, false)
+        _binding = FragmentEditNameEducationBinding.inflate(inflater, container, false)
 
         fragmentUtil = FragmentUtil(requireContext())
         swipeUtil = SwipeUtil()
 
-        val nextBtn = rootView.findViewById<ImageButton>(R.id.next_btn)
+        ruralFamilyViewModel.family.observe(viewLifecycleOwner) {
 
-        val nameInput = rootView.findViewById<EditText>(R.id.full_name_input)
-        val ageInput = rootView.findViewById<EditText>(R.id.age_input)
-        val basicEducationBtn = rootView.findViewById<Button>(R.id.basic_education_btn)
-        val withoutBtn = rootView.findViewById<Button>(R.id.without_btn)
+            val hasBasicEducation = it.householder.hasBasicEducation
 
-        ruralFamilyViewModel.family.observe(viewLifecycleOwner) { family ->
-            // set selected item for spinner
+            buttonList = mutableListOf(
+                binding.basicEducationBtn,
+                binding.withoutBtn
+            )
 
-            val hasBasicEducation = family.householder.hasBasicEducation
+            val fullName = it.householder.fullName
+            val age = it.householder.age
 
-            buttonList += basicEducationBtn
-            buttonList += withoutBtn
-
-            val fullName = family.householder.fullName
-            val age = family.householder.age
-
-            nameInput.setText(fullName)
-            ageInput.setText(age.toString())
+            binding.fullNameInput.setText(fullName)
+            binding.ageInput.setText(age.toString())
 
             if(hasBasicEducation) {
-                fragmentUtil.setInactiveButtonColors(buttonList, basicEducationBtn)
+                fragmentUtil.setInactiveButtonColors(buttonList, binding.basicEducationBtn)
             } else {
-                fragmentUtil.setInactiveButtonColors(buttonList, withoutBtn)
+                fragmentUtil.setInactiveButtonColors(buttonList, binding.withoutBtn)
             }
-
-
         }
 
-        basicEducationBtn.setOnClickListener {
-            fragmentUtil.setInactiveButtonColors(buttonList,basicEducationBtn)
+        binding.basicEducationBtn.setOnClickListener {
+            fragmentUtil.setInactiveButtonColors(buttonList, binding.basicEducationBtn)
             ruralHouseHolderViewModel.updateEducationLevel(true)
         }
 
-        withoutBtn.setOnClickListener {
-            fragmentUtil.setInactiveButtonColors(buttonList,withoutBtn)
+        binding.withoutBtn.setOnClickListener {
+            fragmentUtil.setInactiveButtonColors(buttonList, binding.withoutBtn)
             ruralHouseHolderViewModel.updateEducationLevel(false)
         }
 
         //Update Householder age
-        ageInput.addTextChangedListener(object : TextWatcher {
+        binding.ageInput.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -102,7 +95,7 @@ class EditRuralNameEducation : Fragment() {
         })
 
         //Update householder name
-        nameInput.addTextChangedListener(object : TextWatcher {
+        binding.fullNameInput.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -115,7 +108,7 @@ class EditRuralNameEducation : Fragment() {
             }
         })
 
-        nextBtn.setOnClickListener {
+        binding.includedNext.nextBtn.setOnClickListener {
             val parenFragment: EditRuralHouseholder = parentFragment as EditRuralHouseholder
             val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.edit_householder_pager)
 
@@ -123,6 +116,6 @@ class EditRuralNameEducation : Fragment() {
             swipeUtil.navigateNext(viewPager, editHouseHolderAdapter) {}
         }
 
-        return rootView
+        return binding.root
     }
 }

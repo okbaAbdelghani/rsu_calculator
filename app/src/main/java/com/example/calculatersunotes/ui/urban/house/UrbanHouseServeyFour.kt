@@ -13,6 +13,8 @@ import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.databinding.FragmentUrbanHouseServeyFourBinding
+import com.example.calculatersunotes.databinding.FragmentUrbanHouseServeyThreeBinding
 import com.example.calculatersunotes.ui.base.UrbanFamilyViewModel
 import com.example.calculatersunotes.ui.congrats.HouseDoneCongrats
 import com.example.calculatersunotes.utils.FragmentUtil
@@ -21,13 +23,14 @@ import java.text.ParseException
 
 
 class UrbanHouseServeyFour : Fragment() {
-    private var buttonList: List<Button> = mutableListOf()
-    private var exceptionButtonList: List<Button> = mutableListOf()
+    private var _binding: FragmentUrbanHouseServeyFourBinding? = null
+
     private lateinit var fragmentUtil: FragmentUtil
     private val urbanHouseViewModel: UrbanHouseViewModel by activityViewModels()
-    private val urbanFamilyViewModel: UrbanFamilyViewModel by activityViewModels()
     private lateinit var housePagerAdapter: UrbanHousePagerAdapter
     private lateinit var swipeUtil: SwipeUtil
+
+    private val binding get() = _binding!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,28 +42,12 @@ class UrbanHouseServeyFour : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val rootView = inflater.inflate(R.layout.fragment_urban_house_servey_four, container, false)
+        _binding = FragmentUrbanHouseServeyFourBinding.inflate(inflater, container, false)
 
         fragmentUtil = FragmentUtil(requireContext())
         swipeUtil = SwipeUtil()
 
-        val backBtn = rootView.findViewById<ImageButton>(R.id.back_button)
-
-        val bigGasBottles = rootView.findViewById<EditText>(R.id.big_gas_bottles)
-        val smallGasBottles = rootView.findViewById<EditText>(R.id.small_gas_bottles)
-        val internetAndPhoneBill = rootView.findViewById<EditText>(R.id.internet_and_phone_bill)
-
-        val firstMonthElectricity = rootView.findViewById<EditText>(R.id.first_month_electricity)
-        val secondMonthElectricity = rootView.findViewById<EditText>(R.id.second_month_electricity)
-        val thirdMonthElectricity = rootView.findViewById<EditText>(R.id.third_month_electricity)
-
-        val firstMonthWater = rootView.findViewById<EditText>(R.id.first_month_water)
-        val secondMonthWater = rootView.findViewById<EditText>(R.id.second_month_water)
-        val thirdMonthWater = rootView.findViewById<EditText>(R.id.third_month_water)
-
-
-
-        bigGasBottles.addTextChangedListener(object : TextWatcher {
+        binding.bigGasBottles.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -82,7 +69,7 @@ class UrbanHouseServeyFour : Fragment() {
             }
         })
 
-        smallGasBottles.addTextChangedListener(object : TextWatcher {
+        binding.smallGasBottles.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -103,7 +90,7 @@ class UrbanHouseServeyFour : Fragment() {
             }
         })
 
-        internetAndPhoneBill.addTextChangedListener(object : TextWatcher {
+        binding.internetAndPhoneBill.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -125,7 +112,7 @@ class UrbanHouseServeyFour : Fragment() {
             }
         })
 
-        firstMonthElectricity.addTextChangedListener(object : TextWatcher {
+        binding.firstMonthElectricity.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -148,7 +135,7 @@ class UrbanHouseServeyFour : Fragment() {
             }
         })
 
-        secondMonthElectricity.addTextChangedListener(object : TextWatcher {
+        binding.secondMonthElectricity.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -171,7 +158,7 @@ class UrbanHouseServeyFour : Fragment() {
             }
         })
 
-        thirdMonthElectricity.addTextChangedListener(object : TextWatcher {
+        binding.thirdMonthElectricity.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -194,7 +181,7 @@ class UrbanHouseServeyFour : Fragment() {
             }
         })
 
-        firstMonthWater.addTextChangedListener(object : TextWatcher {
+        binding.firstMonthWater.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -217,7 +204,7 @@ class UrbanHouseServeyFour : Fragment() {
             }
         })
 
-        secondMonthWater.addTextChangedListener(object : TextWatcher {
+        binding.secondMonthWater.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -240,7 +227,7 @@ class UrbanHouseServeyFour : Fragment() {
             }
         })
 
-        thirdMonthWater.addTextChangedListener(object : TextWatcher {
+        binding.thirdMonthWater.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -263,10 +250,10 @@ class UrbanHouseServeyFour : Fragment() {
             }
         })
 
-        swipeNext(rootView)
-        swipeBack(backBtn)
+        swipeNext()
+        swipeBack()
 
-        return rootView
+        return binding.root
     }
 
 
@@ -274,21 +261,20 @@ class UrbanHouseServeyFour : Fragment() {
         fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, HouseDoneCongrats())
     }
 
-    private fun swipeNext(rootView: View){
-        val nextBtn = rootView.findViewById<ImageButton>(R.id.next_btn)
+    private fun swipeNext(){
 
         val parenFragment: UrbanHouseFragment = parentFragment as UrbanHouseFragment
         val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.urban_house_pager)
         housePagerAdapter = UrbanHousePagerAdapter(childFragmentManager)
 
-        nextBtn.setOnClickListener {
+        binding.includedNext.nextBtn.setOnClickListener {
             swipeUtil.navigateNext(viewPager , housePagerAdapter , navigateToResult)
         }
     }
 
 
-    private fun swipeBack(button: ImageButton) {
-        button.setOnClickListener {
+    private fun swipeBack() {
+        binding.backButton.setOnClickListener {
             val parenFragment: UrbanHouseFragment = parentFragment as UrbanHouseFragment
             val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.urban_house_pager)
 

@@ -1,4 +1,4 @@
-package com.example.calculatersunotes.ui.edit.rural.house.householder
+package com.example.calculatersunotes.ui.edit.rural.householder
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

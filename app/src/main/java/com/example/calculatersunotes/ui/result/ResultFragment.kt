@@ -6,13 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.TextView
+import androidx.core.animation.doOnEnd
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.databinding.FragmentResultBinding
 import com.example.calculatersunotes.ui.base.EnvironmentViewModel
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
 import com.example.calculatersunotes.ui.base.UrbanFamilyViewModel
@@ -20,9 +18,12 @@ import com.example.calculatersunotes.ui.edit.Edit
 import com.example.calculatersunotes.ui.rural.house.RuralHouseFragment
 import com.example.calculatersunotes.ui.rural.house.RuralHouseViewModel
 import com.example.calculatersunotes.ui.urban.house.UrbanHouseViewModel
+import com.example.calculatersunotes.utils.AnimationUtil
 import com.example.calculatersunotes.utils.FragmentUtil
 
 class ResultFragment : Fragment() {
+    private var _binding : FragmentResultBinding? = null
+
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
     private val urbanFamilyViewModel: UrbanFamilyViewModel by activityViewModels()
     private val ruralHouseViewModel: RuralHouseViewModel by activityViewModels()
@@ -30,6 +31,10 @@ class ResultFragment : Fragment() {
     private val environmentViewModel: EnvironmentViewModel by activityViewModels()
     private lateinit var fragmentUtil: FragmentUtil
     private var selectedEnv = ""
+    private lateinit var animationUtil: AnimationUtil
+    var name = ""
+
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,14 +44,9 @@ class ResultFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        val rootView = inflater.inflate(R.layout.fragment_result, container, false)
-
+        _binding = FragmentResultBinding.inflate(inflater, container, false)
         fragmentUtil = FragmentUtil(requireContext())
-
-
-
-
+        animationUtil = AnimationUtil(requireContext())
 
         environmentViewModel.environment.observe(viewLifecycleOwner, Observer {env ->
             selectedEnv = env
@@ -54,45 +54,43 @@ class ResultFragment : Fragment() {
             when (env) {
                 "urban" -> {
                     observeUrbanHouse()
-                    observeUrbanFamilyResult(rootView)
+                    observeUrbanFamilyResult(binding.root)
                 }
                 "rural" -> {
                     observeRuralHouse()
-                    observeRuralFamilyResult(rootView)
+                    observeRuralFamilyResult(binding.root)
                 }
             }
         })
 
-        // Inflate the layout for this fragment
-        goBack(rootView)
-        navigateToEdit(rootView)
-        return rootView
+        goBack()
+        navigateToEdit()
+
+        return binding.root
     }
 
-    private fun goBack(view: View){
-        val backBtn = view.findViewById<ImageButton>(R.id.back_button)
-        backBtn.setOnClickListener{
+    private fun goBack(){
+        binding.backButton.setOnClickListener{
             fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, RuralHouseFragment(), "left")
         }
     }
 
-    private fun navigateToEdit(view: View){
-        val editBtn = view.findViewById<Button>(R.id.edit_btn)
-        editBtn.setOnClickListener{
+    private fun navigateToEdit(){
+        binding.editBtn.setOnClickListener{
             fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, Edit())
         }
     }
 
     private fun observeUrbanHouse() {
-        urbanHouseViewModel.urbanHouse.observe(viewLifecycleOwner) { house ->
-            urbanFamilyViewModel.updateFamilyHouse(house)
+        urbanHouseViewModel.urbanHouse.observe(viewLifecycleOwner) {
+            urbanFamilyViewModel.updateFamilyHouse(it)
             urbanFamilyViewModel.createSurveyItems(requireContext())
         }
     }
 
     private fun observeRuralHouse() {
-        ruralHouseViewModel.ruralHouse.observe(viewLifecycleOwner) { house ->
-            ruralFamilyViewModel.updateFamilyHouse(house)
+        ruralHouseViewModel.ruralHouse.observe(viewLifecycleOwner) {
+            ruralFamilyViewModel.updateFamilyHouse(it)
             ruralFamilyViewModel.createSurveyItems(requireContext())
         }
     }
@@ -100,10 +98,6 @@ class ResultFragment : Fragment() {
     private fun observeUrbanFamilyResult(rootView: View) {
         urbanFamilyViewModel.result.observe(viewLifecycleOwner) { result ->
             animateResult(result, rootView )
-        }
-
-        urbanFamilyViewModel.family.observe(viewLifecycleOwner) { family ->
-            println("Region is : ${family.region}")
         }
     }
 
@@ -119,12 +113,66 @@ class ResultFragment : Fragment() {
         val valueAnimator = ValueAnimator.ofFloat(0f, result.toFloat())
         valueAnimator.duration = 2000
 
+
         valueAnimator.addUpdateListener { animator ->
-            val resultTxt = rootView.findViewById<TextView>(R.id.result_txt)
             val animatedValue = animator.animatedValue as Float
-            resultTxt.text = String.format("%.3f", animatedValue)
+            binding.resultTxt.text = String.format("%.3f", animatedValue)
         }
         valueAnimator.start()
+
+        valueAnimator.doOnEnd {
+            when (selectedEnv) {
+                "urban" -> name = urbanFamilyViewModel.family.value?.householder?.fullName!!
+                "rural" -> name = ruralFamilyViewModel.family.value?.householder?.fullName!!
+            }
+
+            setResultAdditional(result)
+            setResultDescription(result)
+            binding.editBtn.isEnabled = true
+        }
     }
 
+    private fun getSubscriptionAmount(result: Double) : Int {
+        val thresholds = listOf(
+            9.3264284 to 144,
+            9.5124369 to 176,
+            9.743001 to 224,
+            9.9903727 to 287,
+            10.237316 to 355,
+            10.431048 to 454,
+            10.739952 to 611
+        )
+
+        val matchedThreshold = thresholds.find { (lower, upper) -> result >lower && result <= upper }
+
+        return matchedThreshold?.second ?: 1164
+    }
+
+    private fun setResultDescription(result: Double) {
+        if(result <= 9.743001) {
+            binding.tvResultDescription.text = "${getText(R.string.congrats_for_success_first)} $name ${getText(R.string.congrats_for_success_second)}"
+            binding.tvResultDescription.setTextColor(resources.getColor(R.color.mainColor))
+            binding.tvResultDescription.visibility = View.VISIBLE
+
+        } else {
+            binding.tvResultDescription.text = getText(R.string.unfortunate_result)
+            binding.tvResultDescription.setTextColor(resources.getColor(R.color.red_color))
+            binding.tvResultDescription.visibility = View.VISIBLE
+        }
+
+        animationUtil.makeResulTextAnimation(binding.tvResultDescription)
+    }
+
+    private fun setResultAdditional(result: Double) {
+        val subscriptionAmount = getSubscriptionAmount(result)
+
+        if(subscriptionAmount != 0) {
+            binding.tvResultAdditional.text = "${getText(R.string.you_can_have_amo)}: $subscriptionAmount"
+            binding.tvResultAdditional.visibility = View.VISIBLE
+        } else {
+            binding.tvResultAdditional.visibility = View.GONE
+        }
+
+        animationUtil.makeResulTextAnimation(binding.tvResultAdditional)
+    }
 }

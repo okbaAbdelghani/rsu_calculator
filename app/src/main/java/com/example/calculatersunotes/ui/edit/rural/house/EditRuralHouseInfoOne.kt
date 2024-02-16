@@ -10,12 +10,15 @@ import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.databinding.FragmentEditRuralHouseInfoOneBinding
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
 import com.example.calculatersunotes.ui.rural.house.RuralHouseViewModel
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.utils.SwipeUtil
 
 class EditRuralHouseInfoOne : Fragment() {
+    private var _binding : FragmentEditRuralHouseInfoOneBinding? = null
+
     private lateinit var swipeUtil: SwipeUtil
     private lateinit var fragmentUtil: FragmentUtil
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
@@ -24,6 +27,7 @@ class EditRuralHouseInfoOne : Fragment() {
     private var exceptionButtonList: MutableList<Button> = mutableListOf()
     private lateinit var editHouseAdapter: EditRuralHousePagerAdapter
 
+    private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -32,86 +36,75 @@ class EditRuralHouseInfoOne : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_edit_rural_house_info_one, container, false)
-
-        val backBtn = rootView.findViewById<ImageButton>(R.id.back_button)
-        val nextBtn = rootView.findViewById<ImageButton>(R.id.next_btn)
-
-        val noHouseTypeBtn = rootView.findViewById<Button>(R.id.no_house_type_btn)
-        val yesHouseTypeBtn = rootView.findViewById<Button>(R.id.yes_house_type_btn)
-        val noCarBtn = rootView.findViewById<Button>(R.id.no_car_btn)
-        val yesCarBtn = rootView.findViewById<Button>(R.id.yes_car_btn)
-        val noMotorcycleBtn = rootView.findViewById<Button>(R.id.no_motorcycle_btn)
-        val yesMotorcycleBtn = rootView.findViewById<Button>(R.id.yes_motorcycle_btn)
+        _binding = FragmentEditRuralHouseInfoOneBinding.inflate(inflater, container, false)
 
         fragmentUtil = FragmentUtil(requireContext())
         swipeUtil = SwipeUtil()
 
         buttonList = mutableListOf(
-            noHouseTypeBtn,
-            yesHouseTypeBtn,
-            noCarBtn,
-            yesCarBtn,
-            noMotorcycleBtn,
-            yesMotorcycleBtn
+            binding.noHouseTypeBtn,
+            binding.yesHouseTypeBtn,
+            binding.noCarBtn,
+            binding.yesCarBtn,
+            binding.noMotorcycleBtn,
+            binding.yesMotorcycleBtn
         )
 
-        ruralFamilyViewModel.family.observe(viewLifecycleOwner) { family ->
-            var house = family.ruralHouse
+        ruralFamilyViewModel.family.observe(viewLifecycleOwner) {
+            var house = it.ruralHouse
 
             if(house.isHouseTypeOne) {
-                exceptionButtonList.add(yesHouseTypeBtn)
+                exceptionButtonList.add(binding.noHouseTypeBtn)
             } else {
-                exceptionButtonList.add(noHouseTypeBtn)
+                exceptionButtonList.add(binding.yesHouseTypeBtn)
             }
 
             if(house.hasCar) {
-                exceptionButtonList.add(yesCarBtn)
+                exceptionButtonList.add(binding.yesCarBtn)
             } else {
-                exceptionButtonList.add(noCarBtn)
+                exceptionButtonList.add(binding.noCarBtn)
             }
 
             if(house.hasMotorcycle) {
-                exceptionButtonList.add(yesMotorcycleBtn)
+                exceptionButtonList.add(binding.yesMotorcycleBtn)
             } else {
-                exceptionButtonList.add(noMotorcycleBtn)
+                exceptionButtonList.add(binding.noMotorcycleBtn)
             }
 
             fragmentUtil.setDefaultActiveButtons(buttonList, exceptionButtonList)
         }
 
-        noHouseTypeBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(noHouseTypeBtn, yesHouseTypeBtn)
+        binding.noHouseTypeBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.noHouseTypeBtn, binding.yesHouseTypeBtn)
             ruralHouseViewModel.updateHouseType(false)
         }
 
-        yesHouseTypeBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(yesHouseTypeBtn , noHouseTypeBtn)
+        binding.yesHouseTypeBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.yesHouseTypeBtn , binding.noHouseTypeBtn)
             ruralHouseViewModel.updateHouseType(true)
         }
 
-        noCarBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(noCarBtn , yesCarBtn)
+        binding.noCarBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.noCarBtn , binding.yesCarBtn)
             ruralHouseViewModel.updateCarPossession(false)
         }
 
-        yesCarBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(yesCarBtn , noCarBtn)
+        binding.yesCarBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.yesHouseTypeBtn , binding.noCarBtn)
             ruralHouseViewModel.updateCarPossession(true)
         }
 
-        noMotorcycleBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(noMotorcycleBtn , yesMotorcycleBtn)
+        binding.noMotorcycleBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.noMotorcycleBtn , binding.yesMotorcycleBtn)
             ruralHouseViewModel.updateCarPossession(false)
         }
 
-        yesMotorcycleBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(yesMotorcycleBtn , noMotorcycleBtn)
+        binding.yesMotorcycleBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.yesMotorcycleBtn , binding.noMotorcycleBtn)
             ruralHouseViewModel.updateCarPossession(true)
         }
 
-        backBtn.setOnClickListener {
+        binding.backButton.setOnClickListener {
             val parenFragment: EditRuralHouse = parentFragment as EditRuralHouse
             val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.edit_house_container)
 
@@ -119,7 +112,7 @@ class EditRuralHouseInfoOne : Fragment() {
             swipeUtil.navigateBack(viewPager, editHouseAdapter)
         }
 
-        nextBtn.setOnClickListener {
+        binding.nextInclude.nextBtn.setOnClickListener {
             val parenFragment: EditRuralHouse = parentFragment as EditRuralHouse
             val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.edit_house_container)
 
@@ -128,7 +121,7 @@ class EditRuralHouseInfoOne : Fragment() {
         }
 
 
-        return rootView
+        return binding.root
     }
 
 }

@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.databinding.FragmentEditUrbanOtherInfoBinding
 import com.example.calculatersunotes.ui.base.UrbanFamilyViewModel
 import com.example.calculatersunotes.ui.edit.Edit
 import com.example.calculatersunotes.ui.urban.householder.UrbanHouseHolderViewModel
@@ -17,6 +17,8 @@ import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.utils.SwipeUtil
 
 class EditUrbanOtherInfo : Fragment() {
+    private var _binding : FragmentEditUrbanOtherInfoBinding? = null
+
     private var buttonList: MutableList<Button> = mutableListOf()
     private lateinit var swipeUtil: SwipeUtil
     private lateinit var fragmentUtil: FragmentUtil
@@ -24,6 +26,8 @@ class EditUrbanOtherInfo : Fragment() {
     private val urbanHouseHolderViewModel: UrbanHouseHolderViewModel by activityViewModels()
     private lateinit var editHouseHolderAdapter: EditUrbanHouseHolderAdapter
     private var exceptionButtonList: MutableList<Button> = mutableListOf()
+
+    private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,106 +37,93 @@ class EditUrbanOtherInfo : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_edit_urban_other_info, container, false)
+        _binding = FragmentEditUrbanOtherInfoBinding.inflate(inflater, container, false)
 
         fragmentUtil = FragmentUtil(requireContext())
         swipeUtil = SwipeUtil()
 
-        val doneBtn = rootView.findViewById<Button>(R.id.done_btn)
-        val backBtn = rootView.findViewById<ImageButton>(R.id.back_button)
-
-        val isRetiredOrBeneficiaryOfIncomeBtn = rootView.findViewById<Button>(R.id.is_retired_or_beneficiary_Of_income_btn)
-        val withoutIncomeBtn = rootView.findViewById<Button>(R.id.without_income_btn)
-        val hasHealthSecurityBtn = rootView.findViewById<Button>(R.id.has_health_security_btn)
-        val withoutHealthSecurityBtn = rootView.findViewById<Button>(R.id.without_health_security_btn)
-        val hasDiplomaBtn = rootView.findViewById<Button>(R.id.has_diploma_btn)
-        val withoutDiplomaBtn = rootView.findViewById<Button>(R.id.without_diploma_btn)
-        val machineryManagementYesBtn = rootView.findViewById<Button>(R.id.machinery_management_yes_btn)
-        val machineryManagementNoBtn = rootView.findViewById<Button>(R.id.machinery_management_no_btn)
-
         buttonList = mutableListOf(
-            isRetiredOrBeneficiaryOfIncomeBtn,
-            withoutIncomeBtn,
-            hasHealthSecurityBtn,
-            withoutHealthSecurityBtn,
-            hasDiplomaBtn,
-            withoutDiplomaBtn,
-            machineryManagementYesBtn,
-            machineryManagementNoBtn
+            binding.isRetiredOrBeneficiaryOfIncomeBtn,
+            binding.withoutIncomeBtn,
+            binding.hasHealthSecurityBtn,
+            binding.withoutHealthSecurityBtn,
+            binding.hasDiplomaBtn,
+            binding.withoutDiplomaBtn,
+            binding.machineryManagementYesBtn,
+            binding.machineryManagementNoBtn
         )
 
-        urbanFamilyViewModel.family.observe(viewLifecycleOwner) {family ->
-            val householder = family.householder
+        urbanFamilyViewModel.family.observe(viewLifecycleOwner) {
+            val householder = it.householder
 
             if(householder.isRetiredOrBeneficiaryOfIncome) {
-                exceptionButtonList.add(isRetiredOrBeneficiaryOfIncomeBtn)
+                exceptionButtonList.add(binding.isRetiredOrBeneficiaryOfIncomeBtn)
             } else {
-                exceptionButtonList.add(withoutIncomeBtn)
+                exceptionButtonList.add(binding.withoutIncomeBtn)
             }
 
             if(householder.hasHealthCoverage) {
-                exceptionButtonList.add(hasHealthSecurityBtn)
+                exceptionButtonList.add(binding.hasHealthSecurityBtn)
             } else {
-                exceptionButtonList.add(withoutHealthSecurityBtn)
+                exceptionButtonList.add(binding.withoutHealthSecurityBtn)
             }
 
             if(householder.hasDiploma) {
-                exceptionButtonList.add(hasDiplomaBtn)
+                exceptionButtonList.add(binding.hasDiplomaBtn)
             } else {
-                exceptionButtonList.add(withoutDiplomaBtn)
+                exceptionButtonList.add(binding.withoutDiplomaBtn)
             }
 
             if(householder.equipmentManagementActivity) {
-                exceptionButtonList.add(machineryManagementYesBtn)
+                exceptionButtonList.add(binding.machineryManagementYesBtn)
             } else {
-                exceptionButtonList.add(machineryManagementNoBtn)
+                exceptionButtonList.add(binding.machineryManagementNoBtn)
             }
 
             fragmentUtil.setDefaultActiveButtons(buttonList, exceptionButtonList)
         }
 
-        isRetiredOrBeneficiaryOfIncomeBtn.setOnClickListener {
+        binding.isRetiredOrBeneficiaryOfIncomeBtn.setOnClickListener {
             urbanHouseHolderViewModel.retirementPossession(true)
-            fragmentUtil.toggleTwoOptions(isRetiredOrBeneficiaryOfIncomeBtn , withoutIncomeBtn)
+            fragmentUtil.toggleTwoOptions(binding.isRetiredOrBeneficiaryOfIncomeBtn , binding.withoutIncomeBtn)
         }
 
-        withoutIncomeBtn.setOnClickListener {
+        binding.withoutIncomeBtn.setOnClickListener {
             urbanHouseHolderViewModel.retirementPossession(false)
-            fragmentUtil.toggleTwoOptions(withoutIncomeBtn , isRetiredOrBeneficiaryOfIncomeBtn)
+            fragmentUtil.toggleTwoOptions(binding.withoutIncomeBtn , binding.isRetiredOrBeneficiaryOfIncomeBtn)
         }
 
-        hasHealthSecurityBtn.setOnClickListener {
+        binding.hasHealthSecurityBtn.setOnClickListener {
             urbanHouseHolderViewModel.healthSecurityPossession(true)
-            fragmentUtil.toggleTwoOptions(hasHealthSecurityBtn , withoutHealthSecurityBtn)
+            fragmentUtil.toggleTwoOptions(binding.hasHealthSecurityBtn , binding.withoutHealthSecurityBtn)
         }
 
-        withoutHealthSecurityBtn.setOnClickListener {
+        binding.withoutHealthSecurityBtn.setOnClickListener {
             urbanHouseHolderViewModel.healthSecurityPossession(false)
-            fragmentUtil.toggleTwoOptions(withoutHealthSecurityBtn , hasHealthSecurityBtn)
+            fragmentUtil.toggleTwoOptions(binding.withoutHealthSecurityBtn , binding.hasHealthSecurityBtn)
         }
 
-        hasDiplomaBtn.setOnClickListener {
+        binding.hasDiplomaBtn.setOnClickListener {
             urbanHouseHolderViewModel.diplomaPossession(true)
-            fragmentUtil.toggleTwoOptions(hasDiplomaBtn , withoutDiplomaBtn)
+            fragmentUtil.toggleTwoOptions(binding.hasDiplomaBtn , binding.withoutDiplomaBtn)
         }
 
-        withoutDiplomaBtn.setOnClickListener {
+        binding.withoutDiplomaBtn.setOnClickListener {
             urbanHouseHolderViewModel.diplomaPossession(false)
-            fragmentUtil.toggleTwoOptions(withoutDiplomaBtn , hasDiplomaBtn)
+            fragmentUtil.toggleTwoOptions(binding.withoutDiplomaBtn , binding.hasDiplomaBtn)
         }
 
-        machineryManagementYesBtn.setOnClickListener {
+        binding.machineryManagementYesBtn.setOnClickListener {
             urbanHouseHolderViewModel.machineryActivityManagement(true)
-            fragmentUtil.toggleTwoOptions(machineryManagementYesBtn , machineryManagementNoBtn)
+            fragmentUtil.toggleTwoOptions(binding.machineryManagementYesBtn , binding.machineryManagementNoBtn)
         }
 
-        machineryManagementNoBtn.setOnClickListener {
+        binding.machineryManagementNoBtn.setOnClickListener {
             urbanHouseHolderViewModel.machineryActivityManagement(false)
-            fragmentUtil.toggleTwoOptions(machineryManagementNoBtn , machineryManagementYesBtn)
+            fragmentUtil.toggleTwoOptions(binding.machineryManagementNoBtn , binding.machineryManagementYesBtn)
         }
 
-        doneBtn.setOnClickListener {
+        binding.doneBtn.setOnClickListener {
             urbanHouseHolderViewModel.urbanHouseHolder.observe(viewLifecycleOwner) {householder ->
                 urbanFamilyViewModel.updateFamilyHouseHolder(householder)
             }
@@ -140,7 +131,7 @@ class EditUrbanOtherInfo : Fragment() {
         }
 
 
-        backBtn.setOnClickListener {
+        binding.backButton.setOnClickListener {
             val parenFragment: EditUrbanHouseHolder = parentFragment as EditUrbanHouseHolder
             val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.edit_urban_householder_pager)
 
@@ -148,7 +139,7 @@ class EditUrbanOtherInfo : Fragment() {
             swipeUtil.navigateBack(viewPager, editHouseHolderAdapter)
         }
 
-        return rootView
+        return binding.root
     }
 
 }

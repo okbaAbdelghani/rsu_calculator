@@ -7,6 +7,7 @@ import android.view.animation.ScaleAnimation
 import android.view.animation.TranslateAnimation
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.calculatersunotes.R
 
@@ -32,6 +33,18 @@ class AnimationUtil(val context: Context) {
 
         appearFromBottom.duration =  1000
         risingPart.startAnimation(appearFromBottom)
+    }
+
+    fun makeResulTextAnimation(textView: TextView) {
+        val appearFromBottom = TranslateAnimation(
+            Animation.RELATIVE_TO_PARENT, 0f,
+            Animation.RELATIVE_TO_PARENT, 0f,
+            Animation.RELATIVE_TO_PARENT, 1f,
+            Animation.RELATIVE_TO_PARENT, 0f,
+        )
+
+        appearFromBottom.duration = 1000
+        textView.startAnimation(appearFromBottom)
     }
 
 }

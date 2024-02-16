@@ -6,19 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.databinding.FragmentEditOtherInfoBinding
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
 import com.example.calculatersunotes.ui.edit.Edit
-import com.example.calculatersunotes.ui.edit.rural.householder.EditRuralHouseholder
-import com.example.calculatersunotes.ui.edit.rural.householder.EditRuralHouseholderAdapter
 import com.example.calculatersunotes.ui.rural.householder.RuralHouseHolderViewModel
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.utils.SwipeUtil
 
 class EditRuralOtherInfo : Fragment() {
+    private var _binding : FragmentEditOtherInfoBinding? = null
+
     private var buttonList: List<Button> = mutableListOf()
     private var exceptionButtonList: MutableList<Button> = mutableListOf()
     private lateinit var fragmentUtil: FragmentUtil
@@ -26,6 +26,8 @@ class EditRuralOtherInfo : Fragment() {
     private val ruralHouseHolderViewModel: RuralHouseHolderViewModel by activityViewModels()
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
     private lateinit var editHouseHolderAdapter: EditRuralHouseholderAdapter
+
+    private val binding get() = _binding!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,103 +38,89 @@ class EditRuralOtherInfo : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_edit_other_info, container, false)
+        _binding = FragmentEditOtherInfoBinding.inflate(inflater, container, false)
 
         fragmentUtil = FragmentUtil(requireContext())
         swipeUtil = SwipeUtil()
 
-        val doneBtn = view.findViewById<Button>(R.id.done_btn)
-        val backBtn = view.findViewById<ImageButton>(R.id.back_button)
-
-        val noCommerceBtn = view.findViewById<Button>(R.id.no_btn)
-        val yesCommerceBtn = view.findViewById<Button>(R.id.yes_btn)
-        val hasHealthSecurity = view.findViewById<Button>(R.id.has_health_security_btn)
-        val withoutHealthSecurityBtn = view.findViewById<Button>(R.id.without_health_security_btn)
-        val noLiteracy = view.findViewById<Button>(R.id.literacy_no_btn)
-        val yesLiteracy = view.findViewById<Button>(R.id.literacy_yes_btn)
-        val highEducationDiplomaNoBtn = view.findViewById<Button>(R.id.high_education_diploma_no_btn)
-        val highEducationDiplomaYesBtn = view.findViewById<Button>(R.id.high_education_diploma_yes_btn)
-
         buttonList = mutableListOf(
-            noCommerceBtn,
-            yesCommerceBtn,
-            hasHealthSecurity,
-            withoutHealthSecurityBtn,
-            noLiteracy,
-            yesLiteracy,
-            highEducationDiplomaNoBtn,
-            highEducationDiplomaYesBtn
+            binding.noCommerceBtn,
+            binding.yesCommerceBtn,
+            binding.hasHealthSecurityBtn,
+            binding.withoutHealthSecurityBtn,
+            binding.literacyNoBtn,
+            binding.literacyYesBtn,
+            binding.highEducationDiplomaNoBtn,
+            binding.highEducationDiplomaYesBtn
         )
-
 
         ruralFamilyViewModel.family.observe(viewLifecycleOwner) { family ->
 
             val householder = family.householder
 
             if(householder.isMerchant){
-                exceptionButtonList.add(yesCommerceBtn)
+                exceptionButtonList.add(binding.yesCommerceBtn)
             } else {
-                exceptionButtonList.add(noCommerceBtn)
+                exceptionButtonList.add(binding.noCommerceBtn)
             }
 
             if(householder.hasHealthCoverage){
-                exceptionButtonList.add(hasHealthSecurity)
+                exceptionButtonList.add(binding.hasHealthSecurityBtn)
             } else {
-                exceptionButtonList.add(withoutHealthSecurityBtn)
+                exceptionButtonList.add(binding.withoutHealthSecurityBtn)
             }
 
             if(householder.isLiterate){
-                exceptionButtonList.add(yesLiteracy)
+                exceptionButtonList.add(binding.literacyYesBtn)
             } else {
-                exceptionButtonList.add(noLiteracy)
+                exceptionButtonList.add(binding.literacyNoBtn)
             }
 
             if(householder.hasHighEducationDiploma){
-                exceptionButtonList.add(highEducationDiplomaYesBtn)
+                exceptionButtonList.add(binding.highEducationDiplomaYesBtn)
             } else {
-                exceptionButtonList.add(highEducationDiplomaNoBtn)
+                exceptionButtonList.add(binding.highEducationDiplomaNoBtn)
             }
 
             fragmentUtil.setDefaultActiveButtons(buttonList, exceptionButtonList)
         }
 
-        yesCommerceBtn.setOnClickListener {
+        binding.yesCommerceBtn.setOnClickListener {
             ruralHouseHolderViewModel.isMerchant(true)
-            fragmentUtil.toggleTwoOptions(yesCommerceBtn , noCommerceBtn)
+            fragmentUtil.toggleTwoOptions(binding.yesCommerceBtn , binding.noCommerceBtn)
         }
 
-        hasHealthSecurity.setOnClickListener {
+        binding.hasHealthSecurityBtn.setOnClickListener {
             ruralHouseHolderViewModel.hasHealthCoverage(true)
-            fragmentUtil.toggleTwoOptions(hasHealthSecurity , withoutHealthSecurityBtn)
+            fragmentUtil.toggleTwoOptions(binding.hasHealthSecurityBtn , binding.withoutHealthSecurityBtn)
         }
 
-        withoutHealthSecurityBtn.setOnClickListener {
+        binding.withoutHealthSecurityBtn.setOnClickListener {
             ruralHouseHolderViewModel.hasHealthCoverage(false)
-            fragmentUtil.toggleTwoOptions(withoutHealthSecurityBtn , hasHealthSecurity)
+            fragmentUtil.toggleTwoOptions(binding.withoutHealthSecurityBtn , binding.hasHealthSecurityBtn)
         }
 
-        noLiteracy.setOnClickListener {
+        binding.literacyNoBtn.setOnClickListener {
             ruralHouseHolderViewModel.setLiteracy(false)
-            fragmentUtil.toggleTwoOptions(noLiteracy , yesLiteracy)
+            fragmentUtil.toggleTwoOptions(binding.literacyNoBtn , binding.literacyYesBtn)
         }
 
-        yesLiteracy.setOnClickListener {
+        binding.literacyYesBtn.setOnClickListener {
             ruralHouseHolderViewModel.setLiteracy(true)
-            fragmentUtil.toggleTwoOptions(yesLiteracy , noLiteracy)
+            fragmentUtil.toggleTwoOptions(binding.literacyYesBtn , binding.literacyNoBtn)
         }
 
-        highEducationDiplomaNoBtn.setOnClickListener {
+        binding.highEducationDiplomaNoBtn.setOnClickListener {
             ruralHouseHolderViewModel.hasHighEducationDiploma(false)
-            fragmentUtil.toggleTwoOptions(highEducationDiplomaNoBtn , highEducationDiplomaYesBtn)
+            fragmentUtil.toggleTwoOptions(binding.highEducationDiplomaNoBtn , binding.highEducationDiplomaYesBtn)
         }
 
-        highEducationDiplomaYesBtn.setOnClickListener {
+        binding.highEducationDiplomaYesBtn.setOnClickListener {
             ruralHouseHolderViewModel.hasHighEducationDiploma(true)
-            fragmentUtil.toggleTwoOptions(highEducationDiplomaYesBtn , highEducationDiplomaNoBtn)
+            fragmentUtil.toggleTwoOptions(binding.highEducationDiplomaYesBtn , binding.highEducationDiplomaNoBtn)
         }
 
-        doneBtn.setOnClickListener {
+        binding.doneBtn.setOnClickListener {
             ruralHouseHolderViewModel.ruralHouseHolder.observe(viewLifecycleOwner) {householder ->
                 ruralFamilyViewModel.updateFamilyHouseHolder(householder)
             }
@@ -140,7 +128,7 @@ class EditRuralOtherInfo : Fragment() {
 
         }
 
-        backBtn.setOnClickListener {
+        binding.backButton.setOnClickListener {
             val parenFragment: EditRuralHouseholder = parentFragment as EditRuralHouseholder
             val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.edit_householder_pager)
 
@@ -148,6 +136,6 @@ class EditRuralOtherInfo : Fragment() {
             swipeUtil.navigateBack(viewPager, editHouseHolderAdapter)
         }
 
-        return view
+        return binding.root
     }
 }

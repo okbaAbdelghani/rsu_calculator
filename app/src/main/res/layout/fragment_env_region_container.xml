@@ -14,10 +14,13 @@
         android:layout_marginTop="40dp"
         android:layout_marginStart="20dp">
 
-        <include layout="@layout/back_button" />
+        <include
+            android:id="@+id/included_back_button"
+            layout="@layout/back_button" />
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/layout_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -69,10 +72,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="60dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/layout_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-        <include layout="@layout/next_button"/>
+        <include
+            android:id="@+id/included_next"
+            layout="@layout/next_button"/>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

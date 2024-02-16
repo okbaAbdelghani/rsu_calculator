@@ -57,7 +57,8 @@
     <string name="third_month"> الشهر الثالث</string>
     <string name="add_family_member"> إضافة أحد أفراد العائلة</string>
     <string name="your_rsu_is"> مؤشرك الإجتماعي و الاقتصادي هو :</string>
-    <string name="congrats_for_success">تهانينا خالد.هذا المؤشر يخول لك الحصول على دعم</string>
+    <string name="congrats_for_success_first">تهانينام</string>
+    <string name="congrats_for_success_second">هذا المؤشر يخول لك الحصول على دعم</string>
     <string name="average_professional_position">ذو إطار متوسط</string>
     <string name="is_retired_or_beneficiary_Of_income">متقاعد او يستفيد من إيراد</string>
     <string name="highest_diploma_gotten">أعلى شهادة محصل عليها :</string>
@@ -106,6 +107,10 @@
     <string name="relationship_with_householder">العلاقة مع رب الأسرة :</string>
     <string name="child">ابن(ة)</string>
     <string name="partner">زوج (ة)</string>
+    <string name="dirham">درهم</string>
+    <string name="unfortunate_result">للأسف، هذا المؤشر لا يتيح لك الحصول على الدعم.</string>
+    <string name="you_can_have_amo">يمكنك الحصول على دعم شامل من خلال الاشتراك الشهري بمبلغ</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

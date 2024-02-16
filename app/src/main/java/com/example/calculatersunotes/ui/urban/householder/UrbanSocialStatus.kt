@@ -10,12 +10,15 @@ import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.databinding.FragmentUrbanSocialStatusBinding
 import com.example.calculatersunotes.ui.urban.Urban
 import com.example.calculatersunotes.ui.urban.UrbanPagerAdapter
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.utils.SwipeUtil
 
 class UrbanSocialStatus : Fragment() {
+    private var _binding : FragmentUrbanSocialStatusBinding? = null
+
     private var buttonList: List<Button> = mutableListOf()
     private var exceptionButtonList: List<Button> = mutableListOf()
     private lateinit var fragmentUtil: FragmentUtil
@@ -23,7 +26,7 @@ class UrbanSocialStatus : Fragment() {
     private lateinit var urbanPagerAdapter: UrbanPagerAdapter
     private lateinit var swipeUtil: SwipeUtil
 
-
+    private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -32,84 +35,74 @@ class UrbanSocialStatus : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_urban_social_status, container, false)
+        _binding = FragmentUrbanSocialStatusBinding.inflate(inflater, container, false)
+
         fragmentUtil = FragmentUtil(requireContext())
         swipeUtil = SwipeUtil()
 
-        val nextBtn = rootView.findViewById<ImageButton>(R.id.next_btn)
-        val backBtn = rootView.findViewById<ImageButton>(R.id.back_button)
-
-        val highPositionBtn = rootView.findViewById<Button>(R.id.high_position_btn)
-        val mediumPositionBtn = rootView.findViewById<Button>(R.id.medium_position_btn)
-        val withoutStatusBtn = rootView.findViewById<Button>(R.id.without_status_btn)
-        val employeeBtn = rootView.findViewById<Button>(R.id.employee_btn)
-        val recruiterBtn = rootView.findViewById<Button>(R.id.recruiter_btn)
-        val withoutPositionBtn = rootView.findViewById<Button>(R.id.without_position_btn)
-
-
         val socialStatusButtons = listOf<Button>(
-            highPositionBtn,
-            mediumPositionBtn,
-            withoutStatusBtn,
+            binding.highPositionBtn,
+            binding.mediumPositionBtn,
+            binding.withoutStatusBtn,
         )
 
         val positionInJobButtons = listOf<Button>(
-            employeeBtn,
-            recruiterBtn,
-            withoutPositionBtn
+            binding.employeeBtn,
+            binding.recruiterBtn,
+            binding.withoutPositionBtn
         )
 
         buttonList = mutableListOf(
-            highPositionBtn,
-            mediumPositionBtn,
-            withoutStatusBtn,
-            employeeBtn,
-            recruiterBtn,
-            withoutPositionBtn
+            binding.highPositionBtn,
+            binding.mediumPositionBtn,
+            binding.withoutStatusBtn,
+            binding.employeeBtn,
+            binding.recruiterBtn,
+            binding.withoutPositionBtn
         )
 
         exceptionButtonList = mutableListOf(
-            withoutPositionBtn,
-            withoutStatusBtn
+            binding.withoutPositionBtn,
+            binding.withoutStatusBtn
         )
 
-        recruiterBtn.setOnClickListener {
+        binding.recruiterBtn.setOnClickListener {
             setHouseHolderAsRecruiter()
-            fragmentUtil.setInactiveButtonColors(positionInJobButtons, recruiterBtn)
+            fragmentUtil.setInactiveButtonColors(positionInJobButtons, binding.recruiterBtn)
         }
 
-        employeeBtn.setOnClickListener {
+        binding.employeeBtn.setOnClickListener {
             setHouseHolderAsEmployee()
-            fragmentUtil.setInactiveButtonColors(positionInJobButtons, employeeBtn)
+            fragmentUtil.setInactiveButtonColors(positionInJobButtons, binding.employeeBtn)
         }
 
-        withoutPositionBtn.setOnClickListener {
+        binding.withoutPositionBtn.setOnClickListener {
             setHouseHolderAsWithoutPosition()
-            fragmentUtil.setInactiveButtonColors(positionInJobButtons, withoutPositionBtn)
+            fragmentUtil.setInactiveButtonColors(positionInJobButtons, binding.withoutPositionBtn)
         }
 
-        highPositionBtn.setOnClickListener {
+        binding.highPositionBtn.setOnClickListener {
             setHouseHolderAsHighProfessionalPosition()
-            fragmentUtil.setInactiveButtonColors(socialStatusButtons, highPositionBtn)
+            fragmentUtil.setInactiveButtonColors(socialStatusButtons, binding.highPositionBtn)
         }
 
-        mediumPositionBtn.setOnClickListener {
+        binding.mediumPositionBtn.setOnClickListener {
             setHouseHolderAsMediumPosition()
-            fragmentUtil.setInactiveButtonColors(socialStatusButtons, mediumPositionBtn)
+            fragmentUtil.setInactiveButtonColors(socialStatusButtons, binding.mediumPositionBtn)
         }
 
-        withoutStatusBtn.setOnClickListener {
+        binding.withoutStatusBtn.setOnClickListener {
             setHouseHolderAsNone()
-            fragmentUtil.setInactiveButtonColors(socialStatusButtons, withoutStatusBtn)
+            fragmentUtil.setInactiveButtonColors(socialStatusButtons, binding.withoutStatusBtn)
         }
 
         fragmentUtil.setDefaultActiveButtons(buttonList, exceptionButtonList)
 
-        swipeBack(backBtn)
-        swipeNext(nextBtn)
+        swipeBack(binding.backButton)
+        swipeNext(binding.includedNext.nextBtn)
 
 
-        return rootView
+        return binding.root
     }
 
     private fun setHouseHolderAsEmployee() {

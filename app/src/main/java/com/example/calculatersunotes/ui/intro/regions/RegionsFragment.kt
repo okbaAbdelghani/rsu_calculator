@@ -8,12 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.calculatersunotes.R
 import com.example.calculatersunotes.data.models.Region
-import com.example.calculatersunotes.data.models.SurveyItem
+import com.example.calculatersunotes.databinding.FragmentRegionsBinding
 import com.example.calculatersunotes.ui.base.EnvironmentViewModel
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
 import com.example.calculatersunotes.ui.base.UrbanFamilyViewModel
@@ -23,9 +22,12 @@ import java.io.IOException
 
 
 class RegionsFragment : Fragment() {
+    private var _binding : FragmentRegionsBinding? = null
+
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
     private val urbanFamilyViewModel: UrbanFamilyViewModel by activityViewModels()
     private val environmentViewModel: EnvironmentViewModel by activityViewModels()
+    private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -35,8 +37,7 @@ class RegionsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_regions, container, false)
-        val spinner: Spinner = rootView.findViewById<Spinner>(R.id.regions_spinner)
+        _binding = FragmentRegionsBinding.inflate(inflater, container, false)
 
         val stringResult = readJsonFromAssets("json/regions.json", requireContext())
         val regions = parseJsonToModel(stringResult)
@@ -46,8 +47,8 @@ class RegionsFragment : Fragment() {
         val adapter =  ArrayAdapter(requireContext(), R.layout.region_spinner_item, regionsNames)
         adapter.setDropDownViewResource(R.layout.region_spinner_item)
 
-        spinner.adapter = adapter
-        spinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        binding.regionsSpinner.adapter = adapter
+        binding.regionsSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
@@ -55,9 +56,9 @@ class RegionsFragment : Fragment() {
                 id: Long
             ) {
 
-                environmentViewModel.environment.observe(viewLifecycleOwner, Observer {env ->
+                environmentViewModel.environment.observe(viewLifecycleOwner, Observer {
                     val selectedRegionName = regions[position]
-                    when (env) {
+                    when (it) {
                         "urban" -> {
                             updateUrbanRegion(selectedRegionName)
                         }
@@ -66,7 +67,6 @@ class RegionsFragment : Fragment() {
                         }
                     }
                 })
-
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -75,7 +75,7 @@ class RegionsFragment : Fragment() {
         })
 
 
-        return rootView
+        return binding.root
     }
 
     private fun parseJsonToModel(jsonString: String?): MutableList<Region> {

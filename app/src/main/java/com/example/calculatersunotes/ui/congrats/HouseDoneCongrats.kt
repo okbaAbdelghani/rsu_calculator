@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.databinding.FragmentHouseDoneCongratsBinding
 import com.example.calculatersunotes.ui.base.EnvironmentViewModel
 import com.example.calculatersunotes.ui.result.ResultFragment
 import com.example.calculatersunotes.ui.rural.members.AddRuralMember
@@ -19,10 +20,14 @@ import com.example.calculatersunotes.utils.AnimationUtil
 import com.example.calculatersunotes.utils.FragmentUtil
 
 class HouseDoneCongrats : Fragment() {
+    private var _binding : FragmentHouseDoneCongratsBinding? = null
+
     private lateinit var animationUtil: AnimationUtil
     private lateinit var fragmentUtil: FragmentUtil
     private val environmentViewModel: EnvironmentViewModel by activityViewModels()
     private var selectedEnv = ""
+
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,31 +37,26 @@ class HouseDoneCongrats : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_house_done_congrats, container, false)
+        _binding = FragmentHouseDoneCongratsBinding.inflate(inflater, container, false)
+
         fragmentUtil = FragmentUtil(requireContext())
         animationUtil = AnimationUtil(requireContext())
 
-        val backgroundImage = rootView.findViewById<ImageView>(R.id.background_img)
-        val bottomSide = rootView.findViewById<LinearLayout>(R.id.bottom_side)
-
         //Animate Intro
-        animationUtil.makeCongratsAnimation(backgroundImage, bottomSide)
+        animationUtil.makeCongratsAnimation(binding.backgroundImg, binding.bottomSide)
 
-        val startBtn = rootView.findViewById<Button>(R.id.calculate_rsu_btn)
-        startBtn.setOnClickListener {
+        binding.calculateRsuBtn.setOnClickListener {
             navigateToResult()
         }
 
-        val addMemberBtn = rootView.findViewById<Button>(R.id.add_member_btn)
-        addMemberBtn.setOnClickListener {
+        binding.addMemberBtn.setOnClickListener {
             navigateToAddMembers()
         }
 
         environmentViewModel.environment.observe(viewLifecycleOwner, Observer {env ->
             selectedEnv = env
         })
-        return rootView
+        return binding.root
     }
 
     private fun navigateToResult(){

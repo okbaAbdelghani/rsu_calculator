@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -15,6 +16,16 @@ import com.example.calculatersunotes.R
 
 class FragmentUtil(val context: Context){
 
+
+    fun replaceFragment(
+        fragment: Fragment,
+        direction: String = "right",
+        addToBackStack: Boolean = false
+    ){
+        val fragmentManager: FragmentManager = (context as AppCompatActivity).supportFragmentManager
+        val containerId = R.id.fragmentContainer
+        replaceFragment(fragmentManager, containerId, fragment, direction, addToBackStack)
+    }
     fun replaceFragment(
         fragmentManager: FragmentManager,
         containerId: Int,

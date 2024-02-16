@@ -8,11 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.databinding.FragmentEditRuralHouseInfoTwoBinding
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
 import com.example.calculatersunotes.ui.rural.house.RuralHouseViewModel
 import com.example.calculatersunotes.utils.FragmentUtil
@@ -21,6 +21,8 @@ import java.text.ParseException
 
 
 class EditRuralHouseInfoTwo : Fragment() {
+    private var _binding : FragmentEditRuralHouseInfoTwoBinding? = null
+
     private var buttonList: List<Button> = mutableListOf()
     private var exceptionButtonList: MutableList<Button> = mutableListOf()
     private lateinit var fragmentUtil: FragmentUtil
@@ -28,6 +30,8 @@ class EditRuralHouseInfoTwo : Fragment() {
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
     private lateinit var editHousePagerAdapter: EditRuralHousePagerAdapter
     private lateinit var swipeUtil: SwipeUtil
+
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,90 +41,78 @@ class EditRuralHouseInfoTwo : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_edit_rural_house_info_two, container, false)
+        _binding = FragmentEditRuralHouseInfoTwoBinding.inflate(inflater, container, false)
+
         fragmentUtil = FragmentUtil(requireContext())
         swipeUtil = SwipeUtil()
 
-        val backBtn = rootView.findViewById<ImageButton>(R.id.back_button)
-        val nextBtn = rootView.findViewById<ImageButton>(R.id.next_btn)
-
-        val noSecondHouseBtn = rootView.findViewById<Button>(R.id.no_second_house_btn)
-        val yesSecondHouseBtn = rootView.findViewById<Button>(R.id.yes_second_house_btn)
-        val yesNonAgriculturalLandBtn = rootView.findViewById<Button>(R.id.yes_non_agricultural_land_btn)
-        val noAgriculturalLandBtn = rootView.findViewById<Button>(R.id.no_agricultural_land_btn)
-        val noArableLandBtn = rootView.findViewById<Button>(R.id.no_arable_land_btn)
-        val yesArableLandBtn = rootView.findViewById<Button>(R.id.yes_arable_land_btn)
-
-        val cowsNumberInput = rootView.findViewById<EditText>(R.id.cows_number_input)
-        val roomsNumberInput = rootView.findViewById<EditText>(R.id.rooms_number_input)
-
         buttonList = listOf(
-            noSecondHouseBtn,
-            yesSecondHouseBtn,
-            yesNonAgriculturalLandBtn,
-            noAgriculturalLandBtn,
-            noArableLandBtn,
-            yesArableLandBtn
+            binding.noSecondHouseBtn,
+            binding.yesSecondHouseBtn,
+            binding.yesNonAgriculturalLandBtn,
+            binding.noAgriculturalLandBtn,
+            binding.noArableLandBtn,
+            binding.yesArableLandBtn
         )
 
         ruralFamilyViewModel.family.observe(viewLifecycleOwner) { family ->
             val house = family.ruralHouse
 
             if(family.hasSecondHouse) {
-                exceptionButtonList.add(yesSecondHouseBtn)
+                exceptionButtonList.add(binding.yesSecondHouseBtn)
             } else {
-                exceptionButtonList.add(noSecondHouseBtn)
+                exceptionButtonList.add(binding.noSecondHouseBtn)
             }
 
             if(house.hasNoAgriculturalLand) {
-                exceptionButtonList.add(yesNonAgriculturalLandBtn)
+                exceptionButtonList.add(binding.yesNonAgriculturalLandBtn)
             } else {
-                exceptionButtonList.add(noAgriculturalLandBtn)
+                exceptionButtonList.add(binding.noAgriculturalLandBtn)
             }
 
             if(house.hasIrrigatedLand) {
-                exceptionButtonList.add(yesArableLandBtn)
+                exceptionButtonList.add(binding.yesArableLandBtn)
             } else {
-                exceptionButtonList.add(noArableLandBtn)
+                exceptionButtonList.add(binding.noArableLandBtn)
             }
 
-            cowsNumberInput.setText(house.cowsNumber.toString())
-            roomsNumberInput.setText(house.roomsNumber.toString())
+            binding.cowsNumberInput.setText(house.cowsNumber.toString())
+            binding.roomsNumberInput.setText(house.roomsNumber.toString())
 
             fragmentUtil.setDefaultActiveButtons(buttonList, exceptionButtonList)
         }
 
-        noSecondHouseBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(noSecondHouseBtn, yesSecondHouseBtn)
+        binding.noSecondHouseBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.noSecondHouseBtn, binding.yesSecondHouseBtn)
             ruralFamilyViewModel.updateSecondHousePossession(false)
         }
 
-        yesSecondHouseBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(yesSecondHouseBtn, noSecondHouseBtn)
+        binding.yesSecondHouseBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.yesSecondHouseBtn, binding.noSecondHouseBtn)
             ruralFamilyViewModel.updateSecondHousePossession(true)
         }
 
-        yesNonAgriculturalLandBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(yesNonAgriculturalLandBtn, noAgriculturalLandBtn)
+        binding.yesNonAgriculturalLandBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.yesNonAgriculturalLandBtn, binding.noAgriculturalLandBtn)
             ruralHouseViewModel.updateNonAgriculturalLandPossession(true)
         }
 
-        noAgriculturalLandBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(noAgriculturalLandBtn, yesNonAgriculturalLandBtn)
+        binding.noAgriculturalLandBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.noAgriculturalLandBtn, binding.yesNonAgriculturalLandBtn)
             ruralHouseViewModel.updateNonAgriculturalLandPossession(false)
         }
 
-        yesArableLandBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(yesArableLandBtn, noArableLandBtn)
+        binding.yesArableLandBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.yesArableLandBtn, binding.noArableLandBtn)
             ruralHouseViewModel.updateIrrigatedLandPossession(true)
         }
 
-        noArableLandBtn.setOnClickListener {
-            fragmentUtil.toggleTwoOptions(noArableLandBtn, yesArableLandBtn)
+        binding.noArableLandBtn.setOnClickListener {
+            fragmentUtil.toggleTwoOptions(binding.noArableLandBtn, binding.yesArableLandBtn)
             ruralHouseViewModel.updateIrrigatedLandPossession(false)
         }
 
-        cowsNumberInput.addTextChangedListener(object : TextWatcher {
+        binding.cowsNumberInput.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -143,7 +135,7 @@ class EditRuralHouseInfoTwo : Fragment() {
             }
         })
 
-        roomsNumberInput.addTextChangedListener(object : TextWatcher {
+        binding.roomsNumberInput.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -165,9 +157,9 @@ class EditRuralHouseInfoTwo : Fragment() {
             }
         })
 
-        swipeBack(backBtn)
-        swipeNext(nextBtn)
-        return rootView
+        swipeBack(binding.backButton)
+        swipeNext(binding.includedNext.nextBtn)
+        return binding.root
     }
 
     private fun swipeBack(button: ImageButton) {
@@ -189,8 +181,4 @@ class EditRuralHouseInfoTwo : Fragment() {
             swipeUtil.navigateNext(viewPager, editHousePagerAdapter) {}
         }
     }
-
-
-
-
 }

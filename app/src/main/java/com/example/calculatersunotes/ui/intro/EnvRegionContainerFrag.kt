@@ -12,6 +12,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.databinding.FragmentEnvRegionContainerBinding
+import com.example.calculatersunotes.databinding.FragmentRegionsBinding
 import com.example.calculatersunotes.ui.base.ConditionalViewPager
 import com.example.calculatersunotes.ui.base.EnvironmentViewModel
 import com.example.calculatersunotes.ui.congrats.HouseHolderDoneCongrats
@@ -23,6 +25,8 @@ import com.example.calculatersunotes.utils.SwipeUtil
 
 
 class EnvRegionContainerFrag : Fragment() {
+    private var _binding : FragmentEnvRegionContainerBinding? = null
+
     private lateinit var viewPager: ConditionalViewPager
     private lateinit var envRegionPagerAdapter: EnvRegionPagerAdapter
     private lateinit var fragmentUtil: FragmentUtil
@@ -30,6 +34,7 @@ class EnvRegionContainerFrag : Fragment() {
     private val environmentViewModel: EnvironmentViewModel by activityViewModels()
     private var selectedEnv = ""
 
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,38 +44,35 @@ class EnvRegionContainerFrag : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_env_region_container, container, false)
-        viewPager = rootView.findViewById(R.id.viewPager)
+        _binding = FragmentEnvRegionContainerBinding.inflate(inflater, container, false)
+
+        viewPager = binding.viewPager
         envRegionPagerAdapter = EnvRegionPagerAdapter(childFragmentManager)
         viewPager.adapter = envRegionPagerAdapter
         fragmentUtil = FragmentUtil(requireContext())
         swipeUtil = SwipeUtil()
 
-        val nxtBtn = rootView.findViewById<ImageButton>(R.id.next_btn)
-        val backBtn = rootView.findViewById<ImageButton>(R.id.back_btn)
-
         viewPager.setSwipeEnabled(false)
 
         if (viewPager.currentItem == 0) {
-            backBtn.visibility = View.GONE
+            binding.includedBackButton.backBtn.visibility = View.GONE
         }
 
         environmentViewModel.environment.observe(viewLifecycleOwner, Observer {env ->
             if (env != ""){
-                nxtBtn.isEnabled = true
-                nxtBtn.alpha = 1.0f
+                binding.includedNext.nextBtn.isEnabled = true
+                binding.includedNext.nextBtn.alpha = 1.0f
                 viewPager.setSwipeEnabled(true)
             } else {
-                nxtBtn.isEnabled = false
-                nxtBtn.alpha = 0.5f
+                binding.includedNext.nextBtn.isEnabled = false
+                binding.includedNext.nextBtn.alpha = 0.5f
             }
 
             selectedEnv = env
         })
 
-        onNexBtnClicked(rootView);
-        onBackBtnClicked(rootView);
+        onNexBtnClicked(binding.root);
+        onBackBtnClicked(binding.root);
 
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
@@ -83,9 +85,9 @@ class EnvRegionContainerFrag : Fragment() {
 
             override fun onPageSelected(position: Int) {
                 if(position == 0) {
-                    backBtn.visibility = View.GONE
+                    binding.includedBackButton.backBtn.visibility = View.GONE
                 } else {
-                    backBtn.visibility = View.VISIBLE
+                    binding.includedBackButton.backBtn.visibility = View.VISIBLE
                 }
             }
 
@@ -94,22 +96,16 @@ class EnvRegionContainerFrag : Fragment() {
             }
         })
 
-
-        return rootView
+        return binding.root
     }
 
     private fun onNexBtnClicked(view: View) {
-        val nxtBtn = view.findViewById<ImageButton>(R.id.next_btn);
-        nxtBtn.setOnClickListener {
-
+        binding.includedNext.nextBtn.setOnClickListener {
             swipeUtil.navigateNext(viewPager, envRegionPagerAdapter, navigateToRuralOrUrban)
-
         }
     }
-
     private fun onBackBtnClicked(view: View) {
-        val backBtn = view.findViewById<ImageButton>(R.id.back_btn)
-        backBtn.setOnClickListener {
+        binding.includedBackButton.backBtn.setOnClickListener {
             swipeUtil.navigateBack(viewPager, envRegionPagerAdapter)
         }
     }
@@ -120,7 +116,5 @@ class EnvRegionContainerFrag : Fragment() {
             "urban" ->  fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, Urban())
             "" -> Toast.makeText(requireContext(),"environment required!", Toast.LENGTH_SHORT).show()
         }
-
     }
-
 }

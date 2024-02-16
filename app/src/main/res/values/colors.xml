@@ -18,5 +18,4 @@
     <color name="purpleAlpha15">#26673AB7</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/bordersGray</color>
 
-
 </resources>

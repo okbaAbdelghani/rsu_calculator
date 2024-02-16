@@ -6,18 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.databinding.FragmentEditSocialStatusBinding
 import com.example.calculatersunotes.ui.base.RuralFamilyViewModel
-import com.example.calculatersunotes.ui.edit.rural.householder.EditRuralHouseholder
-import com.example.calculatersunotes.ui.edit.rural.householder.EditRuralHouseholderAdapter
 import com.example.calculatersunotes.ui.rural.householder.RuralHouseHolderViewModel
 import com.example.calculatersunotes.utils.FragmentUtil
 import com.example.calculatersunotes.utils.SwipeUtil
 
 class EditRuralSocialStatus : Fragment() {
+    private var _binding : FragmentEditSocialStatusBinding? = null
+
     private var buttonList: List<Button> = mutableListOf()
     private var exceptionButtonList: MutableList<Button> = mutableListOf()
     private lateinit var fragmentUtil: FragmentUtil
@@ -25,6 +25,8 @@ class EditRuralSocialStatus : Fragment() {
     private val ruralFamilyViewModel: RuralFamilyViewModel by activityViewModels()
     private lateinit var swipeUtil: SwipeUtil
     private lateinit var editHouseHolderAdapter: EditRuralHouseholderAdapter
+
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,116 +36,104 @@ class EditRuralSocialStatus : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_edit_social_status, container, false)
+        _binding = FragmentEditSocialStatusBinding.inflate(inflater, container, false)
 
         fragmentUtil = FragmentUtil(requireContext())
         swipeUtil = SwipeUtil()
 
-        val backBtn = view.findViewById<ImageButton>(R.id.back_button)
-        val nextBtn = view.findViewById<ImageButton>(R.id.next_btn)
-
-        val machineryManagerBtn = view.findViewById<Button>(R.id.machinery_manager_btn)
-        val craftsmanBtn = view.findViewById<Button>(R.id.craftsman_btn)
-        val farmerBtn = view.findViewById<Button>(R.id.farmer_btn)
-        val otherBtn = view.findViewById<Button>(R.id.other_btn)
-        val recruiterBtn = view.findViewById<Button>(R.id.recruiter_btn)
-        val withoutBtn = view.findViewById<Button>(R.id.without_btn)
-        val highPositionBtn = view.findViewById<Button>(R.id.high_position_btn)
-
         val socialStatusButtons = listOf<Button>(
-            machineryManagerBtn,
-            highPositionBtn,
-            craftsmanBtn,
-            farmerBtn,
-            otherBtn
+            binding.machineryManagerBtn,
+            binding.highPositionBtn,
+            binding.craftsmanBtn,
+            binding.farmerBtn,
+            binding.otherBtn
         )
 
         val positionInJobButtons = listOf<Button>(
-            recruiterBtn,
-            withoutBtn,
+            binding.recruiterBtn,
+            binding.withoutBtn,
         )
 
         buttonList = mutableListOf(
-            machineryManagerBtn,
-            craftsmanBtn,
-            farmerBtn,
-            otherBtn,
-            recruiterBtn,
-            highPositionBtn,
-            withoutBtn
+            binding.machineryManagerBtn,
+            binding.craftsmanBtn,
+            binding.farmerBtn,
+            binding.otherBtn,
+            binding.recruiterBtn,
+            binding.highPositionBtn,
+            binding.withoutBtn
         )
 
-        ruralFamilyViewModel.family.observe(viewLifecycleOwner) { family ->
+        ruralFamilyViewModel.family.observe(viewLifecycleOwner) {
 
-            val householder = family.householder
+            val householder = it.householder
 
             if(householder.isRecruiting){
-                exceptionButtonList.add(recruiterBtn)
+                exceptionButtonList.add(binding.recruiterBtn)
             } else {
-                exceptionButtonList.add(withoutBtn)
+                exceptionButtonList.add(binding.withoutBtn)
             }
 
             if(householder.fixEquipmentOrMachinery) {
-                exceptionButtonList.add(machineryManagerBtn)
+                exceptionButtonList.add(binding.machineryManagerBtn)
             }
 
             else if(householder.hasHighProfessionalPosition) {
-                exceptionButtonList.add(highPositionBtn)
+                exceptionButtonList.add(binding.highPositionBtn)
             }
 
             else if(householder.isCraftsman) {
-                exceptionButtonList.add(craftsmanBtn)
+                exceptionButtonList.add(binding.craftsmanBtn)
             }
 
             else if(householder.isFarmer) {
-                exceptionButtonList.add(farmerBtn)
+                exceptionButtonList.add(binding.farmerBtn)
             }
 
             else {
-                exceptionButtonList.add(otherBtn)
+                exceptionButtonList.add(binding.otherBtn)
             }
 
             fragmentUtil.setDefaultActiveButtons(buttonList, exceptionButtonList)
 
         }
 
-        machineryManagerBtn.setOnClickListener {
+        binding.machineryManagerBtn.setOnClickListener {
             setHouseHolderAsMachineryManager()
-            fragmentUtil.setInactiveButtonColors(socialStatusButtons, machineryManagerBtn)
+            fragmentUtil.setInactiveButtonColors(socialStatusButtons, binding.machineryManagerBtn)
         }
 
-        craftsmanBtn.setOnClickListener {
+        binding.craftsmanBtn.setOnClickListener {
             setHouseHolderAsCraftsman()
-            fragmentUtil.setInactiveButtonColors(socialStatusButtons, craftsmanBtn)
+            fragmentUtil.setInactiveButtonColors(socialStatusButtons, binding.craftsmanBtn)
         }
 
-        farmerBtn.setOnClickListener {
+        binding.farmerBtn.setOnClickListener {
             setHouseHolderAsFarmer()
-            fragmentUtil.setInactiveButtonColors(socialStatusButtons, farmerBtn)
+            fragmentUtil.setInactiveButtonColors(socialStatusButtons, binding.farmerBtn)
         }
 
-        highPositionBtn.setOnClickListener {
+        binding.highPositionBtn.setOnClickListener {
             setHouseHolderAsHighProfessionalPosition()
-            fragmentUtil.setInactiveButtonColors(socialStatusButtons, highPositionBtn)
+            fragmentUtil.setInactiveButtonColors(socialStatusButtons, binding.highPositionBtn)
         }
 
-        otherBtn.setOnClickListener {
+        binding.otherBtn.setOnClickListener {
             setHouseHolderAsNone()
-            fragmentUtil.setInactiveButtonColors(socialStatusButtons, otherBtn)
+            fragmentUtil.setInactiveButtonColors(socialStatusButtons, binding.otherBtn)
         }
 
-        recruiterBtn.setOnClickListener {
+        binding.recruiterBtn.setOnClickListener {
             setHouseHolderAsRecruiter()
-            fragmentUtil.setInactiveButtonColors(positionInJobButtons, recruiterBtn)
+            fragmentUtil.setInactiveButtonColors(positionInJobButtons, binding.recruiterBtn)
         }
 
-        withoutBtn.setOnClickListener {
+        binding.withoutBtn.setOnClickListener {
             setHouseHolderAsJobless()
-            fragmentUtil.setInactiveButtonColors(positionInJobButtons, withoutBtn)
+            fragmentUtil.setInactiveButtonColors(positionInJobButtons, binding.withoutBtn)
         }
 
-        backBtn.setOnClickListener {
+        binding.backButton.setOnClickListener {
             val parenFragment: EditRuralHouseholder = parentFragment as EditRuralHouseholder
             val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.edit_householder_pager)
 
@@ -151,7 +141,7 @@ class EditRuralSocialStatus : Fragment() {
             swipeUtil.navigateBack(viewPager, editHouseHolderAdapter)
         }
 
-        nextBtn.setOnClickListener {
+        binding.includedNext.nextBtn.setOnClickListener {
             val parenFragment: EditRuralHouseholder = parentFragment as EditRuralHouseholder
             val viewPager: ViewPager? = parenFragment.view?.findViewById(R.id.edit_householder_pager)
 
@@ -159,8 +149,7 @@ class EditRuralSocialStatus : Fragment() {
             swipeUtil.navigateNext(viewPager, editHouseHolderAdapter) {}
         }
 
-
-        return view
+        return binding.root
     }
 
     private fun setHouseHolderAsFarmer(){

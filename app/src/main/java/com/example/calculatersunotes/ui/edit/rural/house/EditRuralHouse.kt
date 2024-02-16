@@ -7,11 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.ViewPager
 import com.example.calculatersunotes.R
+import com.example.calculatersunotes.databinding.FragmentEditRuralHouseBinding
 
 
 class EditRuralHouse : Fragment() {
+    private var _binding : FragmentEditRuralHouseBinding? = null
+
     private lateinit var viewPager: ViewPager
     private lateinit var editHousePagerAdapter: EditRuralHousePagerAdapter
+
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,15 +27,14 @@ class EditRuralHouse : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_edit_rural_house, container, false)
+        _binding = FragmentEditRuralHouseBinding.inflate(inflater, container, false)
 
-        viewPager = rootView.findViewById(R.id.edit_house_container)
+        viewPager = binding.editHouseContainer
         editHousePagerAdapter = EditRuralHousePagerAdapter(childFragmentManager)
 
         viewPager.adapter = editHousePagerAdapter
 
-        return rootView
+        return binding.root
     }
 
 }
