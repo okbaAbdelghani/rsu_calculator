@@ -21,7 +21,7 @@
     <string name="does_commerce_question"> يمارس التجارة : </string>
     <string name="calculate_rsu"> حساب المؤشر </string>
     <string name="choose_regioQuestion"> اختر الجهة التي تقطن بها</string>
-    <string name="write_full_name"> اكتب اسمك كامل...</string>
+    <string name="write_full_name"> اكتب اسمك كامل…</string>
     <string name="full_name">الاسم كامل :</string>
     <string name="educational_level_of_householder">المستوى التعليمي لرب الأسرة :</string>
     <string name="high_education">تعليم العالي</string>
@@ -31,9 +31,9 @@
     <string name="literacy">معرفة القراءة و الكتابة : </string>
     <string name="has_high_education_diploma">حاصل على شهادة التعليم العالي : </string>
     <string name="yes">نعم</string>
-    <string name="congrats_for_ones_part">تهانينا خالد. لقد أكملت الجزء الخاص بك</string>
+    <string name="congrats_for_ones_part">تهانينا. لقد أكملت الجزء الخاص بك</string>
     <string name="start">ابدأ</string>
-    <string name="write_age">اكتب سنك...</string>
+    <string name="write_age">اكتب سنك…</string>
     <string name="start_home_part">ابدأ الجزء الخاص بالمنزل</string>
     <string name="house_type_quest">هل أسرة تقيم بفيال شقة دار تقليدية، دار قروية
 مشيدة بالأحجار اليابسة أو بالأحجار المغطاة بالطين  ؟</string>
@@ -45,7 +45,7 @@
     <string name="have_arable_land">  هل تمتلك أراضي مسقية أو تستغلها الأسرة ؟</string>
     <string name="cows_number"> عدد الابقار</string>
     <string name="rooms_number"> عدد الغرف</string>
-    <string name="write_number"> اكتب  العدد...</string>
+    <string name="write_number"> اكتب  العدد…</string>
     <string name="big_gas_bottles_number"> عدد قنينات الغاز الكبيرة في الشهر</string>
     <string name="small_gas_bottles_number"> عدد قنينات الغاز الصغيرة في الشهر</string>
     <string name="internet_bill"> فاتورة الإنترنت الشهرية </string>
@@ -57,7 +57,7 @@
     <string name="third_month"> الشهر الثالث</string>
     <string name="add_family_member"> إضافة أحد أفراد العائلة</string>
     <string name="your_rsu_is"> مؤشرك الإجتماعي و الاقتصادي هو :</string>
-    <string name="congrats_for_success_first">تهانينام</string>
+    <string name="congrats_for_success_first">تهانينا</string>
     <string name="congrats_for_success_second">هذا المؤشر يخول لك الحصول على دعم</string>
     <string name="average_professional_position">ذو إطار متوسط</string>
     <string name="is_retired_or_beneficiary_Of_income">متقاعد او يستفيد من إيراد</string>

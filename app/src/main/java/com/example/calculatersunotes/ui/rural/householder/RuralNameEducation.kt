@@ -37,8 +37,8 @@ class RuralNameEducation : Fragment() {
         val ageInput = view.findViewById<EditText>(R.id.age_input)
         val fullNameInput = view.findViewById<EditText>(R.id.full_name_input)
 
-        buttonList += basicEducationBtn
-        buttonList += withoutBtn
+        buttonList = buttonList + basicEducationBtn
+        buttonList = buttonList + withoutBtn
 
         fragmentUtil.setInactiveButtonColors(buttonList, withoutBtn)
 

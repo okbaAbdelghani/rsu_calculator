@@ -6,85 +6,94 @@
     android:layout_height="match_parent"
     tools:context=".ui.result.ResultFragment">
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:paddingStart="10dp"
-        android:paddingTop="30dp"
-        android:paddingEnd="10dp"
-        android:paddingBottom="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:contentDescription="navigate back"
-            android:padding="20dp"
-            android:src="@drawable/black_back" />
-
-        <TextView
-            style="@style/mainText"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="25dp"
-            android:gravity="start"
-            android:text="@string/your_rsu_is" />
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingStart="10dp"
+            android:paddingTop="30dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <FrameLayout
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/ellipse_border">
+            <ImageButton
+                android:id="@+id/back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:contentDescription="navigate back"
+                android:padding="20dp"
+                android:src="@drawable/black_back" />
 
             <TextView
-                android:id="@+id/result_txt"
+                style="@style/mainText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/amiri_bold"
-                android:gravity="center"
-                android:text="0.00"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
-        </FrameLayout>
+                android:layout_marginTop="25dp"
+                android:gravity="start"
+                android:text="@string/your_rsu_is" />
 
-        <TextView
-            android:id="@+id/tv_result_description"
-            style="@style/mainText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="25dp"
-            android:text="@string/congrats_for_success_first"
-            android:textAlignment="center"
-            android:textColor="@color/mainColor"
-            android:visibility="gone" />
+            <FrameLayout
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/ellipse_border">
 
-        <TextView
-            android:id="@+id/tv_result_additional"
-            style="@style/mainText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/you_can_have_amo"
-            android:textAlignment="center"
-            android:visibility="gone" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/result_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/amiri_bold"
+                    android:gravity="center"
+                    android:text="0.00"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_result_description"
+                style="@style/mainText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:text="@string/congrats_for_success_first"
+                android:textAlignment="center"
+                android:textColor="@color/mainColor"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/tv_result_additional"
+                style="@style/mainText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/you_can_have_amo"
+                android:textAlignment="center"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </LinearLayout>
+    </ScrollView>
+
+
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

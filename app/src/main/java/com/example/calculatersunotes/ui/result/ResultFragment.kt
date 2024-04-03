@@ -69,6 +69,7 @@ class ResultFragment : Fragment() {
         return binding.root
     }
 
+
     private fun goBack(){
         binding.backButton.setOnClickListener{
             fragmentUtil.replaceFragment(requireActivity().supportFragmentManager,R.id.fragmentContainer, RuralHouseFragment(), "left")
